@@ -7,7 +7,7 @@
           <div class="row gx-2 info">
             <div class="col-auto">
               <div class="square avatar">
-                <img :src="`https://www.tinygraphs.com/spaceinvaders/${getListing.owner.phone}?theme=base&numcolors=2&size=144&fmt=png&inv=1`">
+                <img :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`">
               </div>
             </div>
             <div class="col">

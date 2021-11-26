@@ -83,12 +83,15 @@ html, body {
   padding: 8px 0;
 }
 .v-offset-s {
+  display: inline;
   padding: 0 2px;
 }
 .v-offset {
+  display: inline;
   padding: 0 6px;
 }
 .v-offset-2x {
+  display: inline;
   padding: 0 8px;
 }
 .line {
@@ -398,7 +401,7 @@ a .info:hover {
 }
 .square {
   display: flex;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   border-radius: var(--border-radius);
   overflow: hidden;
   align-items: center;

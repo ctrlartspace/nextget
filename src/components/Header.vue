@@ -11,7 +11,7 @@
 
         <div class="col-auto d-flex align-items-center">
           <router-link v-show='IS_AUTHENTIFICATED' class="btn primary" :to="{ name: 'CreateListing' }">
-						<span class="material-icons-round">add</span>
+						<span class="material-icons-round">create</span>
 					</router-link>
         </div>
         <div class="col-auto d-flex align-items-center">
