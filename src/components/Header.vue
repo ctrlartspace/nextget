@@ -3,14 +3,15 @@
     <div class="nav padding colored rounded-bottom">
       <div class="row gx-2">
         <div  class="col-auto me-auto d-flex align-items-center">
-          <router-link v-show='IS_AUTHENTIFICATED' class="btn" :to="{ name: 'Home' }">
-						<span class="material-icons-round">apple</span>
+          
+          <router-link v-show='IS_AUTHENTIFICATED' :to="{ name: 'Home' }">
+            <img class="logo" src="https://aman3d.pythonanywhere.com/register.svg" alt="logo" />
 					</router-link>
 
         </div>
 
         <div class="col-auto d-flex align-items-center">
-          <router-link v-show='IS_AUTHENTIFICATED' class="btn primary" :to="{ name: 'CreateListing' }">
+          <router-link v-show='IS_AUTHENTIFICATED' class="btn" :to="{ name: 'CreateListing' }">
 						<span class="material-icons-round">create</span>
 					</router-link>
         </div>

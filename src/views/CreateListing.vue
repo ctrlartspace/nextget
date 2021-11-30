@@ -2,8 +2,11 @@
   <form @submit.prevent="createListing">
     <div class="row my-0 gx-2 gy-2">
       <div class="col">
-        <div class="padding colored rounded section primary">
-          <h5>Новое объявление</h5>
+        <div class="padding colored rounded section primary-text">
+          <div class="with-icon">
+            <span class="material-icons-round">create</span>
+            <h5>Новое объявление</h5>
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +39,7 @@
         </div>
         <div class="offset-4"></div>
         <div class="padding colored rounded section dashed accent-text mono">
-          <h4>{{ selectData.price }} KZT</h4>
+          <h4>{{ numberWithCommas(selectData.price) }} KZT</h4>
         </div>
       </div>
       
@@ -48,9 +51,9 @@
               <h5>Шаг {{ currentStep }}</h5>
             </div>
             <div class="col-auto">
-              <button v-if="currentStep < 4" type="button" class="btn primary" @click="nextStep" :disabled="isProductSelected">
-                <p>Далее</p>
+              <button v-if="currentStep < 4" type="button" class="btn primary" @click="nextStep" v-show="!isProductSelected">
                 <span class="material-icons-round">arrow_forward_ios</span>
+                <p>Далее</p>  
               </button>
               <button v-else type="button" class="btn accent" @click="nextStep" :disabled="isProductSelected">
                 <span class="material-icons-round">done</span>
@@ -142,7 +145,9 @@
 </template>
 
 <script>
+import conditionDecoder from '@/services/condition-decoder'
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'CreateListing',
   data() {
@@ -168,6 +173,7 @@ export default {
       
     }
   },
+  mixins: [conditionDecoder],
   computed: {
     ...mapGetters(['getProducts', 'getConditions', 'getEquipments']),
     isProductSelected() { return this.selectData.product == 0 }

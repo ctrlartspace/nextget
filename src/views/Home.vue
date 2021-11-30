@@ -2,11 +2,16 @@
   <div v-if="getListings" class="row my-0 gy-2 gx-2">
     <div class="col-md-4">
       <div class="padding colored rounded section">
-        <h5>Фильтры</h5>
+        <div class="with-icon">
+          <span class="material-icons-round">filter_alt</span>
+          <h5>Фильтры</h5>
+        </div>
       </div>
     </div>
     <div class="col-md-8 ">
       <div class="padding colored rounded section">
+        <h5>Все объявления</h5>
+        <div class="offset"></div>
         <Listings :listings="getListings"/>
       </div>
       <!-- <div v-for="model in getProductModels" :key="model.id">

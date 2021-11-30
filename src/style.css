@@ -3,7 +3,7 @@
   --surface-color: #FFFFFF;
   --surface-secondary-color: #FAFAFA;
   --border-color: #EEEEEE;
-  --primary-color: #1E88E5;
+  --primary-color: #5600e1;
   --secondary-color: #BDBDBD;
   --on-background-color: #000000;
   --on-surface-color: #000000;
@@ -14,7 +14,7 @@
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
-  --border-radius: 2px;
+  --border-radius: 4px;
    
 }
 :root.dark {
@@ -22,7 +22,7 @@
   --surface-color: #121212;
   --surface-secondary-color: #161616;
   --border-color: #212121;
-  --primary-color: #1E88E5;
+  --primary-color: #5600e1;
   --secondary-color: #616161;
   --on-background-color: #E0E0E0;
   --on-surface-color: #E0E0E0;
@@ -33,7 +33,7 @@
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
-  --border-radius: 2px;
+  --border-radius: 4px;
 }
 
 html, body {
@@ -159,7 +159,7 @@ h4, h5, h6, p {
 .listing a {
   font-size: var(--text-size-large);
   font-weight: 400;
-  color: var(--primary-color);
+  color: var(--on-surface-color);
   cursor: pointer;
   text-decoration: none;
 }
@@ -205,7 +205,7 @@ h4, h5, h6, p {
 .info a:hover {
   text-decoration: underline;
 }
-.overflow * {
+.overflow {
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -294,7 +294,7 @@ input:focus {
   box-sizing: border-box;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 6px;
+  padding: 6px 8px;
   font-size: var(--text-size-large);
   font-family: Roboto, Helvetica, Arial, sans-serif;
   align-items: center;
@@ -471,4 +471,9 @@ a .info:hover {
 }
 .space-between {
   justify-content: space-between;
+}
+.logo {
+  max-width: 100px;
+  display: block;
+  margin: 0 auto;
 }

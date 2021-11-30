@@ -49,11 +49,26 @@
           <p>Батарея: {{ getListing.battery_health }}%</p>
         </div>
       </div>
-      <div class="padding colored rounded-bottom section">
+      <div class="padding colored no-border-bottom section">
         <h5>Дополнительная информация</h5>
         <div class="offset-s"></div>
         <div class="info black inline">
-          <p>Комплектация: {{ getListing.equipment.value }}</p>
+          <p>{{ getListing.equipment.value }}</p>
+        </div>
+      </div>
+      <div class="padding colored rounded-bottom section">
+        <div class="row gx-0 d-flex align-items-center">
+          <div class="col">
+            <div class="accent-text mono">
+              <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
+            </div>
+          </div>
+          <div class="col-auto">
+            <router-link class="btn accent" :to="{ name: 'CreateListing' }">
+              <span class="material-icons-round">shopping_cart</span>
+              <p>Купить</p>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
