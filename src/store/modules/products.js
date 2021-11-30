@@ -27,6 +27,19 @@ export default {
         console.log(error);
         return Promise.reject(error)
       })
+    },
+    async fetchEquipments({ commit }) {
+      return axionInstance({
+        method: 'get',
+        url: 'equipments'
+      }).then(response => {
+        console.log(response.data.equipments);
+        commit('SET_EQUIPMENTS', response.data.equipments)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error)
+      })
     }
 
   },
@@ -36,15 +49,20 @@ export default {
     },
     SET_CONDITIONS: (state, conditions) => {
       state.conditions = conditions
+    },
+    SET_EQUIPMENTS: (state, equipments) => {
+      state.equipments = equipments
     }
 
   },
   state: {
     products: [],
-    conditions: []
+    conditions: [],
+    equipments: []
   },
   getters: {
     getProducts: (state) => state.products.reverse(),
-    getConditions: (state) => state.conditions
+    getConditions: (state) => state.conditions,
+    getEquipments: (state) => state.equipments
   }
 }

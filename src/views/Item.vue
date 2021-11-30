@@ -51,6 +51,10 @@
       </div>
       <div class="padding colored rounded-bottom section">
         <h5>Дополнительная информация</h5>
+        <div class="offset-s"></div>
+        <div class="info black inline">
+          <p>Комплектация: {{ getListing.equipment.value }}</p>
+        </div>
       </div>
     </div>
     <div class="col-md-6">

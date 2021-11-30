@@ -9,9 +9,10 @@
   --on-surface-color: #000000;
   --on-primary-color: #FFFFFF;
   --on-secondary-color: #FFFFFF;
-  --accent-color: #1DE9B6;
-  --on-accent-color: #000000;
+  --accent-color: #00C853;
+  --on-accent-color: #FFFFFF;
   --text-size-large: 16px;
+  --text-size-very-large: 20px;
   --text-size-medium: 14px;
   --border-radius: 2px;
    
@@ -27,9 +28,10 @@
   --on-surface-color: #E0E0E0;
   --on-primary-color: #FFFFFF;
   --on-secondary-color: #FFFFFF;
-  --accent-color: #1DE9B6;
-  --on-accent-color: #000000;
+  --accent-color: #00C853;
+  --on-accent-color: #FFFFFF;
   --text-size-large: 16px;
+  --text-size-very-large: 20px;
   --text-size-medium: 14px;
   --border-radius: 2px;
 }
@@ -48,6 +50,24 @@ html, body {
 .colored {
   background: var(--surface-color);
   border: 1px solid var(--border-color);
+}
+.dashed {
+  background-image: linear-gradient(135deg, 
+                    var(--surface-color) 25%, var(--surface-secondary-color) 25%, 
+                    var(--surface-secondary-color) 50%, var(--surface-color) 50%, 
+                    var(--surface-color) 75%, var(--surface-secondary-color) 75%, 
+                    var(--surface-secondary-color) 100%);
+  background-size: 10px 10px;
+  border-width: 2px;
+  border-style: dashed;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+
 }
 .rounded {
   border-radius: var(--border-radius);
@@ -76,6 +96,9 @@ html, body {
 .offset-s {
   padding: 2px 0;
 }
+.offset-4 {
+  padding: 4px 0;
+}
 .offset {
   padding: 6px 0;
 }
@@ -100,7 +123,7 @@ html, body {
   border-bottom: 1px solid var(--border-color);
 }
 
-h5, h6, p {
+h4, h5, h6, p {
   margin: 0;
   padding: 0
 }
@@ -111,9 +134,16 @@ h5, h6, p {
   font-size: var(--text-size-large);
   font-weight: 700;
 }
+.section h4 {
+  font-size: var(--text-size-very-large);
+  font-weight: 700;
+}
 .with-icon {
   display: flex;
   align-items: center;
+}
+.mono {
+  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
 }
 .with-icon span {
   font-size: var(--text-size-large);
@@ -190,8 +220,8 @@ h5, h6, p {
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border: 1px solid var(--border-color);
-  background-color: var(--surface-color);
+  /* border: 1px solid var(--border-color); */
+  background-color: var(--surface-secondary-color);
   border-radius: var(--border-radius);
   font-family: Roboto Mono, Helvetica, Arial, sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -308,6 +338,12 @@ input:focus {
   background-color: var(--accent-color);
   color: var(--on-accent-color);
   border: 1px solid var(--accent-color);
+}
+.primary-text {
+  color: var(--primary-color);
+}
+.accent-text {
+  color: var(--accent-color);
 }
 .icon {
   border: none;
