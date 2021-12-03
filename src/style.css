@@ -8,12 +8,13 @@
   --on-background-color: #000000;
   --on-surface-color: #000000;
   --on-primary-color: #FFFFFF;
-  --on-secondary-color: #FFFFFF;
+  --on-secondary-color: #000000;
   --accent-color: #00C853;
   --on-accent-color: #FFFFFF;
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
+  --text-size-small: 12px;
   --border-radius: 4px;
 }
 
@@ -33,6 +34,7 @@
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
+  --text-size-small: 12px;
   --border-radius: 4px;
 }
 
@@ -56,28 +58,6 @@ html, body {
 
 .mono {
   font-family: Roboto Mono, Helvetica, Arial, sans-serif;
-}
-
-.tags span, .tags p {
-  display: block;
-  font-size: var(--text-size-medium);
-  font-weight: 700;
-}
-
-.tags .item {
-  display: flex;
-  align-items: center;
-  padding: 2px 4px;
-  /* border: 1px solid var(--border-color); */
-  background-color: var(--surface-secondary-color);
-  border-radius: var(--border-radius);
-  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 ::placeholder {
@@ -124,7 +104,6 @@ html, body {
 .square img {
   max-width: 100%;
   max-height: 100%;
-
 }
 
 .logo {
@@ -186,6 +165,11 @@ a :hover {
 .v-offset-8px {
   display: inline;
   padding: 0 8px;
+}
+
+/* DISPLAY */
+.d-inline * {
+  display: inline;
 }
 
 /* SECTION */
@@ -410,6 +394,29 @@ input:focus {
   text-decoration: underline;
 }
 
+/* TAGS */
+.tags span, .tags p {
+  display: block;
+  font-size: var(--text-size-medium);
+  font-weight: 700;
+}
+
+.tags .item {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  /* border: 1px solid var(--border-color); */
+  background-color: var(--surface-secondary-color);
+  border-radius: var(--border-radius);
+  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* COLOR */
 .primary {
   background-color: var(--primary-color);
@@ -429,4 +436,29 @@ input:focus {
 
 .accent-text {
   color: var(--accent-color);
+}
+
+.secondary-text {
+  color: var(--secondary-color);
+}
+
+.surface-text {
+  color: var(--on-surface-color);
+}
+
+/* HELP */
+.help-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: var(--border-color);
+  border-radius: var(--border-radius);
+
+}
+
+.help-label p, .help-label span {
+  display: inline-flex;
+  font-size: var(--text-size-small);
+  font-weight: 700;
+
 }

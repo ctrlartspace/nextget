@@ -11,14 +11,16 @@
                 />
               </div>
             </div>
-            <div class="col">
+            <div class="col surface-text">
               <p>
                 <strong>{{ getListing.owner.display_name }}</strong>
               </p>
-              <p>
-                Отзывы: 100%, на сайте с
-                {{ getCreatedDate(getListing.owner.created_date) }}
-              </p>
+              <div class="secondary-text">
+                <p>
+                  Отзывы: 100%, на сайте с
+                  {{ getCreatedDate(getListing.owner.created_date) }}
+                </p>
+              </div>
             </div>
           </div>
         </router-link>
@@ -26,18 +28,24 @@
       <div class="padding colored section">
         <h5>{{ getListing.product.name }}</h5>
         <div class="offset-2px"></div>
-        <p>Год выпуска: {{ getListing.product.year.value }}</p>
-        <p>Память: {{ getListing.storage.value }} GB</p>
-        <p>Цвет: {{ getListing.color.value }}</p>
+        <div class="secondary-text">
+          <p>Год выпуска: {{ getListing.product.year.value }}</p>
+          <p>Память: {{ getListing.storage.value }} GB</p>
+          <p>Цвет: {{ getListing.color.value }}</p>
+        </div>
       </div>
       <div class="padding colored section no-border-bottom">
-        <div class="row gx-2">
+        <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <h5>Описание</h5>
           </div>
           <div class="col-auto">
             <div v-if="getListing.is_owner">
-              <router-link :to="{ name: 'Register' }">Редактировать</router-link>
+              <router-link :to="{ name: 'Register' }">
+                <div class="secondary-text">
+                  <p>Редактировать</p>
+                </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -50,16 +58,24 @@
       <div class="padding colored no-border-bottom section">
         <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
-
         <p>{{ getListing.equipment.value }}</p>
       </div>
       <div class="padding colored rounded-bottom section">
-        <div class="row gx-0 d-flex align-items-center">
+        <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <div class="accent-text mono">
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
           </div>
+          <div class="col-auto">
+            <router-link
+              class="btn secondary-text"
+              :to="{ name: 'CreateListing' }"
+            >
+              <span class="material-icons-round">favorite</span>
+            </router-link>
+          </div>
+
           <div class="col-auto">
             <router-link class="btn accent" :to="{ name: 'CreateListing' }">
               <span class="material-icons-round">shopping_cart</span>

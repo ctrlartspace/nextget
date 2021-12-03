@@ -13,6 +13,12 @@
     <div class="row my-0 gx-2 gy-2">
       <div class="col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section dashed">
+          <div class="help-label">
+            <span class="material-icons-round">visibility</span>
+            <div class="v-offset-2px"></div>
+            <p>Предварительный просмотр</p>
+          </div>
+          <div class="offset-2px"></div>
           <h5>{{ selectData.product.value }}</h5>
           <div class="offset-2px"></div>
           <p>Память: {{ selectData.storage.value }} GB</p>
