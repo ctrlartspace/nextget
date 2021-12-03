@@ -3,15 +3,14 @@
 </template>
 
 <script>
-import LoginView from '@/components/LoginView'
+import LoginView from "@/components/LoginView";
 export default {
-  name: 'Login',
+  name: "Login",
   components: {
     LoginView,
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>

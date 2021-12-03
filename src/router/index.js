@@ -80,7 +80,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (to.name !== 'Login' && !isAuthentificated) {
       console.log('no access')
-      return next({ name : 'Login'})
+      return next({ name: 'Login' })
     } else {
       return next()
     }

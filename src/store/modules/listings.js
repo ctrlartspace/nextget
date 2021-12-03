@@ -74,6 +74,6 @@ export default {
     getListingsByProductModel: (state) => (product_id) => state.listings.filter((elem) => elem.product.id === product_id),
     getListing: (state) => state.listing,
     getProductModels: (state) => state.listings.filter((elem, index) => state.listings.findIndex(obj => obj.product.id == elem.product.id) === index),
-    getAveragePrice: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0)  
+    getAveragePrice: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0)
   }
 }

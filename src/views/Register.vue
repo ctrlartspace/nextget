@@ -3,15 +3,14 @@
 </template>
 
 <script>
-import RegisterView from '@/components/RegisterView'
+import RegisterView from "@/components/RegisterView";
 export default {
-  name: 'Register',
+  name: "Register",
   components: {
     RegisterView,
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>

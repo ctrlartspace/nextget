@@ -2,47 +2,56 @@
   <header>
     <div class="nav padding colored rounded-bottom">
       <div class="row gx-2">
-        <div  class="col-auto me-auto d-flex align-items-center">
-          
-          <router-link v-show='IS_AUTHENTIFICATED' :to="{ name: 'Home' }">
-            <img class="logo" src="https://aman3d.pythonanywhere.com/register.svg" alt="logo" />
-					</router-link>
-
-        </div>
-
-        <div class="col-auto d-flex align-items-center">
-          <router-link v-show='IS_AUTHENTIFICATED' class="btn" :to="{ name: 'CreateListing' }">
-						<span class="material-icons-round">create</span>
-					</router-link>
+        <div class="col-auto me-auto d-flex align-items-center">
+          <router-link v-show="IS_AUTHENTIFICATED" :to="{ name: 'Home' }">
+            <img
+              class="logo"
+              src="https://aman3d.pythonanywhere.com/register.svg"
+              alt="logo"
+            />
+          </router-link>
         </div>
         <div class="col-auto d-flex align-items-center">
-          <router-link v-show='IS_AUTHENTIFICATED' class="btn" :to="{ name: 'MyListings' }">
-						<span class="material-icons-round">account_circle</span>
+          <router-link
+            v-show="IS_AUTHENTIFICATED"
+            class="btn"
+            :to="{ name: 'CreateListing' }"
+          >
+            <span class="material-icons-round">create</span>
+          </router-link>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+          <router-link
+            v-show="IS_AUTHENTIFICATED"
+            class="btn"
+            :to="{ name: 'MyListings' }"
+          >
+            <span class="material-icons-round">account_circle</span>
             <p>Мой аккаунт</p>
-					</router-link>
-          <router-link v-show='!IS_AUTHENTIFICATED' class="btn primary" :to="{ name: 'Login' }">
-						<span class="material-icons-round">login</span>
-					</router-link>
+          </router-link>
+          <router-link
+            v-show="!IS_AUTHENTIFICATED"
+            class="btn primary"
+            :to="{ name: 'Login' }"
+          >
+            <span class="material-icons-round">login</span>
+          </router-link>
         </div>
       </div>
     </div>
   </header>
-
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'Header',
-  computed: mapGetters(['IS_AUTHENTIFICATED', 'IS_LOADING']),
-  methods: mapActions(['logout']),
-  components: {
-  }
-}
+  name: "Header",
+  computed: mapGetters(["IS_AUTHENTIFICATED", "IS_LOADING"]),
+  methods: mapActions(["logout"]),
+  components: {},
+};
 </script>
 
 <style scoped>
-
-
 </style>

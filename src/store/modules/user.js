@@ -2,7 +2,7 @@ import axionInstance from '@/axios-instance'
 
 export default {
   actions: {
-    async fetchUser({commit}) {
+    async fetchUser({ commit }) {
       commit('SET_USER', null)
       return axionInstance({
         method: 'get',
