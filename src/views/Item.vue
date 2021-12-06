@@ -4,7 +4,7 @@
       <div class="padding colored rounded-top section">
         <router-link :to="{ name: 'Register' }">
           <div class="row gx-2">
-            <div class="col-auto">
+            <div class="col-auto d-flex align-items-center">
               <div class="square avatar">
                 <img
                   :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
@@ -67,17 +67,22 @@
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
           </div>
-          <div class="col-auto">
+          <div v-if="!getListing.is_owner" class="col-auto">
             <button type="button" class="btn secondary-text">
               <span class="material-icons-round">favorite</span>
             </button>
           </div>
-
-          <div class="col-auto">
-            <router-link class="btn accent" :to="{ name: 'CreateListing' }">
+          <div v-if="!getListing.is_owner" class="col-auto">
+            <button type="button" class="btn accent">
               <span class="material-icons-round">shopping_cart</span>
               <p>Купить</p>
-            </router-link>
+            </button>
+          </div>
+          <div v-if="getListing.is_owner" class="col-auto">
+            <button type="button" class="btn error">
+              <span class="material-icons-round">delete</span>
+              <p>Удалить</p>
+            </button>
           </div>
         </div>
       </div>
@@ -87,6 +92,10 @@
         <div class="with-icon">
           <span class="material-icons-round">chat</span>
           <h5>Комменатарии</h5>
+        </div>
+        <div class="offset-2px"></div>
+        <div class="secondary-text">
+          <p><i>Недоступно</i></p>
         </div>
       </div>
     </div>

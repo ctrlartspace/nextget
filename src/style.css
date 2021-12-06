@@ -5,12 +5,14 @@
   --border-color: #EEEEEE;
   --primary-color: #5600e1;
   --secondary-color: #BDBDBD;
+  --accent-color: #00C853;
+  --error-color: #E53935;
   --on-background-color: #000000;
   --on-surface-color: #000000;
   --on-primary-color: #FFFFFF;
   --on-secondary-color: #000000;
-  --accent-color: #00C853;
   --on-accent-color: #FFFFFF;
+  --on-error-color: #FFFFFF;
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
@@ -25,12 +27,14 @@
   --border-color: #212121;
   --primary-color: #5600e1;
   --secondary-color: #616161;
+  --accent-color: #00C853;
+  --error-color: #E53935;
   --on-background-color: #E0E0E0;
   --on-surface-color: #E0E0E0;
   --on-primary-color: #E0E0E0;
   --on-secondary-color: #E0E0E0;
-  --accent-color: #00C853;
-  --on-accent-color: #FFFFFF;
+  --on-accent-color: #E0E0E0;
+  --on-error-color: #E0E0E0;
   --text-size-large: 16px;
   --text-size-very-large: 20px;
   --text-size-medium: 14px;
@@ -454,6 +458,12 @@ input:focus {
 .secondary {
   background-color: var(--border-color);
   color: var(--on-secondary-color);
+  border-width: 0;
+}
+
+.error {
+  background-color: var(--error-color);
+  color: var(--on-error-color);
   border-width: 0;
 }
 

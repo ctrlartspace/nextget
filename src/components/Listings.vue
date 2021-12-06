@@ -18,9 +18,10 @@
         <div class="d-inline">
           <div class="surface-text">
             <p>
-              <strong>{{ listing.owner.display_name + ", 100% " }}</strong>
+              <strong>{{ listing.owner.display_name + ": " }}</strong>
             </p>
           </div>
+          
           <div class="secondary-text">
             <p>
               {{

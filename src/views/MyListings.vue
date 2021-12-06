@@ -3,7 +3,7 @@
     <div v-if="getUser" class="col-md-6">
       <div class="padding colored rounded section">
         <div class="row gx-2">
-          <div class="col-auto">
+          <div class="col-auto d-flex align-items-center">
             <div class="square avatar">
               <img
                 :src="`https://www.tinygraphs.com/squares/${getUser.phone}?theme=duskfalling&numcolors=3`"

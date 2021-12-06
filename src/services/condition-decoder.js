@@ -9,7 +9,7 @@ export default {
         case 3:
           return { color: '#FFAB00', text: '8/10' }
         case 4:
-          return { color: '#DD2C00', text: '7/10' }
+          return { color: '#E53935', text: '7/10' }
         default:
           return { color: '#00C853', text: '9/10' }
       }
