@@ -60,7 +60,7 @@
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
       </div>
-      <div class="padding colored rounded-bottom section">
+      <div class="padding colored no-border-bottom section">
         <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <div class="accent-text mono">
@@ -79,7 +79,20 @@
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn error">
+            <button type="button" class="btn accent">
+              <span class="material-icons-round">autorenew</span>
+              <p>Новая цена</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="padding colored rounded-bottom section">
+        <div class="row gx-2 d-flex align-items-center">
+          <div class="col-auto secondary-text">
+            <p><i>Уже не актуально?</i></p>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <button type="button" class="btn transparent error-text">
               <span class="material-icons-round">delete</span>
               <p>Удалить</p>
             </button>

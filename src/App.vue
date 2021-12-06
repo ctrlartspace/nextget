@@ -12,7 +12,7 @@ export default {
     Header,
   },
   mounted() {
-    document.documentElement.className = "dark";
+    document.documentElement.className = "light";
   },
 };
 </script>

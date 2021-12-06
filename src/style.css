@@ -306,7 +306,7 @@ a {
 
 .btn:disabled {
   opacity: 0.1;
-} 
+}
 
 
 .full-width {
@@ -443,6 +443,12 @@ input:focus {
 }
 
 /* _COLOR */
+.transparent {
+  background-color: transparent;
+  color: var(--on-surface-color);
+  border-width: 0;
+}
+
 .primary {
   background-color: var(--primary-color);
   color: var(--on-primary-color);
@@ -487,6 +493,9 @@ input:focus {
   color: var(--secondary-color);
 }
 
+.error-text {
+  color: var(--error-color);
+}
 
 /* _HELP */
 .help-label {
