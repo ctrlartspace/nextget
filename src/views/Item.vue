@@ -68,12 +68,9 @@
             </div>
           </div>
           <div class="col-auto">
-            <router-link
-              class="btn secondary-text"
-              :to="{ name: 'CreateListing' }"
-            >
+            <button type="button" class="btn secondary-text">
               <span class="material-icons-round">favorite</span>
-            </router-link>
+            </button>
           </div>
 
           <div class="col-auto">

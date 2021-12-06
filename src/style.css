@@ -27,8 +27,8 @@
   --secondary-color: #616161;
   --on-background-color: #E0E0E0;
   --on-surface-color: #E0E0E0;
-  --on-primary-color: #FFFFFF;
-  --on-secondary-color: #FFFFFF;
+  --on-primary-color: #E0E0E0;
+  --on-secondary-color: #E0E0E0;
   --accent-color: #00C853;
   --on-accent-color: #FFFFFF;
   --text-size-large: 16px;
@@ -71,7 +71,6 @@ html, body {
 
 ::placeholder {
   color: var(--on-surface-color);
-  filter: brightness(0.95);
   opacity: 1;
 }
 
@@ -128,9 +127,12 @@ a {
   text-decoration: none;
 }
 
-a :hover {
-  filter: brightness(0.8);
+@media (hover: hover) and (pointer: fine) {
+  a p:hover, .btn:not(:disabled):hover p {
+    text-decoration: underline;
+  }
 }
+
 
 /* _OFFSET */
 .offset-2px {
@@ -260,7 +262,7 @@ a :hover {
 .btn {
   display: inline-flex;
   box-sizing: border-box;
-  border: 1px solid var(--border-color);
+  border-width: 0px;
   border-radius: var(--border-radius);
   padding: 6px 8px;
   font-size: var(--text-size-large);
@@ -268,9 +270,8 @@ a :hover {
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  background-color: var(--surface-color);
+  background-color: var(--surface-secondary-color);
   color: var(--on-surface-color);
-  filter: brightness(1);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -299,19 +300,9 @@ a :hover {
   margin-right: 0px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .btn:hover {
-    filter: brightness(0.9);
-  }
-}
-
-.btn:active {
-  filter: brightness(0.8);
-}
-
 .btn:disabled {
-  filter: brightness(0.9);
-}
+  opacity: 0.1;
+} 
 
 
 .full-width {
@@ -335,7 +326,6 @@ a :hover {
   background-color: var(--surface-color);
   color: var(--on-surface-color);
   opacity: 0.5;
-  filter: brightness(0.95);
 }
 
 .input-data select,
@@ -452,19 +442,19 @@ input:focus {
 .primary {
   background-color: var(--primary-color);
   color: var(--on-primary-color);
-  border: 1px solid var(--primary-color);
+  border-width: 0;
 }
 
 .accent {
   background-color: var(--accent-color);
   color: var(--on-accent-color);
-  border: 1px solid var(--accent-color);
+  border-width: 0;
 }
 
 .secondary {
   background-color: var(--border-color);
   color: var(--on-secondary-color);
-  border: 1px solid var(--border-color);
+  border-width: 0;
 }
 
 .primary-text {
@@ -504,6 +494,3 @@ input:focus {
   font-weight: 700;
 
 }
-
-
-/* _MEDIA */
