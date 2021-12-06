@@ -3,7 +3,9 @@
     <div class="col-md-4">
       <div class="padding colored rounded section">
         <form @submit.prevent="register">
-          <h5>Регистрация</h5>
+          <div class="center">
+            <h5>Регистрация</h5>
+          </div>
           <div class="offset-6px"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>

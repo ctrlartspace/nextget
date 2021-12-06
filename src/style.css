@@ -66,13 +66,6 @@ html, body {
   opacity: 1;
 }
 
-.full-width {
-  width: 100%;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-
 .square {
   display: flex;
   border: 1px solid transparent;
@@ -112,7 +105,7 @@ html, body {
   margin: 0 auto;
 }
 
-/* BASE */
+/* _BASE */
 h4, h5, h6, p {
   margin: 0;
   padding: 0
@@ -130,7 +123,7 @@ a :hover {
   filter: brightness(0.8);
 }
 
-/* OFFSET */
+/* _OFFSET */
 .offset-2px {
   padding: 2px 0;
 }
@@ -172,7 +165,19 @@ a :hover {
   display: inline;
 }
 
-/* SECTION */
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--secondary-color);
+}
+
+/* _SECTION */
 .padding {
   padding: 12px;
   position: relative;
@@ -242,7 +247,7 @@ a :hover {
   padding-right: 4px;
 }
 
-/* BUTTON */
+/* _BUTTON */
 .btn {
   display: inline-flex;
   box-sizing: border-box;
@@ -256,6 +261,7 @@ a :hover {
   text-decoration: none;
   background-color: var(--surface-color);
   color: var(--on-surface-color);
+  filter: brightness(1);
 }
 
 .btn span {
@@ -290,7 +296,15 @@ a :hover {
   filter: brightness(0.9);
 }
 
-/* INPUT */
+
+.full-width {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+/* _INPUT */
 .input-data textarea {
   width: 100%;
   resize: none;
@@ -372,7 +386,7 @@ input:focus {
   border-color: var(--secondary-color);
 }
 
-/* LISTING */
+/* _LISTING */
 .listing {
   overflow: hidden;
   margin-bottom: 12px;
@@ -417,7 +431,7 @@ input:focus {
   user-select: none;
 }
 
-/* COLOR */
+/* _COLOR */
 .primary {
   background-color: var(--primary-color);
   color: var(--on-primary-color);
@@ -428,6 +442,12 @@ input:focus {
   background-color: var(--accent-color);
   color: var(--on-accent-color);
   border: 1px solid var(--accent-color);
+}
+
+.secondary {
+  background-color: var(--border-color);
+  color: var(--on-secondary-color);
+  border: 1px solid var(--border-color);
 }
 
 .primary-text {
@@ -446,12 +466,17 @@ input:focus {
   color: var(--on-surface-color);
 }
 
-/* HELP */
+.disabled-text {
+  color: var(--secondary-color);
+}
+
+
+/* _HELP */
 .help-label {
   display: inline-flex;
   align-items: center;
   padding: 2px 6px;
-  background-color: var(--border-color);
+  /* background-color: var(--border-color); */
   border-radius: var(--border-radius);
 
 }

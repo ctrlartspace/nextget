@@ -13,32 +13,50 @@
     <div class="row my-0 gx-2 gy-2">
       <div class="col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section dashed">
-          <div class="help-label">
+          <div class="help-label secondary">
             <span class="material-icons-round">visibility</span>
             <div class="v-offset-2px"></div>
             <p>Предварительный просмотр</p>
           </div>
-          <div class="offset-2px"></div>
-          <h5>{{ selectData.product.value }}</h5>
-          <div class="offset-2px"></div>
-          <p>Память: {{ selectData.storage.value }} GB</p>
-          <p>Цвет: {{ selectData.color.value }}</p>
+          <div
+            class="asd"
+            :class="{ 'disabled-text': selectData.product == 0 }"
+          >
+            <div class="offset-6px"></div>
+            <h5>
+              {{
+                selectData.product == 0 ? "Модель" : selectData.product.value
+              }}
+            </h5>
+            <div class="offset-2px"></div>
+            <p>Память: {{ selectData.storage == 0 ? '-' : selectData.storage.value + 'GB' }} </p>
+            <p>Цвет: {{ selectData.color == 0 ? '-' : selectData.color.value }}</p>
+          </div>
         </div>
-        <div class="padding colored section dashed">
+        <div
+          class="padding colored section dashed"
+          :class="{ 'disabled-text': selectData.condition_state == 0 }"
+        >
           <h5>Описание</h5>
           <div class="offset-2px"></div>
-          <p>{{ selectData.description }}</p>
+          <p>{{ selectData.description == "" ? 'Нет описания' : selectData.description }}</p>
           <div class="offset-2px"></div>
-          <p>Состояние: {{ selectData.condition_state.value }}</p>
-          <p>Батарея: {{ selectData.battery_health }}%</p>
+          <p>Состояние: {{ selectData.condition_state == 0 ? '-' : selectData.condition_state.value }}</p>
+          <p>Батарея: {{ selectData.battery_health == 0 ? '-' : selectData.battery_health + '%' }}</p>
         </div>
-        <div class="padding colored rounded-bottom section dashed">
+        <div
+          class="padding colored rounded-bottom section dashed"
+          :class="{ 'disabled-text': selectData.equipment == 0 }"
+        >
           <h5>Дополнительная информация</h5>
           <div class="offset-2px"></div>
-          <p>{{ selectData.equipment.value }}</p>
+          <p>{{ selectData.equipment == 0 ? 'Комплектация' : selectData.equipment.value }}</p>
         </div>
         <div class="offset-4px"></div>
-        <div class="padding colored rounded section dashed accent-text mono">
+        <div
+          class="padding colored rounded section dashed accent-text mono"
+          :class="{ 'disabled-text': selectData.price == 0 }"
+        >
           <h4>{{ numberWithCommas(selectData.price) }} KZT</h4>
         </div>
       </div>
@@ -50,21 +68,31 @@
             </div>
             <div class="col-auto">
               <button
+                v-if="currentStep > 1"
+                type="button"
+                class="btn"
+                @click="prevStep"
+                v-show="isProductSelected"
+              >
+                <span class="material-icons-round">arrow_back_ios</span>
+              </button>
+              <div class="v-offset-4px"></div>
+              <button
                 v-if="currentStep < 4"
+                :disabled="!isProductSelected"
                 type="button"
                 class="btn primary"
                 @click="nextStep"
-                v-show="!isProductSelected"
               >
                 <span class="material-icons-round">arrow_forward_ios</span>
                 <p>Далее</p>
               </button>
               <button
-                v-else
+                v-if="currentStep == 4"
                 type="button"
                 class="btn accent"
-                @click="nextStep"
-                :disabled="isProductSelected"
+                @click="createListing"
+                :disabled="!isProductSelected"
               >
                 <span class="material-icons-round">done</span>
                 <p>Опубликовать</p>
@@ -92,7 +120,7 @@
             <div class="input-data">
               <select
                 v-model.trim="selectData.storage"
-                :disabled="isProductSelected"
+                :disabled="!isProductSelected"
               >
                 <option value="0" selected disabled>Память</option>
                 <option
@@ -108,7 +136,7 @@
             <div class="input-data">
               <select
                 v-model.trim="selectData.color"
-                :disabled="isProductSelected"
+                :disabled="!isProductSelected"
               >
                 <option value="0" selected disabled>Цвет</option>
                 <option
@@ -127,7 +155,7 @@
                 <div class="col-12">
                   <select
                     v-model.trim="selectData.condition_state"
-                    :disabled="isProductSelected"
+                    :disabled="!isProductSelected"
                   >
                     <option value="0" selected disabled>Состояние</option>
                     <option
@@ -145,7 +173,7 @@
                 <div class="col-12">
                   <select
                     v-model.trim="selectData.battery_health"
-                    :disabled="isProductSelected"
+                    :disabled="!isProductSelected"
                   >
                     <option value="0" selected disabled>Батарея</option>
                     <option
@@ -166,7 +194,7 @@
                 v-model="selectData.description"
                 placeholder="Описание"
                 rows="6"
-                :disabled="isProductSelected"
+                :disabled="!isProductSelected"
               ></textarea>
             </div>
           </div>
@@ -176,7 +204,7 @@
                 <div class="col-12">
                   <select
                     v-model.trim="selectData.equipment"
-                    :disabled="isProductSelected"
+                    :disabled="!isProductSelected"
                   >
                     <option value="0" selected disabled>Комплектация</option>
                     <option
@@ -198,7 +226,7 @@
                 v-model="selectData.price"
                 placeholder="Цена"
                 step="500"
-                :disabled="isProductSelected"
+                :disabled="!isProductSelected"
               />
             </div>
           </div>
@@ -240,7 +268,7 @@ export default {
   computed: {
     ...mapGetters(["getProducts", "getConditions", "getEquipments"]),
     isProductSelected() {
-      return this.selectData.product == 0;
+      return this.selectData.product != 0;
     },
   },
   methods: {
@@ -261,11 +289,13 @@ export default {
       this.selectData.storage = this.productData.storages[0];
       this.selectData.color = this.productData.colors[0];
     },
-
+    prevStep() {
+      if (this.currentStep > 0) {
+        this.currentStep -= 1;
+      }
+    },
     nextStep() {
-      if (this.currentStep >= 4) {
-        this.createListing();
-      } else {
+      if (this.currentStep < 4) {
         this.currentStep += 1;
       }
     },

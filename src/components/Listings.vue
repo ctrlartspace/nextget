@@ -4,7 +4,7 @@
       <div class="col-auto">
         <div class="square photo"></div>
       </div>
-      <div class="col">
+      <div class="col ellipsis">
         <router-link :to="{ name: 'Item', params: { id: listing.id } }">
           {{
             listing.product.name +
@@ -16,9 +16,11 @@
         </router-link>
         <div class="offset-2px"></div>
         <div class="d-inline">
-          <p>
-            <strong>{{ listing.owner.display_name + ", 100% " }}</strong>
-          </p>
+          <div class="surface-text">
+            <p>
+              <strong>{{ listing.owner.display_name + ", 100% " }}</strong>
+            </p>
+          </div>
           <div class="secondary-text">
             <p>
               {{
@@ -28,7 +30,7 @@
           </div>
         </div>
         <div class="offset-2px"></div>
-        <div class="row gx-1 gy-1 tags">
+        <div class="row gx-1 gy-1 tags surface-text">
           <div class="col-auto">
             <div class="item accent-text">
               <p>{{ numberWithCommas(listing.price) }} KZT</p>
