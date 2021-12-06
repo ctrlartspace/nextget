@@ -60,6 +60,15 @@ html, body {
   font-family: Roboto Mono, Helvetica, Arial, sans-serif;
 }
 
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 ::placeholder {
   color: var(--on-surface-color);
   filter: brightness(0.95);
@@ -262,6 +271,12 @@ a :hover {
   background-color: var(--surface-color);
   color: var(--on-surface-color);
   filter: brightness(1);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .btn span {
@@ -284,8 +299,10 @@ a :hover {
   margin-right: 0px;
 }
 
-.btn:hover {
-  filter: brightness(0.9);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    filter: brightness(0.9);
+  }
 }
 
 .btn:active {
@@ -408,7 +425,7 @@ input:focus {
   text-decoration: underline;
 }
 
-/* TAGS */
+/* _TAGS */
 .tags span, .tags p {
   display: block;
   font-size: var(--text-size-medium);
@@ -487,3 +504,6 @@ input:focus {
   font-weight: 700;
 
 }
+
+
+/* _MEDIA */
