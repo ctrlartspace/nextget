@@ -5,6 +5,7 @@ import user from './modules/user'
 import request from './modules/request'
 import products from './modules/products'
 import listings from './modules/listings'
+import theme from './modules/theme'
 
 const store = createStore({
   modules: {
@@ -12,10 +13,11 @@ const store = createStore({
     user,
     request,
     products,
-    listings
+    listings,
+    theme
   },
   plugins: [createPersistedState({
-    paths: ['auth'],
+    paths: ['auth', 'theme'],
   })],
 })
 export default store;

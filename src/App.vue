@@ -5,14 +5,18 @@
 
 <script>
 import Header from "./components/Header.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
   components: {
     Header,
   },
+  methods: {
+    ...mapActions(["initTheme"]),
+  },
   mounted() {
-    document.documentElement.className = "light";
+    this.initTheme()
   },
 };
 </script>
