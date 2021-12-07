@@ -29,8 +29,15 @@
               }}
             </h5>
             <div class="offset-2px"></div>
-            <p>Память: {{ selectData.storage == 0 ? '-' : selectData.storage.value + 'GB' }} </p>
-            <p>Цвет: {{ selectData.color == 0 ? '-' : selectData.color.value }}</p>
+            <p>
+              Память:
+              {{
+                selectData.storage == 0 ? "-" : selectData.storage.value + "GB"
+              }}
+            </p>
+            <p>
+              Цвет: {{ selectData.color == 0 ? "-" : selectData.color.value }}
+            </p>
           </div>
         </div>
         <div
@@ -39,10 +46,30 @@
         >
           <h5>Описание</h5>
           <div class="offset-2px"></div>
-          <p>{{ selectData.description == "" ? 'Нет описания' : selectData.description }}</p>
+          <p>
+            {{
+              selectData.description == ""
+                ? "Нет описания"
+                : selectData.description
+            }}
+          </p>
           <div class="offset-2px"></div>
-          <p>Состояние: {{ selectData.condition_state == 0 ? '-' : selectData.condition_state.value }}</p>
-          <p>Батарея: {{ selectData.battery_health == 0 ? '-' : selectData.battery_health + '%' }}</p>
+          <p>
+            Состояние:
+            {{
+              selectData.condition_state == 0
+                ? "-"
+                : selectData.condition_state.value
+            }}
+          </p>
+          <p>
+            Батарея:
+            {{
+              selectData.battery_health == 0
+                ? "-"
+                : selectData.battery_health + "%"
+            }}
+          </p>
         </div>
         <div
           class="padding colored rounded-bottom section dashed"
@@ -50,7 +77,13 @@
         >
           <h5>Дополнительная информация</h5>
           <div class="offset-2px"></div>
-          <p>{{ selectData.equipment == 0 ? 'Комплектация' : selectData.equipment.value }}</p>
+          <p>
+            {{
+              selectData.equipment == 0
+                ? "Комплектация"
+                : selectData.equipment.value
+            }}
+          </p>
         </div>
         <div class="offset-4px"></div>
         <div
@@ -60,6 +93,7 @@
           <h4>{{ numberWithCommas(selectData.price) }} KZT</h4>
         </div>
       </div>
+
       <div class="col-md-6 order-1 order-md-2">
         <div class="padding colored rounded section">
           <div class="row gx-0 d-flex align-items-center">
@@ -100,135 +134,118 @@
             </div>
           </div>
           <div class="offset-6px"></div>
-          <div v-show="currentStep == 1">
-            <div class="input-data">
-              <select
-                @change="onProductChange($event)"
-                v-model.trim="selectData.product"
-              >
-                <option value="0" selected disabled>Выберите модель</option>
-                <option
-                  v-for="product in getProducts"
-                  :value="{ id: product.id, value: product.name }"
-                  :key="product.id"
-                >
-                  {{ product.name }}
-                </option>
-              </select>
-            </div>
-            <div class="offset-2px" />
-            <div class="input-data">
-              <select
-                v-model.trim="selectData.storage"
-                :disabled="!isProductSelected"
-              >
-                <option value="0" selected disabled>Память</option>
-                <option
-                  v-for="storage in productData.storages"
-                  :value="{ id: storage.id, value: storage.value }"
-                  :key="storage.id"
-                >
-                  {{ storage.value }} GB
-                </option>
-              </select>
-            </div>
-            <div class="offset-2px" />
-            <div class="input-data">
-              <select
-                v-model.trim="selectData.color"
-                :disabled="!isProductSelected"
-              >
-                <option value="0" selected disabled>Цвет</option>
-                <option
-                  v-for="color in productData.colors"
-                  :value="{ id: color.id, value: color.value }"
-                  :key="color.id"
-                >
-                  {{ color.value }}
-                </option>
-              </select>
-            </div>
+          <div v-if="empty_fields.length > 0" class="help-label error">
+            <span class="material-icons-round">priority_high</span>
+            <div class="v-offset-2px"></div>
+            <p>Заполните все поля</p>
           </div>
-          <div v-show="currentStep == 2">
-            <div class="input-data">
-              <div class="row gx-1 gy-1">
-                <div class="col-12">
-                  <select
-                    v-model.trim="selectData.condition_state"
-                    :disabled="!isProductSelected"
-                  >
-                    <option value="0" selected disabled>Состояние</option>
-                    <option
-                      v-for="conditionState in getConditions"
-                      :value="{
-                        id: conditionState.id,
-                        value: conditionState.value,
-                      }"
-                      :key="conditionState.id"
-                    >
-                      {{ conditionState.value }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-12">
-                  <select
-                    v-model.trim="selectData.battery_health"
-                    :disabled="!isProductSelected"
-                  >
-                    <option value="0" selected disabled>Батарея</option>
-                    <option
-                      v-for="percent in Array.from(Array(100).keys()).reverse()"
-                      :value="percent + 1"
-                      :key="percent + 1"
-                    >
-                      {{ percent + 1 }}%
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
+          <div class="offset-2px"></div>
+          <div v-show="currentStep == 1" class="input-data">
+            <select
+              @change="onProductChange($event)"
+              v-model.trim="selectData.product"
+            >
+              <option value="0" selected disabled>Выберите модель</option>
+              <option
+                v-for="product in getProducts"
+                :value="{ id: product.id, value: product.name }"
+                :key="product.id"
+              >
+                {{ product.name }}
+              </option>
+            </select>
             <div class="offset-2px" />
-            <div class="input-data">
-              <textarea
-                name="description"
-                v-model="selectData.description"
-                placeholder="Описание"
-                rows="6"
-                :disabled="!isProductSelected"
-              ></textarea>
-            </div>
+            <select
+              v-model.trim="selectData.storage"
+              :disabled="!isProductSelected"
+            >
+              <option value="0" selected disabled>Память</option>
+              <option
+                v-for="storage in productData.storages"
+                :value="{ id: storage.id, value: storage.value }"
+                :key="storage.id"
+              >
+                {{ storage.value }} GB
+              </option>
+            </select>
+            <div class="offset-2px" />
+            <select
+              v-model.trim="selectData.color"
+              :disabled="!isProductSelected"
+            >
+              <option value="0" selected disabled>Цвет</option>
+              <option
+                v-for="color in productData.colors"
+                :value="{ id: color.id, value: color.value }"
+                :key="color.id"
+              >
+                {{ color.value }}
+              </option>
+            </select>
           </div>
-          <div v-show="currentStep == 3">
-            <div class="input-data">
-              <div class="row gx-1 gy-1">
-                <div class="col-12">
-                  <select
-                    v-model.trim="selectData.equipment"
-                    :disabled="!isProductSelected"
-                  >
-                    <option value="0" selected disabled>Комплектация</option>
-                    <option
-                      v-for="equipment in getEquipments"
-                      :value="{ id: equipment.id, value: equipment.value }"
-                      :key="equipment.id"
-                    >
-                      {{ equipment.value }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
+          <div v-show="currentStep == 2" class="input-data">
+            <select
+              v-model.trim="selectData.condition_state"
+              :disabled="!isProductSelected"
+            >
+              <option value="0" selected disabled>Состояние</option>
+              <option
+                v-for="conditionState in getConditions"
+                :value="{
+                  id: conditionState.id,
+                  value: conditionState.value,
+                }"
+                :key="conditionState.id"
+              >
+                {{ conditionState.value }}
+              </option>
+            </select>
+            <div class="offset-2px" />
+            <select
+              v-model.trim="selectData.battery_health"
+              :disabled="!isProductSelected"
+            >
+              <option value="0" selected disabled>Батарея</option>
+              <option
+                v-for="percent in Array.from(Array(100).keys()).reverse()"
+                :value="percent + 1"
+                :key="percent + 1"
+              >
+                {{ percent + 1 }}%
+              </option>
+            </select>
+            <div class="offset-2px" />
+            <textarea
+              name="description"
+              v-model="selectData.description"
+              placeholder="Описание"
+              rows="6"
+              :disabled="!isProductSelected"
+            />
           </div>
-          <div v-show="currentStep == 4">
-            <div class="input-data">
-              <input
-                type="number"
-                v-model="selectData.price"
-                placeholder="Цена"
-                step="500"
-                :disabled="!isProductSelected"
-              />
-            </div>
+          <div v-show="currentStep == 3" class="input-data">
+            <select
+              v-model.trim="selectData.equipment"
+              :disabled="!isProductSelected"
+            >
+              <option value="0" selected disabled>Комплектация</option>
+              <option
+                v-for="equipment in getEquipments"
+                :value="{ id: equipment.id, value: equipment.value }"
+                :key="equipment.id"
+              >
+                {{ equipment.value }}
+              </option>
+            </select>
+          </div>
+          <div v-show="currentStep == 4" class="input-data">
+            <input
+              type="number"
+              v-model="selectData.price"
+              placeholder="Цена"
+              step="500"
+              :disabled="!isProductSelected"
+            />
           </div>
         </div>
       </div>
@@ -262,6 +279,7 @@ export default {
         colors: [],
       },
       currentStep: 1,
+      empty_fields: [],
     };
   },
   mixins: [conditionDecoder],
@@ -311,16 +329,43 @@ export default {
         equipment_id: this.selectData.equipment.id,
       };
 
-      this.$store
-        .dispatch("createListing", data)
-        .then(() => {
-          this.$router.replace({ name: "MyListings" });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      console.log(data);
-      console.log("listing created");
+      this.empty_fields = [];
+      if (!this.selectData.product) {
+        this.empty_fields.push("product");
+      }
+      if (!this.selectData.storage) {
+        this.empty_fields.push("storage");
+      }
+      if (!this.selectData.color) {
+        this.empty_fields.push("color");
+      }
+      if (!this.selectData.description) {
+        this.empty_fields.push("description");
+      }
+      if (!this.selectData.price) {
+        this.empty_fields.push("price");
+      }
+      if (!this.selectData.condition_state) {
+        this.empty_fields.push("condition_state");
+      }
+      if (!this.selectData.equipment) {
+        this.empty_fields.push("equipment");
+      }
+      if (this.empty_fields.length > 0) {
+        this.currentStep = 1;
+        console.log(this.empty_fields);
+      } else {
+        this.$store
+          .dispatch("createListing", data)
+          .then(() => {
+            this.$router.replace({ name: "MyListings" });
+            console.log("listing created");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        console.log(data);
+      }
     },
   },
   async created() {

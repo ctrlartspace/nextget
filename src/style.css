@@ -56,7 +56,7 @@ html, body {
   border-bottom: 1px solid var(--border-color);
 }
 
-.btn, a {
+.btn, .link, a {
   -webkit-tap-highlight-color: transparent
 }
 
@@ -132,7 +132,7 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a p:hover, .btn:not(:disabled):hover p {
+  a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
     text-decoration: underline;
   }
 }
@@ -316,6 +316,49 @@ a {
   justify-content: center;
 }
 
+/* _LINK */
+.link {
+  display: inline-flex;
+  box-sizing: border-box;
+  border-width: 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--on-surface-color);
+  background-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.link span {
+  display: block;
+  height: 100%;
+  font-size: var(--text-size-medium);
+  margin-right: 4px;
+  font-weight: 400;
+}
+
+.link p {
+  display: block;
+  height: 100%;
+  font-size: var(--text-size-medium);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.link span:only-child {
+  margin-right: 0px;
+}
+
+.link:disabled {
+  opacity: 0.1;
+}
+
 /* _INPUT */
 .input-data textarea {
   width: 100%;
@@ -396,6 +439,7 @@ input:focus {
   outline: none !important;
   border-color: var(--secondary-color);
 }
+
 
 /* _LISTING */
 .listing {
@@ -496,6 +540,11 @@ input:focus {
 .error-text {
   color: var(--error-color);
 }
+
+.input-data .error-select {
+  color: var(--error-color);
+}
+
 
 /* _HELP */
 .help-label {

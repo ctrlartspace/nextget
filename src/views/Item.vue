@@ -2,7 +2,7 @@
   <div v-if="getListing" class="row my-0 gy-2 gx-2">
     <div class="col-md-6">
       <div class="padding colored rounded-top section">
-        <router-link :to="{ name: 'Register' }">
+        <router-link :to="{ name: 'Item' }">
           <div class="row gx-2">
             <div class="col-auto d-flex align-items-center">
               <div class="square avatar">
@@ -41,11 +41,10 @@
           </div>
           <div class="col-auto">
             <div v-if="getListing.is_owner">
-              <router-link :to="{ name: 'Register' }">
-                <div class="secondary-text">
-                  <p>Редактировать</p>
-                </div>
-              </router-link>
+              <button type="button" class="link secondary-text">
+                <!-- <span class="material-icons-round">delete</span> -->
+                <p>Редактировать</p>
+              </button>
             </div>
           </div>
         </div>
@@ -60,7 +59,13 @@
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
       </div>
-      <div class="padding colored no-border-bottom section">
+      <div
+        class="padding colored section"
+        :class="{
+          'no-border-bottom': getListing.is_owner,
+          'rounded-bottom': !getListing.is_owner,
+        }"
+      >
         <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <div class="accent-text mono">
@@ -86,17 +91,21 @@
           </div>
         </div>
       </div>
-      <div class="padding colored rounded-bottom section">
+      <div
+        v-if="getListing.is_owner"
+        class="padding colored rounded-bottom section"
+      >
         <div class="row gx-2 d-flex align-items-center">
-          <div class="col-auto secondary-text">
-            <p><i>Уже не актуально?</i></p>
+          <div class="col-auto d-flex align-items-center secondary-text">
+            <p>
+              <i>Уже не актуально?</i>
+              <button type="button" class="link error-text">
+                <!-- <span class="material-icons-round">delete</span> -->
+                <p><i>Удалить</i></p>
+              </button>
+            </p>
           </div>
-          <div class="col d-flex justify-content-end">
-            <button type="button" class="btn transparent error-text">
-              <span class="material-icons-round">delete</span>
-              <p>Удалить</p>
-            </button>
-          </div>
+          <div class="col d-flex justify-content-end"></div>
         </div>
       </div>
     </div>
