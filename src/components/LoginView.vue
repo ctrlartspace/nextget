@@ -62,7 +62,7 @@ export default {
       login: "",
       password: "",
       session_url: "login",
-      loading: false
+      loading: false,
     };
   },
   computed: mapGetters(["GET_LOGO"]),

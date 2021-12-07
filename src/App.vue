@@ -1,16 +1,21 @@
 <template>
   <Header />
-  <router-view />
+  <main class="main">
+    <router-view />
+  </main>
+  <Footer />
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "App",
   components: {
     Header,
+    Footer
   },
   methods: {
     ...mapActions(["initTheme"]),
@@ -35,4 +40,7 @@ export default {
   max-width: 700px;
   margin: 0 auto;
 }
+
+
+
 </style>

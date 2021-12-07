@@ -50,6 +50,18 @@ html, body {
   color: var(--on-background-color);
 }
 
+.main {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  padding-bottom: 48px;
+}
+
+.footer {
+  margin-top: auto;
+}
+
 .line {
   margin: 0;
   padding: 0;
