@@ -134,11 +134,10 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a:hover, a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
+  a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
     text-decoration: underline;
   }
 }
-
 
 /* _OFFSET */
 .offset-2px {

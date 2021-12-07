@@ -27,7 +27,7 @@
             />
           </div>
           <div class="offset-6px"></div>
-          <router-link :to="{ name: 'Register' }">Забыли пароль?</router-link>
+          <router-link :to="{ name: 'Register' }"><p>Забыли пароль?</p></router-link>
           <div class="offset-8px"></div>
           <div class="input">
             <button
@@ -39,7 +39,7 @@
             </button>
           </div>
           <div class="offset-6px"></div>
-          <router-link :to="{ name: 'Register' }">Создать аккаунт</router-link>
+          <router-link :to="{ name: 'Register' }"><p>Создать аккаунт</p></router-link>
         </form>
       </div>
     </div>
