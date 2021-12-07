@@ -98,7 +98,7 @@
         <div class="row gx-2 d-flex align-items-center">
           <div class="col-auto d-flex align-items-center secondary-text">
             <p>
-              <i>Уже не актуально?</i>
+              <i>Уже не актуально? </i>
               <button type="button" class="link error-text">
                 <!-- <span class="material-icons-round">delete</span> -->
                 <p><i>Удалить</i></p>
