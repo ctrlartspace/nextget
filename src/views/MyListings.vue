@@ -19,6 +19,10 @@
               Отзывы: 100%, на сайте с
               {{ getCreatedDate(getUser.created_date) }}
             </p>
+            <button type="button" class="link error-text" @click="logoutToMain">
+              <!-- <span class="material-icons-round">delete</span> -->
+              <p>Выход</p>
+            </button>
           </div>
         </div>
       </div>
@@ -47,8 +51,11 @@
         </div>
       </div>
       <div class="line"></div>
-      <div class="padding colored rounded-bottom">
+      <div v-if="getListings.length > 0" class="padding colored rounded-bottom">
         <Listings :listings="getListings" />
+      </div>
+      <div v-else class="padding colored rounded-bottom secondary-text center">
+        <p>Нет объявлений</p>
       </div>
     </div>
   </div>
@@ -67,6 +74,8 @@ export default {
     ...mapActions(["fetchMyListings", "fetchUser", "logout"]),
     logoutToMain() {
       console.log("click");
+      this.logout()
+      this.$router.push(`/`);
     },
     onItemClick(id) {
       this.$router.push(`/item/${id}`);

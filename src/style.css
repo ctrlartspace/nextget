@@ -129,10 +129,12 @@ p {
 
 a {
   text-decoration: none;
+  color: var(--on-surface-color);
+  font-size: var(--text-size-medium);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
+  a:hover, a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
     text-decoration: underline;
   }
 }
@@ -325,6 +327,7 @@ a {
   align-items: center;
   cursor: pointer;
   text-decoration: none;
+  padding: 0;
   color: var(--on-surface-color);
   background-color: transparent;
   -webkit-touch-callout: none;
