@@ -18,7 +18,7 @@
         <div class="padding colored rounded section">
           <div class="help-label primary">
             <!-- <span class="material-icons-round">visibility</span> -->
-            <div class="v-offset-2px"></div>
+            <!-- <div class="v-offset-2px"></div> -->
             <p>{{ model.product.name }}</p>
           </div>
 
