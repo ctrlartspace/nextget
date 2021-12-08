@@ -55,7 +55,7 @@
         <Listings :listings="getListings" />
       </div>
       <div v-else class="padding colored rounded-bottom secondary-text center">
-        <p>Нет объявлений</p>
+        <p>Нет объявлений ☹</p>
       </div>
     </div>
   </div>

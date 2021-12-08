@@ -4,7 +4,7 @@
       <div class="col">
         <div class="padding colored rounded section primary-text">
           <div class="with-icon">
-            <span class="material-icons-round">create</span>
+            <span class="material-icons-round">post_add</span>
             <h5>Новое объявление</h5>
           </div>
         </div>

@@ -21,7 +21,6 @@
               <strong>{{ listing.owner.display_name + ": " }}</strong>
             </p>
           </div>
-          
           <div class="secondary-text">
             <p>
               {{

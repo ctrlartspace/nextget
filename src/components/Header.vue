@@ -18,7 +18,7 @@
             class="btn"
             :to="{ name: 'CreateListing' }"
           >
-            <span class="material-icons-round">create</span>
+            <span class="material-icons-round">post_add</span>
           </router-link>
         </div>
         <div class="col-auto d-flex align-items-center">
@@ -27,8 +27,7 @@
             class="btn"
             :to="{ name: 'MyListings' }"
           >
-            <span class="material-icons-round">account_circle</span>
-            <p>Мой аккаунт</p>
+            <span class="material-icons-round">account_box</span>
           </router-link>
           <router-link
             v-show="!IS_AUTHENTIFICATED"
