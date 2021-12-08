@@ -18,7 +18,7 @@ const routes = [
     }
   },
   {
-    path: '/my',
+    path: '/me',
     name: 'MyListings',
     component: MyListings,
     meta: {

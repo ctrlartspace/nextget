@@ -58,6 +58,9 @@
         <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
+        <div class="secondary-text">
+          <p>Дата публикации: {{ getListing.created_date }}</p>
+        </div>
       </div>
       <div
         class="padding colored section"
