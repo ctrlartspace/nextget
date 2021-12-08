@@ -198,6 +198,11 @@ a {
   justify-content: center;
 }
 
+.end {
+  display: flex;
+  justify-content: end;
+}
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -58,8 +58,11 @@
         <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
-        <div class="secondary-text">
-          <p>Дата публикации: {{ getListing.created_date }}</p>
+        <div class="offset-2px"></div>
+        <div class="secondary-text end">
+          <p>
+            <i>Опубликовано {{ formatDate(getListing.created_date) }}</i>
+          </p>
         </div>
       </div>
       <div
@@ -143,6 +146,7 @@
 <script>
 import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
+import moment from "moment";
 
 export default {
   name: "Item",
@@ -177,6 +181,11 @@ export default {
           this.isDeleteRequestNow = false;
           this.isDeleteClicked = false;
         });
+    },
+    formatDate(value) {
+      if (value) {
+        return moment(String(value)).locale("ru").format("D MMM h:mm");
+      }
     },
   },
 };
