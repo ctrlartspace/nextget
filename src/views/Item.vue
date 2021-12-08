@@ -99,9 +99,22 @@
           <div class="col-auto d-flex align-items-center secondary-text">
             <p>
               <i>Уже не актуально? </i>
-              <button type="button" class="link error-text">
-                <!-- <span class="material-icons-round">delete</span> -->
+              <button
+                v-if="!isDeleteClicked"
+                type="button"
+                class="link error-text"
+                @click="isDeleteClicked = true"
+              >
                 <p><i>Удалить</i></p>
+              </button>
+              <button
+                v-if="isDeleteClicked"
+                type="button"
+                class="link error-text"
+                @click="deleteListing()"
+                :disabled="isDeleteRequestNow"
+              >
+                <p><i>Подтвердить удаление</i></p>
               </button>
             </p>
           </div>
@@ -134,6 +147,8 @@ export default {
   data() {
     return {
       loading: false,
+      isDeleteClicked: false,
+      isDeleteRequestNow: false,
     };
   },
   computed: mapGetters(["getListing"]),
@@ -142,6 +157,24 @@ export default {
       this.loading = false;
       console.log(r);
     });
+  },
+  methods: {
+    deleteListing() {
+      console.log(this.isDeleteRequestNow);
+      this.isDeleteRequestNow = true;
+      this.$store
+        .dispatch("deleteListing", this.getListing.id)
+        .then((r) => {
+          this.$router.replace({ name: "MyListings" });
+          console.log(r);
+          this.isDeleteRequestNow = false;
+        })
+        .catch((e) => {
+          console.log(e);
+          this.isDeleteRequestNow = false;
+          this.isDeleteClicked = false;
+        });
+    },
   },
 };
 </script>

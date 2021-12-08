@@ -37,7 +37,7 @@
             <button
               type="submit"
               class="btn primary full-width"
-              :disabled="loading"
+              :disabled="isRequestNow"
             >
               Вход
             </button>
@@ -62,13 +62,13 @@ export default {
       login: "",
       password: "",
       session_url: "login",
-      loading: false,
+      isRequestNow: false,
     };
   },
   computed: mapGetters(["GET_LOGO"]),
   methods: {
     signIn() {
-      this.loading = true;
+      this.isRequestNow = true;
       const auth = {
         username: this.login,
         password: this.password,
@@ -77,11 +77,11 @@ export default {
         .dispatch("login", auth)
         .then(() => {
           this.$router.replace({ name: "MyListings" });
-          this.loading = false;
+          this.isRequestNow = false;
         })
         .catch((error) => {
           console.log(error);
-          this.loading = false;
+          this.isRequestNow = false;
         });
       console.log(auth);
     },

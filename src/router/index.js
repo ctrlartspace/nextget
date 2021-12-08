@@ -75,6 +75,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
   store.dispatch('cancelPendingRequest');
   const isAuthentificated = store.getters['IS_AUTHENTIFICATED']
   if (to.matched.some((record) => record.meta.requiresAuth)) {

@@ -38,7 +38,11 @@
           </div>
           <div class="offset-8px"></div>
           <div class="input-data">
-            <button type="submit" class="btn accent full-width">
+            <button
+              type="submit"
+              class="btn accent full-width"
+              :disabled="isRequestNow"
+            >
               Создать аккаунт
             </button>
           </div>
@@ -58,13 +62,21 @@ export default {
         display_name: "",
         password: "",
       },
+      isRequestNow: false,
     };
   },
   methods: {
     async register() {
-      this.$store.dispatch("register", this.registerData).then(() => {
-        this.$router.replace({ name: "Login" });
-      });
+      this.isRequestNow = true;
+      this.$store
+        .dispatch("register", this.registerData)
+        .then(() => {
+          this.$router.replace({ name: "Login" });
+          this.isRequestNow = false;
+        })
+        .catch(() => {
+          this.isRequestNow = false;
+        });
     },
   },
 };

@@ -126,7 +126,7 @@
                 type="button"
                 class="btn accent"
                 @click="createListing"
-                :disabled="!isProductSelected"
+                :disabled="!isProductSelected || isRequestNow"
               >
                 <span class="material-icons-round">done</span>
                 <p>Опубликовать</p>
@@ -280,6 +280,7 @@ export default {
       },
       currentStep: 1,
       empty_fields: [],
+      isRequestNow: false
     };
   },
   mixins: [conditionDecoder],
@@ -355,13 +356,16 @@ export default {
         this.currentStep = 1;
         console.log(this.empty_fields);
       } else {
+        this.isRequestNow = true
         this.$store
           .dispatch("createListing", data)
           .then(() => {
+            this.isRequestNow = false
             this.$router.replace({ name: "MyListings" });
             console.log("listing created");
           })
           .catch((error) => {
+            this.isRequestNow = false
             console.log(error);
           });
         console.log(data);

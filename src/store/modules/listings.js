@@ -55,6 +55,17 @@ export default {
         console.log(error);
         return Promise.reject(error)
       })
+    },
+    async deleteListing(_, id) {
+      return axionInstance({
+        method: 'delete',
+        url: `listings/${id}`
+      }).then(response => {
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error)
+      })
     }
   },
   mutations: {

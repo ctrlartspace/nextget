@@ -1,30 +1,40 @@
 <template>
   <footer>
     <div class="footer padding colored rounded-top section">
-      <div class="row gx-2 gy-2">
-        <div class="col-md-6 order-2 order-md-1">
+      <a class="btn" href="https://www.apple.com/" target="_blank">
+        <span class="material-icons-round">apple</span>
+      </a>
+      <div class="offset-2px"></div>
+      <div class="row gx-4 gy-2">
+        <div class="col-md-6 order-2 order-md-1 secondary-text">
           <p>
-            <strong
-              >Сервис объявлений по продаже новой и подержанной техники Apple
-            </strong>
+            © 2021 «Nextget», Сервис объявлений по продаже новой и подержанной
+            техники Apple
           </p>
-          <div class="offset-2px"></div>
-          <a class="btn" href="https://www.apple.com/" target="_blank">
-            <span class="material-icons-round">apple</span>
-          </a>
-          <div class="offset-2px"></div>
-          <p>© 2021 «Nextget»</p>
         </div>
         <div class="col-md-6 order-1 order-md-2">
-          <p><strong>Информация</strong></p>
-          <div class="offset-2px"></div>
-          <router-link class="secondary-text" :to="{ name: 'Home' }">
-            <p>Вакансии</p>
-          </router-link>
-          <div class="offset-2px"></div>
-          <router-link class="secondary-text" :to="{ name: 'Home' }">
-            <p>Сотрудничество</p>
-          </router-link>
+          <div class="row gx-2 gy-0">
+            <div class="col-auto">
+              <router-link class="secondary-text" :to="{ name: 'Home' }">
+                <p>Вакансии</p>
+              </router-link>
+            </div>
+            <div class="col-auto">
+              <router-link class="secondary-text" :to="{ name: 'Home' }">
+                <p>Сотрудничество</p>
+              </router-link>
+            </div>
+            <div class="col-auto">
+              <router-link class="secondary-text" :to="{ name: 'Home' }">
+                <p>Реклама</p>
+              </router-link>
+            </div>
+            <div class="col-auto">
+              <router-link class="secondary-text" :to="{ name: 'Home' }">
+                <p>Условия использования</p>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
