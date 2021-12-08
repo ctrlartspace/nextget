@@ -9,21 +9,24 @@
       </div>
     </div>
     <div class="col-md-8">
-      <div class="padding colored rounded section">
+      <!-- <div class="padding colored rounded section">
         <h5>Все объявления</h5>
         <div class="offset-6px"></div>
         <Listings :listings="getListings" />
-      </div>
-      <!-- <div v-for="model in getProductModels" :key="model.id">
-        <div class="padding colored rounded section">
-          <div class="info clickable">
-            <router-link :to="{ name: 'Register' }">{{ model.product.name }}</router-link>
-          </div>
-          <div class="offset"></div>
-          <Listings :listings="getListingsByProductModel(model.product.id)"/>
-        </div>
-        <div class="offset"></div>
       </div> -->
+      <div v-for="model in getProductModels" :key="model.id">
+        <div class="padding colored rounded section">
+          <div class="help-label primary">
+            <!-- <span class="material-icons-round">visibility</span> -->
+            <div class="v-offset-2px"></div>
+            <p>{{ model.product.name }}</p>
+          </div>
+
+          <div class="offset-6px"></div>
+          <Listings :listings="getListingsByProductModel(model.product.id)" />
+        </div>
+        <div class="offset-6px"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +42,7 @@ export default {
     "getListings",
     "getProductModels",
     "getListingsByProductModel",
+    "getAveragePrice",
   ]),
   methods: {
     ...mapActions(["fetchListings"]),
