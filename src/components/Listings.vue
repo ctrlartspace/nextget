@@ -18,7 +18,7 @@
         <div class="d-inline">
           <div class="surface-text">
             <p>
-              <strong>{{ listing.owner.display_name + ": " }}</strong>
+              <strong>{{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " + listing.owner.display_name + ": " }}</strong>
             </p>
           </div>
           <div class="secondary-text">

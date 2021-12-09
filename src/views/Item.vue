@@ -2,28 +2,39 @@
   <div v-if="getListing" class="row my-0 gy-2 gx-2">
     <div class="col-md-6">
       <div class="padding colored rounded-top section">
-        <router-link :to="{ name: 'Item' }">
-          <div class="row gx-2">
-            <div class="col-auto d-flex align-items-center">
-              <div class="square avatar">
-                <img
-                  :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
-                />
-              </div>
+        <div class="row gx-2">
+          <div class="col-auto d-flex align-items-center">
+            <div class="square avatar">
+              <img
+                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
+              />
             </div>
-            <div class="col surface-text">
+          </div>
+          <div class="col surface-text">
+            <router-link :to="{ name: 'Item' }">
               <p>
                 <strong>{{ getListing.owner.display_name }}</strong>
               </p>
+            </router-link>
+            <div class="d-inline">
+              <div class="surface-text">
+                <p>
+                  <strong>
+                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " }}
+                  </strong>
+                </p>
+              </div>
               <div class="secondary-text">
                 <p>
-                  Отзывы: 100%, на сайте с
-                  {{ getCreatedDate(getListing.owner.created_date) }}
+                  {{
+                    " на сайте с " +
+                    getCreatedDate(getListing.owner.created_date)
+                  }}
                 </p>
               </div>
             </div>
           </div>
-        </router-link>
+        </div>
       </div>
       <div class="padding colored section">
         <h5>{{ getListing.product.name }}</h5>
@@ -33,6 +44,80 @@
           <p>Память: {{ getListing.storage.value }} GB</p>
           <p>Цвет: {{ getListing.color.value }}</p>
         </div>
+      </div>
+      <div class="padding colored section no-border-bottom">
+        <div
+          class="
+            row
+            gx-0
+            gy-2
+            d-flex
+            align-items-center
+            justify-content-between
+          "
+        >
+          <div
+            class="
+              col-6 col-md-auto
+              order-2 order-md-1
+              d-none d-sm-flex
+              align-items-center
+              justify-content-center
+            "
+          >
+            <button
+              type="button"
+              class="btn transparent secondary-text"
+              @click="scrollToLeft()"
+            >
+              <span class="material-icons-round">arrow_back_ios</span>
+            </button>
+          </div>
+          <div class="col-12 col-md-9 order-1 order-md-2">
+            <div class="scroller" ref="scroller">
+              <div
+                v-if="getListing.is_owner"
+                class="image d-flex align-items-center justify-content-center"
+              >
+                <button type="button" class="btn" @click="scrollToRight()">
+                  <span class="material-icons-round">add_a_photo</span>
+                </button>
+              </div>
+
+              <div v-for="index in 3" class="image" :key="index"></div>
+
+              <!-- <div class="image"></div>
+              <div class="image"></div>
+              <div class="image"></div>
+              <div class="image"></div> -->
+            </div>
+          </div>
+          <div
+            class="
+              col-6 col-md-auto
+              order-3 order-md-3
+              d-none d-sm-flex
+              align-items-center
+              justify-content-center
+            "
+          >
+            <button
+              type="button"
+              class="btn transparent secondary-text"
+              @click="scrollToRight()"
+            >
+              <span class="material-icons-round">arrow_forward_ios</span>
+            </button>
+          </div>
+        </div>
+        <!-- 
+        <div class="offset-6px"></div>
+        <div class="center">
+          <button type="button" class="btn" @click="scrollToRight()">
+            <span class="material-icons-round">photo_camera</span>
+            <p>Добавить</p>
+          </button>
+        </div> -->
       </div>
       <div class="padding colored section no-border-bottom">
         <div class="row gx-2 d-flex align-items-center">
@@ -186,6 +271,12 @@ export default {
       if (value) {
         return moment(String(value)).locale("ru").format("D MMM h:mm");
       }
+    },
+    scrollToRight() {
+      this.$refs.scroller.scrollBy({ left: 100, behavior: "smooth" });
+    },
+    scrollToLeft() {
+      this.$refs.scroller.scrollBy({ left: -100, behavior: "smooth" });
     },
   },
 };

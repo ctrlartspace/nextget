@@ -1,18 +1,8 @@
 <template>
   <footer>
-    <div class="footer padding colored rounded-top section">
-      <a class="btn" href="https://www.apple.com/" target="_blank">
-        <span class="material-icons-round">apple</span>
-      </a>
-      <div class="offset-2px"></div>
+    <div class="footer padding rounded-top section">
       <div class="row gx-4 gy-2">
-        <div class="col-md-6 order-2 order-md-1 secondary-text">
-          <p>
-            © 2021 «Nextget», Сервис объявлений по продаже новой и подержанной
-            техники Apple
-          </p>
-        </div>
-        <div class="col-md-6 order-1 order-md-2">
+        <div class="col-12 d-flex justify-content-center">
           <div class="row gx-2 gy-0">
             <div class="col-auto">
               <router-link class="secondary-text" :to="{ name: 'Home' }">
@@ -35,6 +25,20 @@
               </router-link>
             </div>
           </div>
+        </div>
+        <div
+          class="
+            col-12
+            secondary-text
+            d-flex
+            justify-content-center
+            text-center
+          "
+        >
+          <p>
+            © 2021 «Nextget», Сервис объявлений по продаже новой и подержанной
+            техники Apple
+          </p>
         </div>
       </div>
     </div>

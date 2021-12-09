@@ -16,7 +16,7 @@
       </div> -->
       <div v-for="model in getProductModels" :key="model.id">
         <div class="padding colored rounded section">
-          <div class="help-label primary">
+          <div class="help-label transparent secondary-text d-flex justify-content-center">
             <!-- <span class="material-icons-round">visibility</span> -->
             <!-- <div class="v-offset-2px"></div> -->
             <p>{{ model.product.name }}</p>
