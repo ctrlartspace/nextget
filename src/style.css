@@ -42,27 +42,12 @@
   --border-radius: 4px;
 }
 
-
-
 html, body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   background: var(--background-color);
   margin: 0;
   color: var(--on-background-color);
-}
-
-html {
-  overflow: hidden;
-  width: 100%;
-}
-
-body {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 .main {
@@ -565,6 +550,20 @@ input:focus {
   background-color: var(--surface-secondary-color);
   border-radius: var(--border-radius);
   margin: 0 4px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+
+}
+
+.image img {
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  text-align: center;
 }
 
 .scroller .image:first-child {
