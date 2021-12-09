@@ -96,14 +96,9 @@
 
               <div v-for="index in 7" class="image" :key="index">
                 <a href="https://via.placeholder.com/1500" target="_blank">
-                  <img src="https://via.placeholder.com/1280x720" alt=""
-                /></a>
+                  <!-- <img src="https://via.placeholder.com/1280x720" alt=""/>-->
+                </a>
               </div>
-
-              <!-- <div class="image"></div>
-              <div class="image"></div>
-              <div class="image"></div>
-              <div class="image"></div> -->
             </div>
           </div>
           <div
@@ -124,14 +119,13 @@
             </button>
           </div>
         </div>
-        <!-- 
-        <div class="offset-6px"></div>
-        <div class="center">
-          <button type="button" class="btn" @click="scrollToRight()">
-            <span class="material-icons-round">photo_camera</span>
-            <p>Добавить</p>
+        <div v-if="files" class="offset-6px"></div>
+        <div v-if="files" class="center">
+          <button type="button" class="btn primary" @click="submitFiles()">
+            <span class="material-icons-round">upload</span>
+            <p>Загрузить {{ "(" + files.length + ")" }}</p>
           </button>
-        </div> -->
+        </div>
       </div>
       <div class="padding colored section no-border-bottom">
         <div class="row gx-2 d-flex align-items-center">
@@ -189,7 +183,7 @@
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent" @click="submitFiles()">
+            <button type="button" class="btn accent">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
@@ -309,7 +303,6 @@ export default {
     },
     handleFilesUpload() {
       this.files = this.$refs.files.files;
-      
     },
     submitFiles() {
       const formData = new FormData();
@@ -319,7 +312,6 @@ export default {
         console.log(file);
         formData.append("files[" + i + "]", file);
       }
-      
     },
   },
 };
