@@ -6,8 +6,7 @@
           <div class="col-auto d-flex align-items-center">
             <div class="square avatar">
               <img
-                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
-              />
+                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`" />
             </div>
           </div>
           <div class="col surface-text">
@@ -46,45 +45,34 @@
         </div>
       </div>
       <div class="padding colored section no-border-bottom">
-        <div
-          class="
+        <div class="
             row
             gx-0
             gy-2
             d-flex
             align-items-center
             justify-content-between
-          "
-        >
-          <div
-            class="
+          ">
+          <div class="
               col-6 col-md-auto
               order-2 order-md-1
               d-none d-sm-flex
               align-items-center
               justify-content-center
-            "
-          >
-            <button
-              type="button"
-              class="btn transparent secondary-text"
-              @click="scrollToLeft()"
-            >
+            ">
+            <button type="button" class="btn transparent secondary-text" @click="scrollToLeft()">
               <span class="material-icons-round">arrow_back_ios</span>
             </button>
           </div>
           <div class="col-12 col-md-9 order-1 order-md-2">
             <div class="scroller" ref="scroller">
-              <div
-                v-if="getListing.is_owner"
-                class="image d-flex align-items-center justify-content-center"
-              >
+              <div v-if="getListing.is_owner" class="image d-flex align-items-center justify-content-center">
                 <button type="button" class="btn" @click="scrollToRight()">
                   <span class="material-icons-round">add_a_photo</span>
                 </button>
               </div>
 
-              <div v-for="index in 3" class="image" :key="index"></div>
+              <div v-for="index in 7" class="image" :key="index"></div>
 
               <!-- <div class="image"></div>
               <div class="image"></div>
@@ -92,20 +80,14 @@
               <div class="image"></div> -->
             </div>
           </div>
-          <div
-            class="
+          <div class="
               col-6 col-md-auto
               order-3 order-md-3
               d-none d-sm-flex
               align-items-center
               justify-content-center
-            "
-          >
-            <button
-              type="button"
-              class="btn transparent secondary-text"
-              @click="scrollToRight()"
-            >
+            ">
+            <button type="button" class="btn transparent secondary-text" @click="scrollToRight()">
               <span class="material-icons-round">arrow_forward_ios</span>
             </button>
           </div>
@@ -150,13 +132,10 @@
           </p>
         </div>
       </div>
-      <div
-        class="padding colored section"
-        :class="{
+      <div class="padding colored section" :class="{
           'no-border-bottom': getListing.is_owner,
           'rounded-bottom': !getListing.is_owner,
-        }"
-      >
+        }">
         <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <div class="accent-text mono">
@@ -182,29 +161,16 @@
           </div>
         </div>
       </div>
-      <div
-        v-if="getListing.is_owner"
-        class="padding colored rounded-bottom section"
-      >
+      <div v-if="getListing.is_owner" class="padding colored rounded-bottom section">
         <div class="row gx-2 d-flex align-items-center">
           <div class="col-auto d-flex align-items-center secondary-text">
             <p>
               <i>Уже не актуально? </i>
-              <button
-                v-if="!isDeleteClicked"
-                type="button"
-                class="link error-text"
-                @click="isDeleteClicked = true"
-              >
+              <button v-if="!isDeleteClicked" type="button" class="link error-text" @click="isDeleteClicked = true">
                 <p><i>Удалить</i></p>
               </button>
-              <button
-                v-if="isDeleteClicked"
-                type="button"
-                class="link error-text"
-                @click="deleteListing()"
-                :disabled="isDeleteRequestNow"
-              >
+              <button v-if="isDeleteClicked" type="button" class="link error-text" @click="deleteListing()"
+                :disabled="isDeleteRequestNow">
                 <p><i>Подтвердить удаление</i></p>
               </button>
             </p>
@@ -229,57 +195,67 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import conditionDecoder from "@/services/condition-decoder";
-import moment from "moment";
+  import {
+    mapGetters
+  } from "vuex";
+  import conditionDecoder from "@/services/condition-decoder";
+  import moment from "moment";
 
-export default {
-  name: "Item",
-  mixins: [conditionDecoder],
-  data() {
-    return {
-      loading: false,
-      isDeleteClicked: false,
-      isDeleteRequestNow: false,
-    };
-  },
-  computed: mapGetters(["getListing"]),
-  created() {
-    this.$store.dispatch("fetchListing", this.$route.params.id).then((r) => {
-      this.loading = false;
-      console.log(r);
-    });
-  },
-  methods: {
-    deleteListing() {
-      console.log(this.isDeleteRequestNow);
-      this.isDeleteRequestNow = true;
-      this.$store
-        .dispatch("deleteListing", this.getListing.id)
-        .then((r) => {
-          this.$router.replace({ name: "MyListings" });
-          console.log(r);
-          this.isDeleteRequestNow = false;
-        })
-        .catch((e) => {
-          console.log(e);
-          this.isDeleteRequestNow = false;
-          this.isDeleteClicked = false;
+  export default {
+    name: "Item",
+    mixins: [conditionDecoder],
+    data() {
+      return {
+        loading: false,
+        isDeleteClicked: false,
+        isDeleteRequestNow: false,
+      };
+    },
+    computed: mapGetters(["getListing"]),
+    created() {
+      this.$store.dispatch("fetchListing", this.$route.params.id).then((r) => {
+        this.loading = false;
+        console.log(r);
+      });
+    },
+    methods: {
+      deleteListing() {
+        console.log(this.isDeleteRequestNow);
+        this.isDeleteRequestNow = true;
+        this.$store
+          .dispatch("deleteListing", this.getListing.id)
+          .then((r) => {
+            this.$router.replace({
+              name: "MyListings"
+            });
+            console.log(r);
+            this.isDeleteRequestNow = false;
+          })
+          .catch((e) => {
+            console.log(e);
+            this.isDeleteRequestNow = false;
+            this.isDeleteClicked = false;
+          });
+      },
+      formatDate(value) {
+        if (value) {
+          return moment(String(value)).locale("ru").format("D MMM h:mm");
+        }
+      },
+      scrollToRight() {
+        this.$refs.scroller.scrollBy({
+          left: 100,
+          behavior: "smooth"
         });
+      },
+      scrollToLeft() {
+        this.$refs.scroller.scrollBy({
+          left: -100,
+          behavior: "smooth"
+        });
+      },
     },
-    formatDate(value) {
-      if (value) {
-        return moment(String(value)).locale("ru").format("D MMM h:mm");
-      }
-    },
-    scrollToRight() {
-      this.$refs.scroller.scrollBy({ left: 100, behavior: "smooth" });
-    },
-    scrollToLeft() {
-      this.$refs.scroller.scrollBy({ left: -100, behavior: "smooth" });
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
