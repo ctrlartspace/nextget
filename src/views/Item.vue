@@ -79,9 +79,19 @@
                 v-if="getListing.is_owner"
                 class="image d-flex align-items-center justify-content-center"
               >
-                <button type="button" class="btn">
+                <input
+                  type="file"
+                  name="files"
+                  id="files"
+                  ref="files"
+                  class="input-file"
+                  multiple
+                  accept="image/*"
+                  @change="handleFilesUpload"
+                />
+                <label class="btn" for="files">
                   <span class="material-icons-round">add_a_photo</span>
-                </button>
+                </label>
               </div>
 
               <div v-for="index in 7" class="image" :key="index">
@@ -179,7 +189,7 @@
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent">
+            <button type="button" class="btn accent" @click="submitFiles()">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
@@ -251,6 +261,7 @@ export default {
       loading: false,
       isDeleteClicked: false,
       isDeleteRequestNow: false,
+      files: null,
     };
   },
   computed: mapGetters(["getListing"]),
@@ -295,6 +306,20 @@ export default {
         left: -100,
         behavior: "smooth",
       });
+    },
+    handleFilesUpload() {
+      this.files = this.$refs.files.files;
+      
+    },
+    submitFiles() {
+      const formData = new FormData();
+      console.log(this.files);
+      for (var i = 0; i < this.files.length; i++) {
+        const file = this.files[i];
+        console.log(file);
+        formData.append("files[" + i + "]", file);
+      }
+      
     },
   },
 };
