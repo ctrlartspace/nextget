@@ -12,7 +12,7 @@
     </div>
     <div class="row my-0 gx-2 gy-2">
       <div class="col-md-6 order-2 order-md-1">
-        <div class="padding rounded-top colored section dashed">
+        <div class="padding rounded-top colored section hatch dash">
           <div class="help-label secondary">
             <span class="material-icons-round">visibility</span>
             <div class="v-offset-2px"></div>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div
-          class="padding colored section dashed"
+          class="padding colored section hatch dash"
           :class="{ 'disabled-text': selectData.condition_state == 0 }"
         >
           <h5>Описание</h5>
@@ -72,7 +72,7 @@
           </p>
         </div>
         <div
-          class="padding colored rounded-bottom section dashed"
+          class="padding colored rounded-bottom section hatch dash"
           :class="{ 'disabled-text': selectData.equipment == 0 }"
         >
           <h5>Дополнительная информация</h5>
@@ -87,7 +87,7 @@
         </div>
         <div class="offset-4px"></div>
         <div
-          class="padding colored rounded section dashed accent-text mono"
+          class="padding colored rounded section hatch dash accent-text mono"
           :class="{ 'disabled-text': selectData.price == 0 }"
         >
           <h4>{{ numberWithCommas(selectData.price) }} KZT</h4>
@@ -280,7 +280,7 @@ export default {
       },
       currentStep: 1,
       empty_fields: [],
-      isRequestNow: false
+      isRequestNow: false,
     };
   },
   mixins: [conditionDecoder],
@@ -356,16 +356,16 @@ export default {
         this.currentStep = 1;
         console.log(this.empty_fields);
       } else {
-        this.isRequestNow = true
+        this.isRequestNow = true;
         this.$store
           .dispatch("createListing", data)
-          .then(() => {
-            this.isRequestNow = false
-            this.$router.replace({ name: "MyListings" });
-            console.log("listing created");
+          .then((r) => {
+            this.isRequestNow = false;
+            this.$router.replace({ name: "Item", params: { id: r.data.id } });
+            console.log(r);
           })
           .catch((error) => {
-            this.isRequestNow = false
+            this.isRequestNow = false;
             console.log(error);
           });
         console.log(data);

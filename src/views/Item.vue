@@ -43,7 +43,6 @@
           <p>Год выпуска: {{ getListing.product.year.value }}</p>
           <p>Память: {{ getListing.storage.value }} GB</p>
           <p>Цвет: {{ getListing.color.value }}</p>
-          <p>{{ getListing.images.length == 0 }}</p>
         </div>
       </div>
       <div class="padding colored section no-border-bottom">
@@ -85,7 +84,7 @@
             <div class="scroller" ref="scroller">
               <div
                 v-if="getListing.is_owner"
-                class="image d-flex align-items-center justify-content-center"
+                class="image dash d-flex align-items-center justify-content-center"
               >
                 <input
                   type="file"
@@ -97,7 +96,7 @@
                   accept="image/*"
                   @change="handleFilesUpload"
                 />
-                <label class="btn" for="files">
+                <label class="btn transparent text-large" for="files">
                   <span class="material-icons-round">add_a_photo</span>
                 </label>
               </div>
