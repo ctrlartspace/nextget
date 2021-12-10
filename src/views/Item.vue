@@ -43,10 +43,18 @@
           <p>Год выпуска: {{ getListing.product.year.value }}</p>
           <p>Память: {{ getListing.storage.value }} GB</p>
           <p>Цвет: {{ getListing.color.value }}</p>
+          <p>{{ getListing.images.length == 0 }}</p>
         </div>
       </div>
       <div class="padding colored section no-border-bottom">
         <div
+          v-if="(getListing.images.length == 0) & !getListing.is_owner"
+          class="secondary-text center"
+        >
+          <p><i>Автор еще не добавил фотографии</i></p>
+        </div>
+        <div
+          v-if="(getListing.images.length > 0) || getListing.is_owner"
           class="
             row
             gx-0
@@ -94,9 +102,19 @@
                 </label>
               </div>
 
-              <div v-for="index in 7" class="image" :key="index">
-                <a href="https://via.placeholder.com/1500" target="_blank">
-                  <!-- <img src="https://via.placeholder.com/1280x720" alt=""/>-->
+              <div
+                v-for="image in getListing.images"
+                class="image"
+                :key="image.id"
+              >
+                <a
+                  :href="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/${image.id}.jpg`"
+                  target="_blank"
+                >
+                  <img
+                    :src="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/${image.id}.jpg`"
+                    alt=""
+                  />
                 </a>
               </div>
             </div>
@@ -121,9 +139,25 @@
         </div>
         <div v-if="files" class="offset-6px"></div>
         <div v-if="files" class="center">
-          <button type="button" class="btn primary" @click="submitFiles()">
+          <div v-if="isImageLoadingFailed" class="error-text">
+            <p>
+              <i
+                >Произошла ошибка при загрузке файлов. Повторите попытку чуть
+                позже</i
+              >
+            </p>
+          </div>
+          <button
+            type="button"
+            class="btn primary"
+            @click="submitFiles()"
+            :disabled="isImageLoadingProgress"
+          >
             <span class="material-icons-round">upload</span>
-            <p>Загрузить {{ "(" + files.length + ")" }}</p>
+            <p v-if="!isImageLoadingProgress">
+              Загрузить {{ "(" + files.length + ")" }}
+            </p>
+            <p v-else>Загрузка...</p>
           </button>
         </div>
       </div>
@@ -256,6 +290,8 @@ export default {
       isDeleteClicked: false,
       isDeleteRequestNow: false,
       files: null,
+      isImageLoadingProgress: false,
+      isImageLoadingFailed: false,
     };
   },
   computed: mapGetters(["getListing"]),
@@ -307,11 +343,30 @@ export default {
     submitFiles() {
       const formData = new FormData();
       console.log(this.files);
-      for (var i = 0; i < this.files.length; i++) {
-        const file = this.files[i];
-        console.log(file);
-        formData.append("files[" + i + "]", file);
-      }
+      this.files.forEach((file) => {
+        formData.append("files", file);
+      });
+
+      console.log(formData);
+      const payloads = {
+        id: this.$route.params.id,
+        formData: formData,
+      };
+      this.isImageLoadingProgress = true;
+      this.isImageLoadingFailed = false;
+      this.$store
+        .dispatch("uploadImages", payloads)
+        .then((r) => {
+          this.isImageLoadingProgress = false;
+          this.isImageLoadingFailed = false;
+          this.files = null;
+          console.log(r);
+        })
+        .catch((e) => {
+          this.isImageLoadingProgress = false;
+          this.isImageLoadingFailed = true;
+          console.log(e);
+        });
     },
   },
 };

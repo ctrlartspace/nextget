@@ -2,7 +2,12 @@
   <div class="listing" v-for="listing in listings" :key="listing.id">
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
-        <div class="square photo"></div>
+        <div class="image">
+          <img v-if="listing.images.length > 0"
+            :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/${listing.images[0].id}.jpg`"
+            alt=""
+          />
+        </div>
       </div>
       <div class="col ellipsis">
         <router-link :to="{ name: 'Item', params: { id: listing.id } }">
@@ -18,7 +23,12 @@
         <div class="d-inline">
           <div class="surface-text">
             <p>
-              <strong>{{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " + listing.owner.display_name + ": " }}</strong>
+              <strong>{{
+                (Math.random() * (3 - 5) + 5).toFixed(1) +
+                " ★ " +
+                listing.owner.display_name +
+                ": "
+              }}</strong>
             </p>
           </div>
           <div class="secondary-text">

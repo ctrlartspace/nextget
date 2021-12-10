@@ -63,7 +63,19 @@ export default {
       }).then(response => {
         return Promise.resolve(response)
       }).catch(error => {
-        console.log(error);
+        console.log(error)
+        return Promise.reject(error)
+      })
+    },
+    async uploadImages(_, payloads) {
+      return axionInstance({
+        method: 'post',
+        url: `listings/${payloads.id}/images`,
+        data: payloads.formData,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }).then(response => {
+        return Promise.resolve(response)
+      }).catch(error => {
         return Promise.reject(error)
       })
     }

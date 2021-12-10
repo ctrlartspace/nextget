@@ -552,7 +552,7 @@ input:focus {
   display: none;
 }
 
-.scroller .image {
+.image {
   flex: 0 0 auto;
   width: 69px;
   height: 69px;
