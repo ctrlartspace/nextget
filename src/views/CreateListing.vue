@@ -98,7 +98,8 @@
         <div class="padding colored rounded section">
           <div class="row gx-0 d-flex align-items-center">
             <div class="col">
-              <h5>Шаг {{ currentStep }}</h5>
+              <h5 v-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
+              <h5 v-if="currentStep == 4">Публикация</h5>
             </div>
             <div class="col-auto">
               <button
@@ -129,7 +130,7 @@
                 :disabled="!isProductSelected || isRequestNow"
               >
                 <span class="material-icons-round">done</span>
-                <p>Опубликовать</p>
+                <p>Готово</p>
               </button>
             </div>
           </div>
@@ -139,7 +140,7 @@
             <div class="v-offset-2px"></div>
             <p>Заполните все поля</p>
           </div>
-          <div class="offset-2px"></div>
+          <div v-if="empty_fields.length > 0" class="offset-2px"></div>
           <div v-show="currentStep == 1" class="input-data">
             <select
               @change="onProductChange($event)"
@@ -239,6 +240,10 @@
             </select>
           </div>
           <div v-show="currentStep == 4" class="input-data">
+            <div class="accent-text">
+              <p>Предложите цену</p>
+            </div>
+            <div class="offset-2px"></div>
             <input
               type="text"
               v-model="getCurrency"
