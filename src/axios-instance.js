@@ -30,6 +30,7 @@ axiosInstance.interceptors.response.use(response => {
   return Promise.resolve(response)
 
 }, error => {
+  console.log("error")
   store.dispatch('setLoading', false)
   if (axios.isCancel(error)) {
     throw new axios.Cancel('Operation canceled due to timeout!');
@@ -64,7 +65,7 @@ const refreshAuthLogic = () => axiosInstance({
 createAuthRefreshInterceptor(
   axiosInstance,
   refreshAuthLogic,
-  // { pauseInstanceWhileRefreshing : true } например если сразу выполняются 3 запроса и они возрвщают ошибку 401, эта опция обновляет токен и перезапускает только 1-й запрос
+  { pauseInstanceWhileRefreshing : true } //например если сразу выполняются 3 запроса и они возрвщают ошибку 401, эта опция обновляет токен и перезапускает только 1-й запрос
 );
 
 export default axiosInstance;

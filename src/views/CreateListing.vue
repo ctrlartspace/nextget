@@ -244,6 +244,8 @@
               v-model="getCurrency"
               placeholder="Цена"
               step="500"
+              pattern="[0-9]*"
+              inputmode="numeric"
               :disabled="!isProductSelected"
             />
           </div>
