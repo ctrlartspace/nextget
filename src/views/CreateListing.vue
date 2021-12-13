@@ -292,7 +292,7 @@ export default {
     },
     getCurrency: {
       get: function () {
-        return NumberFormat.format(this.selectData.price) + " KZT";
+        return NumberFormat.format(this.selectData.price);
       },
       set: function (newValue) {
         this.selectData.price = null;
