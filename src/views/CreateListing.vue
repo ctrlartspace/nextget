@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row my-0 gx-2 gy-2">
-      <div class="col-md-6 order-2 order-md-1">
+      <div class="d-none d-sm-block col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section hatch dash">
           <div class="help-label secondary">
             <span class="material-icons-round">visibility</span>
