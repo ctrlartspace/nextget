@@ -1,7 +1,7 @@
 :root {
-  --background-color: #F5F5F5;
+  --background-color: #F8F8F8;
   --surface-color: #FFFFFF;
-  --surface-secondary-color: #FAFAFA;
+  --surface-secondary-color: #F5F5F5;
   --border-color: #EEEEEE;
   --primary-color: #5600e1;
   --secondary-color: #BDBDBD;
@@ -23,7 +23,7 @@
 :root.dark {
   --background-color: #000000;
   --surface-color: #121212;
-  --surface-secondary-color: #161616;
+  --surface-secondary-color: #181818;
   --border-color: #212121;
   --primary-color: #5600e1;
   --secondary-color: #616161;
@@ -86,8 +86,8 @@ html, body {
 }
 
 ::placeholder {
-  color: var(--on-surface-color);
-  opacity: 1;
+  color: var(--secondary-color);
+  /* opacity: 0.5; */
 }
 
 .square {
@@ -146,10 +146,20 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a p:hover, .btn:not(:disabled):hover p, .link:not(:disabled):hover p {
+  a p:hover, .link:not(:disabled):hover p {
     text-decoration: underline;
   }
+
+  .btn:not(:disabled):hover {
+    opacity: 0.8;
+  }
+
+  .btn:not(:disabled):hover p {
+    text-decoration: none;
+  }
 }
+
+
 
 /* _OFFSET */
 .offset-2px {
@@ -204,7 +214,7 @@ a {
 
 .end {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .ellipsis {

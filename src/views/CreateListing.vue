@@ -218,7 +218,7 @@
             <textarea
               name="description"
               v-model="selectData.description"
-              placeholder="Описание"
+              placeholder="Описание повреждений (царапины, трещины, потертости и т.д.)"
               rows="6"
               :disabled="!isProductSelected"
             />
@@ -240,8 +240,8 @@
           </div>
           <div v-show="currentStep == 4" class="input-data">
             <input
-              type="number"
-              v-model="selectData.price"
+              type="text"
+              v-model="getCurrency"
               placeholder="Цена"
               step="500"
               :disabled="!isProductSelected"
@@ -256,6 +256,7 @@
 <script>
 import conditionDecoder from "@/services/condition-decoder";
 import { mapActions, mapGetters } from "vuex";
+const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
   name: "CreateListing",
@@ -288,6 +289,15 @@ export default {
     ...mapGetters(["getProducts", "getConditions", "getEquipments"]),
     isProductSelected() {
       return this.selectData.product != 0;
+    },
+    getCurrency: {
+      get: function () {
+        return NumberFormat.format(this.selectData.price) + " KZT";
+      },
+      set: function (newValue) {
+        this.selectData.price = null;
+        this.selectData.price = +newValue.replaceAll(/\D/g, "");
+      },
     },
   },
   methods: {
