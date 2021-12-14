@@ -4,7 +4,7 @@
       <div class="col-auto">
         <div class="image">
           <img v-if="listing.images.length > 0"
-            :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/${listing.images[0].id}.jpg`"
+            :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${listing.images[0].id}`"
             alt=""
           />
         </div>
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="offset-2px"></div>
-        <div class="row gx-1 gy-1 tags surface-text">
+        <div class="row gx-2 gy-2 tags surface-text">
           <div class="col-auto">
             <div class="item accent-text">
               <p>{{ numberWithCommas(listing.price) }} KZT</p>

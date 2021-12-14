@@ -12,9 +12,9 @@
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <input
-              type="number"
+              type="phone"
               id="phone_number"
-              v-model="login"
+              v-model="formatPhone"
               placeholder="+7"
             />
           </div>
@@ -39,7 +39,7 @@
               class="btn primary full-width"
               :disabled="isRequestNow"
             >
-              Вход
+              <p>Вход</p>
             </button>
           </div>
           <div class="offset-6px"></div>
@@ -59,18 +59,29 @@ export default {
   name: "LoginView",
   data() {
     return {
-      login: "",
+      phone_number: "",
       password: "",
       session_url: "login",
       isRequestNow: false,
     };
   },
-  computed: mapGetters(["GET_LOGO"]),
+  computed: {
+    ...mapGetters(["GET_LOGO"]),
+    formatPhone: {
+      get: function () {
+        return '+' + this.phone_number.toString().replace(/\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/, '$1 $2 $3 $4', '$1 $2 $3 $4');
+      },
+      set: function (newValue) {
+        this.phone_number = null;
+        this.phone_number = +newValue.replaceAll(/\D/g, "");
+      },
+    },
+  },
   methods: {
     signIn() {
       this.isRequestNow = true;
       const auth = {
-        username: this.login,
+        username: this.phone_number,
         password: this.password,
       };
       this.$store

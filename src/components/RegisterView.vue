@@ -8,16 +8,14 @@
           </div>
           <div class="offset-6px"></div>
           <div class="input-data">
-            <label for="phone_number">Номер телефона</label>
+            <label for="phone_number">{{ registerData.phone_number }}</label>
             <input
-              type="number"
+              type="phone"
               id="phone_number"
-              v-model="registerData.phone"
-              placeholder="7XXXXXXXXXX"
+              v-model="formatPhone"
+              placeholder="+7"
             />
-          </div>
-          <div class="offset-6px"></div>
-          <div class="input-data">
+            <div class="offset-6px"></div>
             <label for="display_name">Как Вас зовут?</label>
             <input
               type="text"
@@ -25,9 +23,7 @@
               v-model="registerData.display_name"
               placeholder="Ваше имя"
             />
-          </div>
-          <div class="offset-6px"></div>
-          <div class="input-data">
+            <div class="offset-6px"></div>
             <label for="password">Придумайте пароль</label>
             <input
               type="password"
@@ -36,16 +32,14 @@
               placeholder="Пароль"
             />
           </div>
-          <div class="offset-8px"></div>
-          <div class="input-data">
-            <button
-              type="submit"
-              class="btn accent full-width"
-              :disabled="isRequestNow"
-            >
-              Создать аккаунт
-            </button>
-          </div>
+          <div class="offset-6px"></div>
+          <button
+            type="submit"
+            class="btn accent full-width"
+            :disabled="isRequestNow"
+          >
+            <p>Создать аккаунт</p>
+          </button>
         </form>
       </div>
     </div>
@@ -58,15 +52,37 @@ export default {
   data() {
     return {
       registerData: {
-        phone: "",
+        phone_number: "",
         display_name: "",
         password: "",
       },
       isRequestNow: false,
     };
   },
+  computed: {
+    formatPhone: {
+      get: function () {
+        return (
+          "+" +
+          this.registerData.phone_number
+            .toString()
+            .replace(
+              /\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
+              "$1 $2 $3 $4",
+              "$1 $2 $3 $4"
+            )
+        );
+      },
+      set: function (newValue) {
+        this.registerData.phone_number = null;
+        this.registerData.phone_number = +newValue.replaceAll(/\D/g, "");
+        this.registerData.phone_number = this.registerData.phone_number.toString()
+      },
+    },
+  },
   methods: {
     async register() {
+      console.log(this.registerData);
       this.isRequestNow = true;
       this.$store
         .dispatch("register", this.registerData)

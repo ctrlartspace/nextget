@@ -107,11 +107,11 @@
                 :key="image.id"
               >
                 <a
-                  :href="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/${image.id}.jpg`"
+                  :href="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/full_${image.id}`"
                   target="_blank"
                 >
                   <img
-                    :src="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/${image.id}.jpg`"
+                    :src="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/thumbnail_${image.id}`"
                     alt=""
                   />
                 </a>
