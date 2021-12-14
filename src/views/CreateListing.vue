@@ -99,7 +99,7 @@
           <div class="row gx-0 d-flex align-items-center">
             <div class="col">
               <h5 v-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
-              <h5 v-if="currentStep == 4">Публикация</h5>
+              <h5 v-if="currentStep == 4">Цена</h5>
             </div>
             <div class="col-auto">
               <button
@@ -130,7 +130,7 @@
                 :disabled="!isProductSelected || isRequestNow"
               >
                 <span class="material-icons-round">done</span>
-                <p>Готово</p>
+                <p>Опубликовать</p>
               </button>
             </div>
           </div>
@@ -240,8 +240,8 @@
             </select>
           </div>
           <div v-show="currentStep == 4" class="input-data">
-            <div class="accent-text">
-              <p>Предложите цену</p>
+            <div v-if="getAveragePrice" class="accent-text">
+              <p>Средняя цена за эту модель ~ <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong></p>
             </div>
             <div class="offset-2px"></div>
             <input
@@ -293,7 +293,7 @@ export default {
   },
   mixins: [conditionDecoder],
   computed: {
-    ...mapGetters(["getProducts", "getConditions", "getEquipments"]),
+    ...mapGetters(["getProducts", "getConditions", "getEquipments", "getAveragePrice"]),
     isProductSelected() {
       return this.selectData.product != 0;
     },
@@ -308,7 +308,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchProducts", "fetchConditions", "fetchEquipments"]),
+    ...mapActions(["fetchProducts", "fetchConditions", "fetchEquipments", "fetchAveragePrice"]),
     onProductChange() {
       this.updateProductData();
     },
@@ -333,6 +333,9 @@ export default {
     nextStep() {
       if (this.currentStep < 4) {
         this.currentStep += 1;
+      }
+      if (this.currentStep == 4) {
+        this.fetchAveragePrice(this.selectData.product.id);
       }
     },
     createListing() {
