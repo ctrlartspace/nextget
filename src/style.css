@@ -305,7 +305,7 @@ a {
   box-sizing: border-box;
   border-width: 0px;
   border-radius: var(--border-radius);
-  padding: 6px 8px;
+  padding: 8px;
   /* font-size: var(--text-size-large); */
   font-family: Roboto, Helvetica, Arial, sans-serif;
   align-items: center;

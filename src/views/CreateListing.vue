@@ -101,7 +101,7 @@
               <h5 v-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
               <h5 v-if="currentStep == 4">Цена</h5>
             </div>
-            <div class="col-auto">
+            <div class="col-auto d-flex align-items-center">
               <button
                 v-if="currentStep > 1"
                 type="button"
@@ -129,7 +129,7 @@
                 @click="createListing"
                 :disabled="!isProductSelected || isRequestNow"
               >
-                <span class="material-icons-round">done</span>
+                <span class="material-icons-round">arrow_forward_ios</span>
                 <p>Опубликовать</p>
               </button>
             </div>
