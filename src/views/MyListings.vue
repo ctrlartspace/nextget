@@ -4,24 +4,36 @@
       <div class="padding colored rounded section">
         <div class="row gx-2">
           <div class="col-auto d-flex align-items-center">
-            <div class="square avatar">
+            <div class="image box-48">
               <img
                 :src="`https://www.tinygraphs.com/squares/${getUser.phone}?theme=duskfalling&numcolors=3`"
               />
             </div>
           </div>
           <div class="col">
-            <p>
-              <strong>{{ getUser.display_name }}</strong>
-            </p>
-            <p>{{ formatPhoneNumber(getUser.phone) }}</p>
-            <p>
-              Отзывы: 100%, на сайте с
-              {{ getCreatedDate(getUser.created_date) }}
-            </p>
+            <p><strong>{{ getUser.display_name }}</strong></p>
+            <div class="d-inline">
+              <div class="surface-text">
+                <p>
+                  <strong>
+                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " }}
+                  </strong>
+                </p>
+              </div>
+              <div class="secondary-text">
+                <p>
+                  {{
+                    " на сайте с " +
+                    getCreatedDate(getUser.created_date)
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="offset-6px"></div>
+          <div class="center">
             <button type="button" class="link error-text" @click="logoutToMain">
-              <!-- <span class="material-icons-round">delete</span> -->
-              <p>Выход</p>
+              <p>Выход из аккаунта</p>
             </button>
           </div>
         </div>
@@ -74,7 +86,7 @@ export default {
     ...mapActions(["fetchMyListings", "fetchUser", "logout"]),
     logoutToMain() {
       console.log("click");
-      this.logout()
+      this.logout();
       this.$router.push(`/`);
     },
     onItemClick(id) {

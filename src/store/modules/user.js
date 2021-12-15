@@ -9,6 +9,7 @@ export default {
         url: 'users/me',
       }).then(response => {
         commit('SET_USER', response.data.user)
+        console.log(response.data.user)
         return Promise.resolve(response)
       }).catch(error => {
         commit('SET_USER', null)

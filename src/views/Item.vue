@@ -4,7 +4,7 @@
       <div class="padding colored rounded-top section">
         <div class="row gx-2">
           <div class="col-auto d-flex align-items-center">
-            <div class="square avatar">
+            <div class="image box-48">
               <img
                 :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
               />
@@ -47,13 +47,13 @@
       </div>
       <div class="padding colored section no-border-bottom">
         <div
-          v-if="(!getListingImages) & !getListing.is_owner"
+          v-if="getListingImages.length == 0 & !getListing.is_owner"
           class="secondary-text center"
         >
           <p><i>Автор еще не добавил фотографии</i></p>
         </div>
         <div
-          v-if="getListingImages || getListing.is_owner"
+          v-if="getListingImages.length > 0 || getListing.is_owner"
           class="
             row
             gx-0
@@ -86,6 +86,7 @@
                 v-if="getListing.is_owner"
                 class="
                   image
+                  box-69
                   dash
                   d-flex
                   align-items-center
@@ -109,7 +110,7 @@
 
               <div
                 v-for="image in getListingImages"
-                class="image"
+                class="image box-69"
                 :key="image.id"
               >
                 <a

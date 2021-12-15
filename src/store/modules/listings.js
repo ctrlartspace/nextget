@@ -32,7 +32,7 @@ export default {
     },
     async fetchListing({ commit }, id) {
       commit('SET_LISTING', null)
-      commit('SET_LISTING_IMAGES', null)
+      commit('SET_LISTING_IMAGES', [])
       return axionInstance({
         method: 'get',
         url: `listings/${id}`
@@ -43,7 +43,7 @@ export default {
       }).catch(error => {
         console.log(error);
         commit('SET_LISTING', null)
-        commit('SET_LISTING_IMAGES', null)
+        commit('SET_LISTING_IMAGES', [])
         return Promise.reject(error)
       })
     },
@@ -83,7 +83,7 @@ export default {
       })
     },
     async fetchListingImages({ commit }, id) {
-      commit('SET_LISTING_IMAGES', null)
+      commit('SET_LISTING_IMAGES', [])
       return axionInstance({
         method: 'get',
         url: `listings/${id}/images`
@@ -92,7 +92,7 @@ export default {
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error);
-        commit('SET_LISTING_IMAGES', null)
+        commit('SET_LISTING_IMAGES', [])
         return Promise.reject(error)
       })
     },
@@ -111,7 +111,7 @@ export default {
   state: {
     listings: null,
     listing: null,
-    listing_images: null
+    listing_images: []
   },
   getters: {
     getListings: (state) => state.listings,

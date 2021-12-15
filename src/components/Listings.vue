@@ -2,7 +2,7 @@
   <div class="listing" v-for="listing in listings" :key="listing.id">
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
-        <div class="image">
+        <div class="image box-69">
           <img v-if="listing.images.length > 0"
             :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${listing.images[0].id}`"
             alt=""
