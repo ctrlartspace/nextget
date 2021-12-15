@@ -11,29 +11,36 @@
           <div class="offset-6px"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
-            <input
-              type="phone"
-              id="phone_number"
-              v-model="formatPhone"
-              placeholder="+7"
-            />
-          </div>
-          <div class="offset-6px"></div>
-          <div class="input-data">
+            <div class="d-flex align-items-center secondary-text mono">
+              <p>+7</p>
+              <div class="v-offset-2px"></div>
+              <input
+                type="phone"
+                id="phone_number"
+                v-model="formatPhone"
+                placeholder="000 000 00 00"
+                
+              />
+            </div>
+
+            <div class="offset-6px"></div>
+
             <label for="password">Пароль</label>
             <input
               type="password"
               id="password"
               v-model="password"
-              placeholder="Пароль"
+              placeholder=">"
             />
-          </div>
-          <div class="offset-6px"></div>
-          <router-link class="secondary-text center" :to="{ name: 'Register' }"
-            ><p>Забыли пароль?</p></router-link
-          >
-          <div class="offset-8px"></div>
-          <div class="input">
+
+            <div class="offset-6px"></div>
+            <router-link
+              class="secondary-text center"
+              :to="{ name: 'Register' }"
+              ><p>Забыли пароль?</p></router-link
+            >
+            <div class="offset-8px"></div>
+
             <button
               type="submit"
               class="btn primary full-width"
@@ -69,7 +76,13 @@ export default {
     ...mapGetters(["GET_LOGO"]),
     formatPhone: {
       get: function () {
-        return '+' + this.phone_number.toString().replace(/\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/, '$1 $2 $3 $4', '$1 $2 $3 $4');
+        return this.phone_number
+          .toString()
+          .replace(
+            /\D*([0-9]{3})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
+            "$1 $2 $3 $4",
+            "$1 $2 $3 $4"
+          );
       },
       set: function (newValue) {
         this.phone_number = null;

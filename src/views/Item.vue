@@ -47,13 +47,13 @@
       </div>
       <div class="padding colored section no-border-bottom">
         <div
-          v-if="(getListing.images.length == 0) & !getListing.is_owner"
+          v-if="(!getListingImages) & !getListing.is_owner"
           class="secondary-text center"
         >
           <p><i>Автор еще не добавил фотографии</i></p>
         </div>
         <div
-          v-if="(getListing.images.length > 0) || getListing.is_owner"
+          v-if="getListingImages || getListing.is_owner"
           class="
             row
             gx-0
@@ -84,7 +84,13 @@
             <div class="scroller" ref="scroller">
               <div
                 v-if="getListing.is_owner"
-                class="image dash d-flex align-items-center justify-content-center"
+                class="
+                  image
+                  dash
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                "
               >
                 <input
                   type="file"
@@ -102,7 +108,7 @@
               </div>
 
               <div
-                v-for="image in getListing.images"
+                v-for="image in getListingImages"
                 class="image"
                 :key="image.id"
               >
@@ -293,7 +299,7 @@ export default {
       isImageLoadingFailed: false,
     };
   },
-  computed: mapGetters(["getListing"]),
+  computed: mapGetters(["getListing", "getListingImages"]),
   created() {
     this.$store.dispatch("fetchListing", this.$route.params.id).then((r) => {
       this.loading = false;
@@ -360,6 +366,7 @@ export default {
           this.isImageLoadingFailed = false;
           this.files = null;
           console.log(r);
+          this.$store.dispatch("fetchListingImages", this.$route.params.id);
         })
         .catch((e) => {
           this.isImageLoadingProgress = false;

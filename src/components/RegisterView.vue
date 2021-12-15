@@ -8,20 +8,25 @@
           </div>
           <div class="offset-6px"></div>
           <div class="input-data">
-            <label for="phone_number">{{ registerData.phone_number }}</label>
-            <input
-              type="phone"
-              id="phone_number"
-              v-model="formatPhone"
-              placeholder="+7"
-            />
+            <label for="phone_number">Номер телефона</label>
+            <div class="d-flex align-items-center secondary-text mono">
+              <p>+7</p>
+              <div class="v-offset-2px"></div>
+              <input
+                type="phone"
+                id="phone_number"
+                v-model="formatPhone"
+                placeholder="000 000 00 00"
+                
+              />
+            </div>
             <div class="offset-6px"></div>
-            <label for="display_name">Как Вас зовут?</label>
+            <label for="display_name">Имя</label>
             <input
               type="text"
               id="display_name"
               v-model="registerData.display_name"
-              placeholder="Ваше имя"
+              placeholder=">"
             />
             <div class="offset-6px"></div>
             <label for="password">Придумайте пароль</label>
@@ -29,7 +34,7 @@
               type="password"
               id="password"
               v-model="registerData.password"
-              placeholder="Пароль"
+              placeholder=">"
             />
           </div>
           <div class="offset-6px"></div>
@@ -62,21 +67,19 @@ export default {
   computed: {
     formatPhone: {
       get: function () {
-        return (
-          "+" +
-          this.registerData.phone_number
-            .toString()
-            .replace(
-              /\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
-              "$1 $2 $3 $4",
-              "$1 $2 $3 $4"
-            )
-        );
+        return this.registerData.phone_number
+          .toString()
+          .replace(
+            /\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
+            "$1 $2 $3 $4",
+            "$1 $2 $3 $4"
+          );
       },
       set: function (newValue) {
         this.registerData.phone_number = null;
         this.registerData.phone_number = +newValue.replaceAll(/\D/g, "");
-        this.registerData.phone_number = this.registerData.phone_number.toString()
+        this.registerData.phone_number =
+          this.registerData.phone_number.toString();
       },
     },
   },

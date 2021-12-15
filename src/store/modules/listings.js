@@ -32,15 +32,18 @@ export default {
     },
     async fetchListing({ commit }, id) {
       commit('SET_LISTING', null)
+      commit('SET_LISTING_IMAGES', null)
       return axionInstance({
         method: 'get',
         url: `listings/${id}`
       }).then(response => {
         commit('SET_LISTING', response.data.listing)
+        commit('SET_LISTING_IMAGES', response.data.listing.images)
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error);
         commit('SET_LISTING', null)
+        commit('SET_LISTING_IMAGES', null)
         return Promise.reject(error)
       })
     },
@@ -78,7 +81,21 @@ export default {
       }).catch(error => {
         return Promise.reject(error)
       })
-    }
+    },
+    async fetchListingImages({ commit }, id) {
+      commit('SET_LISTING_IMAGES', null)
+      return axionInstance({
+        method: 'get',
+        url: `listings/${id}/images`
+      }).then(response => {
+        commit('SET_LISTING_IMAGES', response.data.listing_images)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        commit('SET_LISTING_IMAGES', null)
+        return Promise.reject(error)
+      })
+    },
   },
   mutations: {
     SET_LISTINGS: (state, listings) => {
@@ -86,17 +103,22 @@ export default {
     },
     SET_LISTING: (state, listing) => {
       state.listing = listing
+    },
+    SET_LISTING_IMAGES: (state, listing_images) => {
+      state.listing_images = listing_images
     }
   },
   state: {
     listings: null,
-    listing: null
+    listing: null,
+    listing_images: null
   },
   getters: {
     getListings: (state) => state.listings,
     getListingsByProductModel: (state) => (product_id) => state.listings.filter((elem) => elem.product.id === product_id),
     getListing: (state) => state.listing,
     getProductModels: (state) => state.listings.filter((elem, index) => state.listings.findIndex(obj => obj.product.id == elem.product.id) === index),
-    getAveragePrice_OLD: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0)
+    getAveragePrice_OLD: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0),
+    getListingImages: (state) => state.listing_images
   }
 }
