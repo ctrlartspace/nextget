@@ -11,7 +11,9 @@
             </div>
           </div>
           <div class="col">
-            <p><strong>{{ getUser.display_name }}</strong></p>
+            <p>
+              <strong>{{ getUser.display_name }}</strong>
+            </p>
             <div class="d-inline">
               <div class="surface-text">
                 <p>
@@ -22,10 +24,7 @@
               </div>
               <div class="secondary-text">
                 <p>
-                  {{
-                    " на сайте с " +
-                    getCreatedDate(getUser.created_date)
-                  }}
+                  {{ " на сайте с " + getCreatedDate(getUser.created_date) }}
                 </p>
               </div>
             </div>
@@ -56,7 +55,10 @@
           <h5>Мои объявления</h5>
         </div>
         <div class="col-auto">
-          <router-link class="btn primary" :to="{ name: 'CreateListing' }">
+          <router-link
+            class="btn primary with-shadow"
+            :to="{ name: 'CreateListing' }"
+          >
             <span class="material-icons-round">add</span>
             <p>Добавить</p>
           </router-link>
@@ -83,7 +85,7 @@ export default {
   mixins: [conditionDecoder],
   computed: mapGetters(["getListings", "getUser"]),
   methods: {
-    ...mapActions(["fetchMyListings", "fetchUser", "logout"]),
+    ...mapActions(["fetchMyListings", "fetchUser", "logout", "resetListings"]),
     logoutToMain() {
       console.log("click");
       this.logout();
@@ -95,8 +97,8 @@ export default {
     },
   },
   async created() {
-    this.fetchUser();
-    this.fetchMyListings();
+    this.resetListings();
+    this.fetchUser().then(() => this.fetchMyListings());
   },
   components: {
     Listings,

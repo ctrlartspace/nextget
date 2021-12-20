@@ -2,17 +2,20 @@ import axionInstance from '@/axios-instance'
 
 export default {
   actions: {
-    async fetchListings({ commit }) {
+    async fetchListings({ commit }, page) {
       commit('SET_LISTINGS', null)
+      commit('SET_PAGINATION', null)
       return axionInstance({
         method: 'get',
-        url: 'listings'
+        url: `listings?page=${page}`
       }).then(response => {
         commit('SET_LISTINGS', response.data.listings)
+        commit('SET_PAGINATION', response.data.pagination)
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error);
         commit('SET_LISTINGS', null)
+        commit('SET_PAGINATION', null)
         return Promise.reject(error)
       })
     },
@@ -96,6 +99,10 @@ export default {
         return Promise.reject(error)
       })
     },
+
+    async resetListings({ commit }) {
+      commit('SET_LISTINGS', null)
+    }
   },
   mutations: {
     SET_LISTINGS: (state, listings) => {
@@ -106,12 +113,16 @@ export default {
     },
     SET_LISTING_IMAGES: (state, listing_images) => {
       state.listing_images = listing_images
+    },
+    SET_PAGINATION: (state, pagination) => {
+      state.pagination = pagination
     }
   },
   state: {
     listings: null,
     listing: null,
-    listing_images: []
+    listing_images: [],
+    pagination: null
   },
   getters: {
     getListings: (state) => state.listings,
@@ -119,6 +130,7 @@ export default {
     getListing: (state) => state.listing,
     getProductModels: (state) => state.listings.filter((elem, index) => state.listings.findIndex(obj => obj.product.id == elem.product.id) === index),
     getAveragePrice_OLD: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0),
-    getListingImages: (state) => state.listing_images
+    getListingImages: (state) => state.listing_images,
+    getPagination: (state) => state.pagination
   }
 }

@@ -217,13 +217,13 @@
             </button>
           </div>
           <div v-if="!getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent">
+            <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">shopping_cart</span>
               <p>Купить</p>
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent">
+            <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>

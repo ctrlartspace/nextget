@@ -18,6 +18,7 @@
   --text-size-medium: 14px;
   --text-size-small: 12px;
   --border-radius: 4px;
+  --shadow-color: #BDBDBD;
 }
 
 :root.dark {
@@ -40,6 +41,7 @@
   --text-size-medium: 14px;
   --text-size-small: 12px;
   --border-radius: 4px;
+  --shadow-color: #050505;
 }
 
 html, body {
@@ -310,6 +312,7 @@ a {
 
 .btn:disabled {
   opacity: 0.5;
+  box-shadow: none;
 }
 
 
@@ -634,4 +637,8 @@ input:focus {
 
 .input-data .error-select {
   color: var(--error-color);
+}
+
+.with-shadow {
+  box-shadow: 0 2px 2px var(--shadow-color);
 }

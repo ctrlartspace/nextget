@@ -116,7 +116,7 @@
                 v-if="currentStep < 4"
                 :disabled="!isProductSelected"
                 type="button"
-                class="btn primary"
+                class="btn primary with-shadow"
                 @click="nextStep"
               >
                 <span class="material-icons-round">arrow_forward_ios</span>
@@ -125,7 +125,7 @@
               <button
                 v-if="currentStep == 4"
                 type="button"
-                class="btn accent"
+                class="btn accent with-shadow"
                 @click="createListing"
                 :disabled="!isProductSelected || isRequestNow"
               >
@@ -241,9 +241,13 @@
           </div>
           <div v-show="currentStep == 4" class="input-data">
             <div v-if="getAveragePrice" class="accent-text">
-              <p>Средняя цена за эту модель ~ <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong></p>
+              <p>
+                Средняя цена за эту модель ~
+                <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
+              </p>
+              <div class="offset-6px"></div>
             </div>
-            <div class="offset-2px"></div>
+            
             <input
               type="text"
               v-model="getCurrency"
@@ -293,7 +297,12 @@ export default {
   },
   mixins: [conditionDecoder],
   computed: {
-    ...mapGetters(["getProducts", "getConditions", "getEquipments", "getAveragePrice"]),
+    ...mapGetters([
+      "getProducts",
+      "getConditions",
+      "getEquipments",
+      "getAveragePrice",
+    ]),
     isProductSelected() {
       return this.selectData.product != 0;
     },
@@ -308,7 +317,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchProducts", "fetchConditions", "fetchEquipments", "fetchAveragePrice"]),
+    ...mapActions([
+      "fetchProducts",
+      "fetchConditions",
+      "fetchEquipments",
+      "fetchAveragePrice",
+    ]),
     onProductChange() {
       this.updateProductData();
     },
@@ -393,11 +407,10 @@ export default {
     },
   },
   async created() {
-    this.fetchProducts().then(() => {
-      this.fetchConditions();
-      this.fetchEquipments();
-      this.updateProductData();
-    });
+    this.fetchProducts()
+      .then(() => this.fetchConditions())
+      .then(() => this.fetchEquipments())
+      .then(() => this.updateProductData());
   },
   components: {},
 };
