@@ -90,11 +90,7 @@ export default {
       console.log("click");
       this.logout();
       this.$router.push(`/`);
-    },
-    onItemClick(id) {
-      this.$router.push(`/item/${id}`);
-      console.log(id);
-    },
+    }
   },
   async created() {
     this.resetListings();

@@ -3,7 +3,8 @@
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div class="image box-69">
-          <img v-if="listing.images.length > 0"
+          <img
+            v-if="listing.images.length > 0"
             :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${listing.images[0].id}`"
             alt=""
           />
@@ -40,7 +41,7 @@
           </div>
         </div>
         <div class="offset-2px"></div>
-        <div class="row gx-2 gy-2 tags surface-text">
+        <div class="row gx-2 tags surface-text d-flex align-items-center">
           <div class="col-auto">
             <div class="item accent-text">
               <p>{{ numberWithCommas(listing.price) }} KZT</p>
@@ -64,6 +65,11 @@
               </span>
               <div class="v-offset-2px"></div>
               <p>{{ listing.condition_state.value }}</p>
+            </div>
+          </div>
+          <div class="col-auto ms-auto ">
+            <div class="date secondary-text">
+              <p>{{ formatDate(listing.created_date) }}</p>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export default {
   methods: {
     getCondition: (code) => {
@@ -28,6 +30,11 @@ export default {
         return '(' + match[1] + ') ' + match[2] + '-' + match[3];
       }
       return null;
-    }
+    },
+    formatDate(value) {
+      if (value) {
+        return moment(String(value)).locale("ru").format("D MMM h:mm");
+      }
+    },
   }
 }

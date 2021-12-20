@@ -47,102 +47,17 @@
       </div>
       <div class="padding colored section no-border-bottom">
         <div
-          v-if="getListingImages.length == 0 & !getListing.is_owner"
+          v-if="(getListingImages.length == 0) & !getListing.is_owner"
           class="secondary-text center"
         >
           <p><i>Автор еще не добавил фотографии</i></p>
         </div>
-        <div
-          v-if="getListingImages.length > 0 || getListing.is_owner"
-          class="
-            row
-            gx-0
-            gy-2
-            d-flex
-            align-items-center
-            justify-content-between
-          "
-        >
-          <div
-            class="
-              col-6 col-md-auto
-              order-2 order-md-1
-              d-none d-sm-flex
-              align-items-center
-              justify-content-center
-            "
-          >
-            <button
-              type="button"
-              class="btn transparent secondary-text"
-              @click="scrollToLeft()"
-            >
-              <span class="material-icons-round">arrow_back_ios</span>
-            </button>
-          </div>
-          <div class="col-12 col-md-9 order-1 order-md-2">
-            <div class="scroller" ref="scroller">
-              <div
-                v-if="getListing.is_owner"
-                class="
-                  image
-                  box-69
-                  dash
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
-              >
-                <input
-                  type="file"
-                  name="files"
-                  id="files"
-                  ref="files"
-                  class="input-file"
-                  multiple
-                  accept="image/*"
-                  @change="handleFilesUpload"
-                />
-                <label class="btn transparent text-large" for="files">
-                  <span class="material-icons-round">add_a_photo</span>
-                </label>
-              </div>
+        <ImageScroller
+          :images="getListingImages"
+          :listing="getListing"
+          @on-files-change="handleFiles"
+        />
 
-              <div
-                v-for="image in getListingImages"
-                class="image box-69"
-                :key="image.id"
-              >
-                <a
-                  :href="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/full_${image.id}`"
-                  target="_blank"
-                >
-                  <img
-                    :src="`https://aman3d.pythonanywhere.com/uploads/listings/${getListing.id}/thumbnail_${image.id}`"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="
-              col-6 col-md-auto
-              order-3 order-md-3
-              d-none d-sm-flex
-              align-items-center
-              justify-content-center
-            "
-          >
-            <button
-              type="button"
-              class="btn transparent secondary-text"
-              @click="scrollToRight()"
-            >
-              <span class="material-icons-round">arrow_forward_ios</span>
-            </button>
-          </div>
-        </div>
         <div v-if="files" class="offset-6px"></div>
         <div v-if="files" class="center">
           <div v-if="isImageLoadingFailed" class="error-text">
@@ -155,13 +70,13 @@
           </div>
           <button
             type="button"
-            class="btn primary"
-            @click="submitFiles()"
+            class="btn primary with-shadow"
+            @click="uploadFiles()"
             :disabled="isImageLoadingProgress"
           >
             <span class="material-icons-round">upload</span>
             <p v-if="!isImageLoadingProgress">
-              Загрузить {{ "(" + files.length + ")" }}
+              Загрузить: {{ files.length }}
             </p>
             <p v-else>Загрузка...</p>
           </button>
@@ -286,6 +201,7 @@
 import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 import moment from "moment";
+import ImageScroller from "@/components/ImageScroller";
 
 export default {
   name: "Item",
@@ -331,22 +247,11 @@ export default {
         return moment(String(value)).locale("ru").format("D MMM h:mm");
       }
     },
-    scrollToRight() {
-      this.$refs.scroller.scrollBy({
-        left: 100,
-        behavior: "smooth",
-      });
+
+    handleFiles(files) {
+      this.files = files;
     },
-    scrollToLeft() {
-      this.$refs.scroller.scrollBy({
-        left: -100,
-        behavior: "smooth",
-      });
-    },
-    handleFilesUpload() {
-      this.files = this.$refs.files.files;
-    },
-    submitFiles() {
+    uploadFiles() {
       const formData = new FormData();
       console.log(this.files);
       this.files.forEach((file) => {
@@ -375,6 +280,9 @@ export default {
           console.log(e);
         });
     },
+  },
+  components: {
+    ImageScroller,
   },
 };
 </script>
