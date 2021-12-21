@@ -10,14 +10,14 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+// import Footer from "./components/Footer.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "App",
   components: {
     Header,
-    Footer,
+    // Footer,
   },
   methods: {
     ...mapActions(["initTheme"]),
