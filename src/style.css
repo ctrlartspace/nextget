@@ -52,7 +52,9 @@ html, body {
 }
 
 .scrollable-content {
-
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .main {
