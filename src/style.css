@@ -51,13 +51,13 @@ html, body {
 }
 
 html {
-  overflow: hidden;
-  width: 100%;
+  /* overflow: hidden; */
+  /* width: 100vh; */
 }
 
 body {
-  height: 100%;
-  position: fixed;
+  height: 100vh;
+  /* position: fixed; */
   /* prevent overscroll bounce*/
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
