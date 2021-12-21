@@ -50,6 +50,20 @@ html, body {
   color: var(--on-background-color);
 }
 
+html {
+  overflow: hidden;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  position: fixed;
+  /* prevent overscroll bounce*/
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  /* iOS velocity scrolling */
+}
+
 .main {
   overflow: hidden;
   display: flex;

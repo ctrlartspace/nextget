@@ -12,7 +12,7 @@
     </div>
     <div class="row my-0 gx-2 gy-2">
       <div class="d-none d-sm-block col-md-6 order-2 order-md-1">
-        <div class="padding rounded-top colored section hatch dash">
+        <div class="padding rounded-top colored section dash">
           <div class="help-label secondary">
             <span class="material-icons-round">visibility</span>
             <div class="v-offset-2px"></div>
@@ -30,18 +30,21 @@
             </h5>
             <div class="offset-2px"></div>
             <p>
-              Память:
-              {{
-                selectData.storage == 0 ? "-" : selectData.storage.value + "GB"
+              Память{{
+                selectData.storage == 0
+                  ? ""
+                  : ": " + selectData.storage.value + "GB"
               }}
             </p>
             <p>
-              Цвет: {{ selectData.color == 0 ? "-" : selectData.color.value }}
+              Цвет{{
+                selectData.color == 0 ? "" : ": " + selectData.color.value
+              }}
             </p>
           </div>
         </div>
         <div
-          class="padding colored section hatch dash"
+          class="padding colored section dash"
           :class="{ 'disabled-text': selectData.condition_state == 0 }"
         >
           <h5>Описание</h5>
@@ -49,30 +52,28 @@
           <p>
             {{
               selectData.description == ""
-                ? "Нет описания"
+                ? "Нет повреждений"
                 : selectData.description
             }}
           </p>
           <div class="offset-2px"></div>
           <p>
-            Состояние:
-            {{
+            Состояние{{
               selectData.condition_state == 0
-                ? "-"
-                : selectData.condition_state.value
+                ? ""
+                : ": " + selectData.condition_state.value
             }}
           </p>
           <p>
-            Батарея:
-            {{
+            Батарея{{
               selectData.battery_health == 0
-                ? "-"
-                : selectData.battery_health + "%"
+                ? ""
+                : ": " + selectData.battery_health + "%"
             }}
           </p>
         </div>
         <div
-          class="padding colored rounded-bottom section hatch dash"
+          class="padding colored rounded-bottom section dash"
           :class="{ 'disabled-text': selectData.equipment == 0 }"
         >
           <h5>Дополнительная информация</h5>
@@ -87,7 +88,7 @@
         </div>
         <div class="offset-4px"></div>
         <div
-          class="padding colored rounded section hatch dash accent-text mono"
+          class="padding colored rounded section dash accent-text mono"
           :class="{ 'disabled-text': selectData.price == 0 }"
         >
           <h4>{{ numberWithCommas(selectData.price) }} KZT</h4>
@@ -247,7 +248,7 @@
               </p>
               <div class="offset-6px"></div>
             </div>
-            
+
             <input
               type="text"
               v-model="getCurrency"
@@ -374,9 +375,9 @@ export default {
       if (!this.selectData.color) {
         this.empty_fields.push("color");
       }
-      if (!this.selectData.description) {
-        this.empty_fields.push("description");
-      }
+      // if (!this.selectData.description) {
+      //   this.empty_fields.push("description");
+      // }
       if (!this.selectData.price) {
         this.empty_fields.push("price");
       }

@@ -35,7 +35,7 @@
           <div class="secondary-text">
             <p>
               {{
-                listing.description != "" ? listing.description : "Нет описания"
+                listing.description != "" ? listing.description : "Нет повреждений"
               }}
             </p>
           </div>

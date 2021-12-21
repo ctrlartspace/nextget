@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="offset-2px"></div>
-        <p>{{ getListing.description }}</p>
+        <p>{{ getListing.description ? getListing.description : 'Нет повреждений' }}</p>
         <div class="offset-2px"></div>
         <p>Состояние: {{ getListing.condition_state.value }}</p>
         <p>Батарея: {{ getListing.battery_health }}%</p>
