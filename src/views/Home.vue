@@ -37,29 +37,33 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-auto d-flex justify-content-start align-items-center">
-          <button
-            type="button"
+          <component
+            v-if="getPagination.has_prev"
             class="btn"
+            :is="!getPagination.has_prev ? 'button' : 'router-link'"
             :disabled="!getPagination.has_prev"
-            @click="fetchListingsByPage(getPagination.prev_num)"
+            :to="{ name: 'Home', query: { page: getPagination.prev_num } }"
           >
             <span class="material-icons-round">arrow_back_ios</span>
-          </button>
+          </component>
         </div>
         <div class="col-auto d-flex justify-content-center align-items-center">
           <div class="secondary-text">
-            <p><strong>{{ getPagination.page }}</strong></p>
+            <p>
+              <strong>{{ getPagination.page }}</strong>
+            </p>
           </div>
         </div>
         <div class="col-auto d-flex justify-content-end align-items-center">
-          <button
-            type="button"
+          <component
+            v-if="getPagination.has_next"
             class="btn"
+            :is="!getPagination.has_next ? 'button' : 'router-link'"
             :disabled="!getPagination.has_next"
-            @click="fetchListingsByPage(getPagination.next_num)"
+            :to="{ name: 'Home', query: { page: getPagination.next_num } }"
           >
             <span class="material-icons-round">arrow_forward_ios</span>
-          </button>
+          </component>
         </div>
       </div>
     </div>
@@ -82,13 +86,14 @@ export default {
   ]),
   methods: {
     ...mapActions(["fetchListings"]),
-    fetchListingsByPage(page) {
-      this.fetchListings(page);
-      window.scrollTo(0, 0)
-    },
   },
   async created() {
-    this.fetchListingsByPage(1);
+    this.fetchListings(this.$route.query.page ? this.$route.query.page : 1);
+  },
+  watch: {
+    $route() {
+      this.fetchListings(this.$route.query.page ? this.$route.query.page : 1);
+    },
   },
   components: {
     Listings,

@@ -10,7 +10,7 @@ import store from '@/store'
 
 const routes = [
   {
-    path: '/',
+    path: '/:page?',
     name: 'Home',
     component: Home,
     meta: {

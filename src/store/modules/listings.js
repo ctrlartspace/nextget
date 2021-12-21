@@ -100,7 +100,7 @@ export default {
       })
     },
 
-    async resetListings({ commit }) {
+    resetListings({ commit }) {
       commit('SET_LISTINGS', null)
     }
   },
