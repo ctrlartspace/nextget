@@ -50,18 +50,10 @@ html, body {
   color: var(--on-background-color);
 }
 
-html {
-  /* overflow: hidden; */
-  /* width: 100vh; */
-}
-
-body {
-  height: 100vh;
-  /* position: fixed; */
-  /* prevent overscroll bounce*/
+.scrollable-content {
+  height: 100%;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  /* iOS velocity scrolling */
+  overflow: hidden;
 }
 
 .main {

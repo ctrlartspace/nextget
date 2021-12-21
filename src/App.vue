@@ -1,9 +1,11 @@
 <template>
-  <Header />
-  <main class="main">
-    <router-view />
-  </main>
-  <Footer />
+  <div class="scrollable-content">
+    <Header />
+    <main class="main">
+      <router-view />
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -15,13 +17,13 @@ export default {
   name: "App",
   components: {
     Header,
-    Footer
+    Footer,
   },
   methods: {
     ...mapActions(["initTheme"]),
   },
   mounted() {
-    this.initTheme()
+    this.initTheme();
   },
 };
 </script>
@@ -40,7 +42,4 @@ export default {
   max-width: 700px;
   margin: 0 auto;
 }
-
-
-
 </style>
