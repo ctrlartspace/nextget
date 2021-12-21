@@ -101,11 +101,13 @@ export default {
     },
 
     resetListings({ commit }) {
+      console.log('set null');
       commit('SET_LISTINGS', null)
     }
   },
   mutations: {
     SET_LISTINGS: (state, listings) => {
+      console.log( listings);
       state.listings = listings
     },
     SET_LISTING: (state, listing) => {

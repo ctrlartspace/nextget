@@ -91,8 +91,10 @@ export default {
     this.fetchListings(this.$route.query.page ? this.$route.query.page : 1);
   },
   watch: {
-    $route() {
-      this.fetchListings(this.$route.query.page ? this.$route.query.page : 1);
+    $route(to) {
+      if (to.name == "Home") {
+        this.fetchListings(this.$route.query.page ? this.$route.query.page : 1);
+      }
     },
   },
   components: {

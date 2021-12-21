@@ -36,7 +36,10 @@
           </div>
         </div>
       </div>
-      <div class="padding colored section">
+      <div
+        class="padding colored section"
+        :class="{ 'disabled-text': getListingImages.length == 0 }"
+      >
         <h5>{{ getListing.product.name }}</h5>
         <div class="offset-2px"></div>
         <div class="secondary-text">
@@ -45,13 +48,29 @@
           <p>Цвет: {{ getListing.color.value }}</p>
         </div>
       </div>
-      <div class="padding colored section no-border-bottom">
-        <div
-          v-if="(getListingImages.length == 0) & !getListing.is_owner"
-          class="secondary-text center"
-        >
-          <p><i>Автор еще не добавил фотографии</i></p>
+      <div
+        v-if="getListingImages.length == 0"
+        class="padding colored section no-border-bottom"
+      >
+        <div class="center">
+          <div v-if="getListing.is_owner" class="accent-text">
+            <p>
+              <i
+                >Загрузите фотографии, чтобы объявление стало доступно для
+                других пользователей</i
+              >
+            </p>
+          </div>
+          <div v-else class="secondary-text">
+            <p><i>Автор еще не добавил фотографии</i></p>
+          </div>
         </div>
+      </div>
+      <div
+        v-if="getListingImages.length > 0 || getListing.is_owner"
+        class="padding colored section no-border-bottom"
+        :class="{ 'disabled-text': getListingImages.length == 0 }"
+      >
         <ImageScroller
           :images="getListingImages"
           :listing="getListing"
@@ -75,14 +94,15 @@
             :disabled="isImageLoadingProgress"
           >
             <span class="material-icons-round">upload</span>
-            <p v-if="!isImageLoadingProgress">
-              Загрузить: {{ files.length }}
-            </p>
+            <p v-if="!isImageLoadingProgress">Загрузить: {{ files.length }}</p>
             <p v-else>Загрузка...</p>
           </button>
         </div>
       </div>
-      <div class="padding colored section no-border-bottom">
+      <div
+        class="padding colored section no-border-bottom"
+        :class="{ 'disabled-text': getListingImages.length == 0 }"
+      >
         <div class="row gx-2 d-flex align-items-center">
           <div class="col">
             <h5>Описание</h5>
@@ -102,7 +122,10 @@
         <p>Состояние: {{ getListing.condition_state.value }}</p>
         <p>Батарея: {{ getListing.battery_health }}%</p>
       </div>
-      <div class="padding colored no-border-bottom section">
+      <div
+        class="padding colored no-border-bottom section"
+        :class="{ 'disabled-text': getListingImages.length == 0 }"
+      >
         <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
@@ -114,6 +137,7 @@
         </div>
       </div>
       <div
+        v-if="getListingImages.length > 0"
         class="padding colored section"
         :class="{
           'no-border-bottom': getListing.is_owner,

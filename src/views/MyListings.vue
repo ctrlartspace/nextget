@@ -90,7 +90,7 @@ export default {
       console.log("click");
       this.logout();
       this.$router.push(`/`);
-    }
+    },
   },
   async created() {
     this.resetListings();
