@@ -3,7 +3,7 @@
     <div class="nav padding colored rounded-bottom">
       <div class="row gx-2">
         <div class="col-auto me-auto d-flex align-items-center">
-          <router-link v-show="IS_AUTHENTIFICATED" :to="{ name: 'Home' }">
+          <router-link :to="{ name: 'Home' }">
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
         </div>

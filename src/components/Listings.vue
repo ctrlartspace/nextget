@@ -20,7 +20,8 @@
             listing.color.value
           }}
         </router-link>
-        <div class="offset-2px"></div>
+        <!-- <div class="offset-2px"></div> -->
+        <br>
         <div class="d-inline">
           <div class="surface-text">
             <p>
@@ -40,8 +41,8 @@
             </p>
           </div>
         </div>
-        <div class="offset-2px"></div>
-        <div class="row gx-2 tags surface-text d-flex align-items-center">
+        <div class="offset-6px"></div>
+        <div class="row gx-2 tags surface-text d-flex align-items-center ">
           <div class="col-auto">
             <div class="item accent-text">
               <p>{{ numberWithCommas(listing.price) }} KZT</p>

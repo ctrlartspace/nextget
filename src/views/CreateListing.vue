@@ -2,7 +2,7 @@
   <form @submit.prevent="createListing">
     <div class="row my-0 gx-2 gy-2">
       <div class="col">
-        <div class="padding colored rounded section primary-text">
+        <div class="padding colored rounded section">
           <div class="with-icon">
             <span class="material-icons-round">post_add</span>
             <h5>Новое объявление</h5>
