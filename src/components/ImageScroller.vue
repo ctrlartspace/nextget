@@ -1,5 +1,8 @@
 <template>
-  <div v-if="images.length > 0 || listing.is_owner" class="row gx-0 gy-2 d-flex align-items-center justify-content-between">
+  <div
+    v-if="images.length > 0 || listing.is_owner"
+    class="row gx-0 gy-2 d-flex align-items-center justify-content-between"
+  >
     <div
       class="
         col-6 col-md-auto
@@ -18,7 +21,7 @@
       </button>
     </div>
     <div class="col-12 col-md-9 order-1 order-md-2">
-      <div class="scroller" ref="scroller">
+      <div v-if="!fullSize" class="scroller" ref="scroller">
         <div
           v-if="listing.is_owner"
           class="
@@ -45,11 +48,17 @@
           </label>
         </div>
 
-        <div v-for="image in images" class="image box-69" :key="image.id" @click="onImageClick(image.id)">
-           <img
-              :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${image.id}`"
-              alt=""
-            />
+        <div
+          v-for="(image, index) in images"
+          class="image box-69"
+          :key="image.id"
+          @click="onImageClick(image.id)"
+        >
+          <img
+            :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${image.id}`"
+            alt=""
+            @click="toggleFullSize(index)"
+          />
           <!-- <a
             :href="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/full_${image.id}`"
             target="_blank"
@@ -57,6 +66,13 @@
            
           </a> -->
         </div>
+      </div>
+      <div v-else class="full-image">
+        <img
+          :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/full_${images[fullImageIndex].id}`"
+          alt=""
+          @click="toggleFullSize(0)"
+        />
       </div>
     </div>
     <div
@@ -84,8 +100,10 @@ export default {
   name: "ImageScroller",
   data() {
     return {
-      selectedFiles: null
-    }
+      selectedFiles: null,
+      fullSize: false,
+      fullImageIndex: 0,
+    };
   },
   props: {
     images: {
@@ -95,29 +113,47 @@ export default {
       type: Object,
     },
     handle: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   methods: {
     scrollToRight() {
-      this.$refs.scroller.scrollBy({
-        left: 100,
-        behavior: "smooth",
-      });
+      console.log(this.fullImageIndex);
+      if (!this.fullSize) {
+        this.$refs.scroller.scrollBy({
+          left: 100,
+          behavior: "smooth",
+        });
+      } else {
+        this.fullImageIndex =
+          this.fullImageIndex < (this.images.length - 1)
+            ? this.fullImageIndex + 1
+            : this.images.length - 1;
+      }
     },
     scrollToLeft() {
-      this.$refs.scroller.scrollBy({
-        left: -100,
-        behavior: "smooth",
-      });
+      console.log(this.fullImageIndex);
+      if (!this.fullSize) {
+        this.$refs.scroller.scrollBy({
+          left: -100,
+          behavior: "smooth",
+        });
+      } else {
+        this.fullImageIndex =
+          this.fullImageIndex > 0 ? this.fullImageIndex - 1 : 0;
+      }
     },
     onImageClick(id) {
-      console.log(id)
+      console.log(this.fullImageIndex, id);
     },
     handleFiles() {
-      this.files = this.$refs.files.files
-      this.$emit('on-files-change', this.files)
-    }
+      this.files = this.$refs.files.files;
+      this.$emit("on-files-change", this.files);
+    },
+    toggleFullSize(imageIndex) {
+      this.fullSize = !this.fullSize;
+      this.fullImageIndex = imageIndex;
+    },
   },
 };
 </script>
