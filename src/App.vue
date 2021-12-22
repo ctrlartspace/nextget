@@ -1,11 +1,9 @@
 <template>
-  <div class="scrollable-content">
-    <Header />
-    <main class="main">
-      <router-view />
-    </main>
-    <Footer />
-  </div>
+  <Header />
+  <main class="main">
+    <router-view />
+  </main>
+  <Footer />
 </template>
 
 <script>
@@ -41,6 +39,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   max-width: 700px;
   margin: 0 auto;
-
 }
 </style>

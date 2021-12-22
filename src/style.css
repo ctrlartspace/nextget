@@ -46,9 +46,21 @@ html, body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   color: var(--on-background-color);
   background: var(--background-color);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   margin: 0;
+}
+
+html {
   overflow: hidden;
+  width: 100%;
+}
+
+body {
+  height: 100vh;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  /* width: 50%; */
 }
 
 .scrollable-content {
