@@ -99,7 +99,31 @@ export default {
         return Promise.reject(error)
       })
     },
-
+    async addComment(_, payloads) {
+      return axionInstance({
+        method: 'post',
+        url: `listings/${payloads.id}/comments`,
+        data: payloads.comment,
+      }).then(response => {
+        return Promise.resolve(response)
+      }).catch(error => {
+        return Promise.reject(error)
+      })
+    },
+    async fetchComments({ commit }, id) {
+      commit('SET_LISTING_COMMENTS', [])
+      return axionInstance({
+        method: 'get',
+        url: `listings/${id}/comments`
+      }).then(response => {
+        commit('SET_LISTING_COMMENTS', response.data.listing_comments)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        commit('SET_LISTING_COMMENTS', [])
+        return Promise.reject(error)
+      })
+    },
     resetListings({ commit }) {
       console.log('set null');
       commit('SET_LISTINGS', null)
@@ -116,6 +140,9 @@ export default {
     SET_LISTING_IMAGES: (state, listing_images) => {
       state.listing_images = listing_images
     },
+    SET_LISTING_COMMENTS: (state, listing_comments) => {
+      state.listing_comments = listing_comments
+    },
     SET_PAGINATION: (state, pagination) => {
       state.pagination = pagination
     }
@@ -124,6 +151,7 @@ export default {
     listings: null,
     listing: null,
     listing_images: [],
+    listing_comments: [],
     pagination: null
   },
   getters: {
@@ -133,6 +161,7 @@ export default {
     getProductModels: (state) => state.listings.filter((elem, index) => state.listings.findIndex(obj => obj.product.id == elem.product.id) === index),
     getAveragePrice_OLD: (state, getters) => (product_id) => getters.getListingsByProductModel(product_id).reduce((p, c, _, { length }) => Math.round((p + c.price) / length), 0),
     getListingImages: (state) => state.listing_images,
+    getListingComments: (state) => state.listing_comments,
     getPagination: (state) => state.pagination
   }
 }

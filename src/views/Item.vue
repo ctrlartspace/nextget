@@ -117,7 +117,11 @@
           </div>
         </div>
         <div class="offset-2px"></div>
-        <p>{{ getListing.description ? getListing.description : 'Нет повреждений' }}</p>
+        <p>
+          {{
+            getListing.description ? getListing.description : "Нет повреждений"
+          }}
+        </p>
         <div class="offset-2px"></div>
         <p>Состояние: {{ getListing.condition_state.value }}</p>
         <p>Батарея: {{ getListing.battery_health }}%</p>
@@ -208,13 +212,32 @@
         <div class="offset-6px"></div>
         <div class="line"></div>
         <div class="offset-6px"></div>
-        <div class="secondary-text">
+        <div v-if="getListingComments.length == 0" class="secondary-text">
           <p>
-            <i
-              >Сообщения отключены пользователем
-              {{ getListing.owner.display_name }}</i
-            >
+            <i>Оставьте первый комментарий</i>
           </p>
+        </div>
+        <div>
+          <Comments :comments="getListingComments" />
+        </div>
+
+        <div class="offset-6px"></div>
+        <div class="row gx-2 gy-0 d-flex align-items-center">
+          <div class="col">
+            <div class="input-data">
+              <textarea
+                class="no-wrap with-shadow"
+                v-model="comment"
+                placeholder="Комментарий"
+                rows="1"
+              />
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn with-shadow" @click="sendComment">
+              <span class="material-icons-round">send</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -226,6 +249,7 @@ import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 import moment from "moment";
 import ImageScroller from "@/components/ImageScroller";
+import Comments from "@/components/Comments";
 
 export default {
   name: "Item",
@@ -238,14 +262,25 @@ export default {
       files: null,
       isImageLoadingProgress: false,
       isImageLoadingFailed: false,
+      comment: "",
     };
   },
-  computed: mapGetters(["getListing", "getListingImages"]),
+  computed: mapGetters([
+    "getListing",
+    "getListingImages",
+    "getListingComments",
+  ]),
   created() {
-    this.$store.dispatch("fetchListing", this.$route.params.id).then((r) => {
-      this.loading = false;
-      console.log(r);
-    });
+    this.$store
+      .dispatch("fetchListing", this.$route.params.id)
+      .then((r) => {
+        this.loading = false;
+        console.log(r);
+        return this.$store.dispatch("fetchComments", this.$route.params.id);
+      })
+      .then((r) => {
+        console.log(r);
+      });
   },
   methods: {
     deleteListing() {
@@ -304,9 +339,20 @@ export default {
           console.log(e);
         });
     },
+    sendComment() {
+      const payloads = {
+        id: this.$route.params.id,
+        comment: { text: this.comment },
+      };
+      this.$store.dispatch("addComment", payloads).then(() => {
+        this.comment = "";
+        return this.$store.dispatch("fetchComments", this.$route.params.id);
+      });
+    },
   },
   components: {
     ImageScroller,
+    Comments,
   },
 };
 </script>
