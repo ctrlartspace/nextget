@@ -51,20 +51,20 @@ html, body {
 
 html {
   position: fixed;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
 body {
   position: fixed;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
 .scrollable-content {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   overflow-x: hidden;
   overflow-y: scroll;
