@@ -52,13 +52,13 @@
           v-for="(image, index) in images"
           class="image box-69"
           :key="image.id"
-          @click="onImageClick(image.id)"
         >
           <img
             :src="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/thumbnail_${image.id}`"
             alt=""
             @click="toggleFullSize(index)"
           />
+
           <!-- <a
             :href="`https://aman3d.pythonanywhere.com/uploads/listings/${listing.id}/full_${image.id}`"
             target="_blank"
@@ -126,7 +126,7 @@ export default {
         });
       } else {
         this.fullImageIndex =
-          this.fullImageIndex < (this.images.length - 1)
+          this.fullImageIndex < this.images.length - 1
             ? this.fullImageIndex + 1
             : this.images.length - 1;
       }
@@ -143,16 +143,13 @@ export default {
           this.fullImageIndex > 0 ? this.fullImageIndex - 1 : 0;
       }
     },
-    onImageClick(id) {
-      console.log(this.fullImageIndex, id);
+    toggleFullSize(imageIndex) {
+      this.fullSize = !this.fullSize;
+      this.fullImageIndex = imageIndex;
     },
     handleFiles() {
       this.files = this.$refs.files.files;
       this.$emit("on-files-change", this.files);
-    },
-    toggleFullSize(imageIndex) {
-      this.fullSize = !this.fullSize;
-      this.fullImageIndex = imageIndex;
     },
   },
 };
