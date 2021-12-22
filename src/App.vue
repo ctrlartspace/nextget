@@ -1,11 +1,9 @@
 <template>
-  <div class="scrollable-content">
-    <Header />
-    <main class="main">
-      <router-view />
-    </main>
-    <Footer />
-  </div>
+  <Header />
+  <main class="main">
+    <router-view />
+  </main>
+  <Footer />
 </template>
 
 <script>
