@@ -39,5 +39,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   max-width: 700px;
   margin: 0 auto;
+  overflow: hidden;
 }
 </style>

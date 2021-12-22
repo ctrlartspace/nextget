@@ -46,27 +46,30 @@ html, body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   color: var(--on-background-color);
   background: var(--background-color);
-  overflow-x: hidden;
-  margin: 0;
+  
+  /* margin: 0; */
 }
 
 html {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
   overflow: hidden;
-  width: 100vw;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   position: fixed;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .scrollable-content {
   height: 100vh;
+  width: 100vh;
+  overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 .main {
