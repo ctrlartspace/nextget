@@ -46,8 +46,7 @@ html, body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   color: var(--on-background-color);
   background: var(--background-color);
-  
-  /* margin: 0; */
+  margin: 0;
 }
 
 html {
