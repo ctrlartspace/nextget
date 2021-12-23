@@ -6,7 +6,7 @@
           <div class="col-auto d-flex align-items-center">
             <div class="image box-48">
               <img
-                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3`"
+                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3&size=96`"
               />
             </div>
           </div>
@@ -207,18 +207,30 @@
       <div class="padding colored rounded section">
         <div class="with-icon">
           <span class="material-icons-round">chat</span>
-          <h5>Комменатарии</h5>
+          <h5>
+            Комменатарии{{
+              getListingComments.length == 0
+                ? ""
+                : ": " + getListingComments.length
+            }}
+          </h5>
         </div>
         <div class="offset-6px"></div>
-        <div class="line"></div>
-        <div class="offset-6px"></div>
+        <!-- <div class="line"></div> -->
+        <!-- <div class="offset-6px"></div> -->
         <div v-if="getListingComments.length == 0" class="secondary-text">
           <p>
             <i>Оставьте первый комментарий</i>
           </p>
         </div>
         <div>
-          <Comments :comments="getListingComments" />
+          <Comment
+            v-for="comment in getListingComments"
+            :comment="comment"
+            :listing-owner-id="getListing.owner_id"
+            @on-comment-delete="onCommentDelete"
+            :key="comment.id"
+          />
         </div>
 
         <div class="offset-6px"></div>
@@ -228,7 +240,7 @@
               <textarea
                 class="no-wrap with-shadow"
                 v-model="comment"
-                placeholder="Комментарий"
+                placeholder="Напишите что-нибудь"
                 rows="1"
               />
             </div>
@@ -249,7 +261,7 @@ import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 import moment from "moment";
 import ImageScroller from "@/components/ImageScroller";
-import Comments from "@/components/Comments";
+import Comment from "@/components/Comment";
 
 export default {
   name: "Item",
@@ -349,10 +361,14 @@ export default {
         return this.$store.dispatch("fetchComments", this.$route.params.id);
       });
     },
+    onCommentDelete(id) {
+      console.log('deleted comment: ' + id)
+      this.$store.dispatch("fetchComments", this.$route.params.id);
+    },
   },
   components: {
     ImageScroller,
-    Comments,
+    Comment,
   },
 };
 </script>

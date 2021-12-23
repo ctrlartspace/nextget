@@ -110,6 +110,16 @@ export default {
         return Promise.reject(error)
       })
     },
+    async deleteComment(_, id) {
+      return axionInstance({
+        method: 'post',
+        url: `listings/comments/${id}`,
+      }).then(response => {
+        return Promise.resolve(response)
+      }).catch(error => {
+        return Promise.reject(error)
+      })
+    },
     async fetchComments({ commit }, id) {
       commit('SET_LISTING_COMMENTS', [])
       return axionInstance({
@@ -131,7 +141,7 @@ export default {
   },
   mutations: {
     SET_LISTINGS: (state, listings) => {
-      console.log( listings);
+      console.log(listings);
       state.listings = listings
     },
     SET_LISTING: (state, listing) => {
