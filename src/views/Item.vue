@@ -133,7 +133,7 @@
         <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
         <p>{{ getListing.equipment.value }}</p>
-        <div class="offset-2px"></div>
+        <div class="offset-6px"></div>
         <div class="secondary-text end">
           <p>
             <i>Опубликовано {{ formatDate(getListing.created_date) }}</i>
@@ -206,9 +206,9 @@
     <div class="col-md-6">
       <div class="padding colored rounded section">
         <div class="with-icon">
-          <span class="material-icons-round">chat</span>
+          <span class="material-icons-round">comment</span>
           <h5>
-            Комменатарии{{
+            Сообщения{{
               getListingComments.length == 0
                 ? ""
                 : ": " + getListingComments.length
@@ -220,7 +220,7 @@
         <!-- <div class="offset-6px"></div> -->
         <div v-if="getListingComments.length == 0" class="secondary-text">
           <p>
-            <i>Оставьте первый комментарий</i>
+            <i>Возникли вопросы? Можете задать их тут</i>
           </p>
         </div>
         <div>
