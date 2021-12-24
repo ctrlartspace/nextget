@@ -20,7 +20,7 @@
               <div class="surface-text">
                 <p>
                   <strong>
-                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " }}
+                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
                   </strong>
                 </p>
               </div>

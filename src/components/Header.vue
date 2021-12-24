@@ -18,7 +18,7 @@
             class="btn surface"
             :to="{ name: 'CreateListing' }"
           >
-            <span class="material-icons-round">post_add</span>
+            <span class="material-icons-round">edit</span>
           </router-link>
         </div>
         <div class="col-auto d-flex align-items-center">

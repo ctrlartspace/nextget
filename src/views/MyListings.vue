@@ -6,7 +6,7 @@
           <div class="col-auto d-flex align-items-center">
             <div class="image box-48">
               <img
-                :src="`https://www.tinygraphs.com/squares/${getUser.phone}?theme=duskfalling&numcolors=3`"
+                :src="`https://www.tinygraphs.com/squares/${getUser.phone}?theme=duskfalling&numcolors=3&size=96`"
               />
             </div>
           </div>
@@ -18,7 +18,7 @@
               <div class="surface-text">
                 <p>
                   <strong>
-                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " ★ " }}
+                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
                   </strong>
                 </p>
               </div>
@@ -29,11 +29,11 @@
               </div>
             </div>
           </div>
-          <div class="offset-6px"></div>
-          <button type="button" class="link error-text" @click="logoutToMain">
-            <p>Выход из аккаунта</p>
-          </button>
         </div>
+        <div class="offset-6px"></div>
+        <button type="button" class="link error-text" @click="logoutToMain">
+          <p>Выход из аккаунта</p>
+        </button>
       </div>
     </div>
     <div v-if="getListings" class="col-md-6">

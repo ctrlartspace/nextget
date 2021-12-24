@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="createListing">
-
     <div class="row my-0 gx-2 gy-2">
       <div class="d-none d-sm-block col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section dash">
@@ -41,9 +40,9 @@
           <div class="offset-2px"></div>
           <p>
             {{
-              selectData.description == ""
-                ? "Нет повреждений"
-                : selectData.description
+              selectData.description
+                ? selectData.description
+                : "Нет повреждений"
             }}
           </p>
           <div class="offset-2px"></div>
@@ -139,7 +138,9 @@
               @change="onProductChange($event)"
               v-model.trim="selectData.product"
             >
-              <option value="0" selected disabled>Выберите модель</option>
+              <option value="0" selected disabled>
+                {{ getProducts.length > 0 ? "Выберите модель" : "Загрузка" }}
+              </option>
               <option
                 v-for="product in getProducts"
                 :value="{ id: product.id, value: product.name }"
@@ -235,7 +236,7 @@
           <div v-show="currentStep == 4" class="input-data">
             <div v-if="getAveragePrice" class="accent-text">
               <p>
-                Средняя цена за эту модель ~
+                Средняя цена за данную модель ~
                 <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
               </p>
               <div class="offset-6px"></div>

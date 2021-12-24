@@ -1,8 +1,8 @@
 :root {
-  --background-color: #FAFAFA;
+  --background-color: #F3F4FC;
   --surface-color: #FFFFFF;
   --surface-secondary-color: #f8f8f8;
-  --border-color: #f8f8f8;
+  --border-color: #e8e8e8;
   --primary-color: #4756d5;
   --secondary-color: #BDBDBD;
   --accent-color: #00C853;
@@ -13,10 +13,10 @@
   --on-secondary-color: #000000;
   --on-accent-color: #FFFFFF;
   --on-error-color: #FFFFFF;
-  --text-size-large: 16px;
-  --text-size-very-large: 20px;
-  --text-size-medium: 14px;
-  --text-size-small: 12px;
+  --text-size-very-large: 22px;
+  --text-size-large: 18px;
+  --text-size-medium: 16px;
+  --text-size-small: 14px;
   --border-radius: 4px;
 }
 
@@ -35,10 +35,10 @@
   --on-secondary-color: #E0E0E0;
   --on-accent-color: #E0E0E0;
   --on-error-color: #E0E0E0;
-  --text-size-large: 16px;
-  --text-size-very-large: 20px;
-  --text-size-medium: 14px;
-  --text-size-small: 12px;
+  --text-size-very-large: 22px;
+  --text-size-large: 18px;
+  --text-size-medium: 16px;
+  --text-size-small: 14px;
   --border-radius: 4px;
 }
 
@@ -228,7 +228,7 @@ a {
 
 /* _SECTION */
 .padding {
-  padding: 12px;
+  padding: 14px;
   position: relative;
 }
 
@@ -684,7 +684,7 @@ input:focus {
 .surface {
   background-color: var(--surface-color);
   color: var(--on-surface-color);
-  border-width: 0;
+  border: 1px solid var(--border-color);
 }
 
 .error {
