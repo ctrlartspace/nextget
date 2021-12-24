@@ -2,7 +2,7 @@
   --background-color: #FAFAFA;
   --surface-color: #FFFFFF;
   --surface-secondary-color: #f8f8f8;
-  --border-color: #F5F5F5;
+  --border-color: #f8f8f8;
   --primary-color: #5600e1;
   --secondary-color: #BDBDBD;
   --accent-color: #00C853;
@@ -24,7 +24,7 @@
   --background-color: #000000;
   --surface-color: #121212;
   --surface-secondary-color: #181818;
-  --border-color: #212121;
+  --border-color: #181818;
   --primary-color: #5600e1;
   --secondary-color: #616161;
   --accent-color: #00C853;
@@ -119,7 +119,7 @@ nav {
 }
 
 .logo {
-  max-width: 100px;
+  max-width: 92px;
   display: block;
   margin: 0 auto;
 }
