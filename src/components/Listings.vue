@@ -27,7 +27,7 @@
             <p>
               <strong>{{
                 (Math.random() * (3 - 5) + 5).toFixed(1) +
-                " ★ " +
+                " • " +
                 listing.owner.display_name +
                 ": "
               }}</strong>
