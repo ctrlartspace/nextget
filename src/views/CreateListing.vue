@@ -1,22 +1,12 @@
 <template>
   <form @submit.prevent="createListing">
-    <div class="row my-0 gx-2 gy-2">
-      <div class="col">
-        <div class="padding colored rounded section">
-          <div class="with-icon">
-            <span class="material-icons-round">post_add</span>
-            <h5>Новое объявление</h5>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="row my-0 gx-2 gy-2">
       <div class="d-none d-sm-block col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section dash">
-          <div class="help-label secondary">
-            <span class="material-icons-round">visibility</span>
-            <div class="v-offset-2px"></div>
-            <p>Предварительный просмотр</p>
+          <div class="with-icon">
+            <span class="material-icons-round">edit</span>
+            <h5>Новое объявление</h5>
           </div>
           <div
             class="asd"
@@ -128,7 +118,9 @@
                 type="button"
                 class="btn accent with-shadow"
                 @click="createListing"
-                :disabled="!isProductSelected || isRequestNow"
+                :disabled="
+                  !isProductSelected || isRequest.createListing.loading
+                "
               >
                 <span class="material-icons-round">arrow_forward_ios</span>
                 <p>Опубликовать</p>
@@ -293,7 +285,12 @@ export default {
       },
       currentStep: 1,
       empty_fields: [],
-      isRequestNow: false,
+      isRequest: {
+        createListing: {
+          loading: false,
+          error: false,
+        },
+      },
     };
   },
   mixins: [conditionDecoder],
@@ -391,17 +388,20 @@ export default {
         this.currentStep = 1;
         console.log(this.empty_fields);
       } else {
-        this.isRequestNow = true;
+        this.isRequest.createListing.loading = true;
+        this.isRequest.createListing.error = false;
         this.$store
           .dispatch("createListing", data)
           .then((r) => {
-            this.isRequestNow = false;
             this.$router.replace({ name: "Item", params: { id: r.data.id } });
             console.log(r);
           })
           .catch((error) => {
-            this.isRequestNow = false;
+            this.isRequest.createListing.error = true;
             console.log(error);
+          })
+          .finally(() => {
+            this.isRequest.createListing.loading = false;
           });
         console.log(data);
       }

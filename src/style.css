@@ -3,7 +3,7 @@
   --surface-color: #FFFFFF;
   --surface-secondary-color: #f8f8f8;
   --border-color: #f8f8f8;
-  --primary-color: #5600e1;
+  --primary-color: #4756d5;
   --secondary-color: #BDBDBD;
   --accent-color: #00C853;
   --error-color: #E53935;
@@ -25,7 +25,7 @@
   --surface-color: #121212;
   --surface-secondary-color: #181818;
   --border-color: #181818;
-  --primary-color: #5600e1;
+  --primary-color: #4756d5;
   --secondary-color: #616161;
   --accent-color: #00C853;
   --error-color: #E53935;
@@ -678,6 +678,12 @@ input:focus {
 .secondary {
   background-color: var(--border-color);
   color: var(--on-secondary-color);
+  border-width: 0;
+}
+
+.surface {
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
   border-width: 0;
 }
 

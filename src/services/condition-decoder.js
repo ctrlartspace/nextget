@@ -5,7 +5,7 @@ export default {
     getCondition: (code) => {
       switch (code) {
         case 1:
-          return { color: '#5600e1', text: '10/10' }
+          return { color: '#4756d5', text: '10/10' }
         case 2:
           return { color: '#00C853', text: '9/10' }
         case 3:

@@ -1,14 +1,6 @@
 <template>
   <div class="comment">
-    <div class="row gx-2">
-      <!-- <div class="col-auto">
-        <div class="image box-24">
-          <img
-            :src="`https://www.tinygraphs.com/squares/${comment.owner.id}?theme=duskfalling&numcolors=3&size=48`"
-            alt="avatar"
-          />
-        </div>
-      </div> -->
+    <div class="row gx-0">
       <div class="col">
         <p :class="{ 'accent-text': comment.owner.id == listingOwnerId }">
           <strong>{{ comment.owner.display_name + ": " }}</strong>
@@ -19,19 +11,19 @@
           <p>{{ formatDate(comment.created_at) + " " }}</p>
           <div v-if="comment.is_owner">
             <button
-              v-if="!isDeleteClicked"
+              v-if="!isClicked.deleteComment"
               type="button"
               class="link secondary-text"
-              @click="isDeleteClicked = true"
+              @click="isClicked.deleteComment = true"
             >
               <p>Удалить</p>
             </button>
             <button
-              v-if="isDeleteClicked"
+              v-if="isClicked.deleteComment"
               type="button"
               class="link error-text"
               @click="deleteComment(comment.id)"
-              :disabled="isDeleteRequestNow"
+              :disabled="isRequest.deleteComment.loading"
             >
               <p>Подтвердить</p>
             </button>
@@ -49,8 +41,15 @@ export default {
   name: "Comment",
   data() {
     return {
-      isDeleteClicked: false,
-      isDeleteRequestNow: false,
+      isClicked: {
+        deleteComment: false,
+      },
+      isRequest: {
+        deleteComment: {
+          loading: false,
+          error: false,
+        },
+      },
     };
   },
   mixins: [conditionDecoder],
@@ -64,17 +63,18 @@ export default {
   },
   methods: {
     deleteComment(id) {
-      console.log(this.isDeleteRequestNow);
-      this.isDeleteRequestNow = true;
+      this.isRequest.deleteComment.loading = true;
       this.$store
         .dispatch("deleteComment", id)
         .then(() => {
           this.$emit("on-comment-delete", id);
-          this.isDeleteRequestNow = false;
         })
         .catch(() => {
-          this.isDeleteRequestNow = false;
-          this.isDeleteClicked = false;
+          this.isClicked.deleteComment = false;
+          this.isRequest.deleteComment.error = true;
+        })
+        .finally(() => {
+          this.isRequest.deleteComment.loading = false;
         });
     },
   },

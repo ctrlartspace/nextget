@@ -1,6 +1,6 @@
 <template >
   <header>
-    <div class="nav padding colored rounded-bottom">
+    <div class="nav padding rounded-bottom">
       <div class="row gx-2">
         <div class="col-auto me-auto d-flex align-items-center">
           <router-link :to="{ name: 'Home' }">
@@ -8,14 +8,14 @@
           </router-link>
         </div>
         <div class="col-auto d-flex align-items-center">
-          <button class="btn" @click="updateTheme()">
+          <button class="btn surface bordered" @click="updateTheme()">
             <span class="material-icons-round">dark_mode</span>
           </button>
         </div>
         <div class="col-auto d-flex align-items-center">
           <router-link
             v-show="IS_AUTHENTIFICATED"
-            class="btn"
+            class="btn surface"
             :to="{ name: 'CreateListing' }"
           >
             <span class="material-icons-round">post_add</span>
@@ -24,7 +24,7 @@
         <div class="col-auto d-flex align-items-center">
           <router-link
             v-show="IS_AUTHENTIFICATED"
-            class="btn"
+            class="btn surface"
             :to="{ name: 'MyListings' }"
           >
             <span class="material-icons-round">account_box</span>

@@ -79,7 +79,7 @@
 
         <div v-if="files" class="offset-6px"></div>
         <div v-if="files" class="center">
-          <div v-if="isImageLoadingFailed" class="error-text">
+          <div v-if="isRequest.uploadImage.error" class="error-text">
             <p>
               <i
                 >Произошла ошибка при загрузке файлов. Повторите попытку чуть
@@ -91,10 +91,12 @@
             type="button"
             class="btn primary with-shadow"
             @click="uploadFiles()"
-            :disabled="isImageLoadingProgress"
+            :disabled="isRequest.uploadImage.loading"
           >
             <span class="material-icons-round">upload</span>
-            <p v-if="!isImageLoadingProgress">Загрузить: {{ files.length }}</p>
+            <p v-if="!isRequest.uploadImage.loading">
+              Загрузить: {{ files.length }}
+            </p>
             <p v-else>Загрузка...</p>
           </button>
         </div>
@@ -182,19 +184,19 @@
             <p>
               <i>Уже не актуально? </i>
               <button
-                v-if="!isDeleteClicked"
+                v-if="!isClicked.deleteListing"
                 type="button"
                 class="link error-text"
-                @click="isDeleteClicked = true"
+                @click="isClicked.deleteListing = true"
               >
                 <p><i>Удалить</i></p>
               </button>
               <button
-                v-if="isDeleteClicked"
+                v-if="isClicked.deleteListing"
                 type="button"
                 class="link error-text"
                 @click="deleteListing()"
-                :disabled="isDeleteRequestNow"
+                :disabled="isRequest.deleteListing.loading"
               >
                 <p><i>Подтвердить удаление</i></p>
               </button>
@@ -246,7 +248,12 @@
             </div>
           </div>
           <div class="col-auto">
-            <button type="button" class="btn with-shadow" @click="sendComment">
+            <button
+              type="button"
+              class="btn with-shadow"
+              @click="sendComment"
+              :disabled="isRequest.sendComment.loading"
+            >
               <span class="material-icons-round">send</span>
             </button>
           </div>
@@ -268,13 +275,25 @@ export default {
   mixins: [conditionDecoder],
   data() {
     return {
-      loading: false,
-      isDeleteClicked: false,
-      isDeleteRequestNow: false,
       files: null,
-      isImageLoadingProgress: false,
-      isImageLoadingFailed: false,
       comment: "",
+      isClicked: {
+        deleteListing: false,
+      },
+      isRequest: {
+        deleteListing: {
+          loading: false,
+          error: false,
+        },
+        uploadImage: {
+          loading: false,
+          error: false,
+        },
+        sendComment: {
+          loading: false,
+          error: false,
+        },
+      },
     };
   },
   computed: mapGetters([
@@ -285,19 +304,12 @@ export default {
   created() {
     this.$store
       .dispatch("fetchListing", this.$route.params.id)
-      .then((r) => {
-        this.loading = false;
-        console.log(r);
-        return this.$store.dispatch("fetchComments", this.$route.params.id);
-      })
-      .then((r) => {
-        console.log(r);
-      });
+      .then(() => this.$store.dispatch("fetchComments", this.$route.params.id));
   },
   methods: {
     deleteListing() {
-      console.log(this.isDeleteRequestNow);
-      this.isDeleteRequestNow = true;
+      this.isRequest.deleteListing.loading = true;
+      this.isRequest.deleteListing.error = false;
       this.$store
         .dispatch("deleteListing", this.getListing.id)
         .then((r) => {
@@ -305,12 +317,14 @@ export default {
             name: "MyListings",
           });
           console.log(r);
-          this.isDeleteRequestNow = false;
         })
         .catch((e) => {
           console.log(e);
-          this.isDeleteRequestNow = false;
-          this.isDeleteClicked = false;
+          this.isRequest.deleteListing.error = true;
+        })
+        .finally(() => {
+          this.isRequest.deleteListing.loading = false;
+          this.isClicked.deleteListing = false;
         });
     },
     formatDate(value) {
@@ -334,35 +348,41 @@ export default {
         id: this.$route.params.id,
         formData: formData,
       };
-      this.isImageLoadingProgress = true;
-      this.isImageLoadingFailed = false;
+      this.isRequest.uploadImage.loading = true;
+      this.isRequest.uploadImage.error = false;
       this.$store
         .dispatch("uploadImages", payloads)
-        .then((r) => {
-          this.isImageLoadingProgress = false;
-          this.isImageLoadingFailed = false;
+        .then(() => {
           this.files = null;
-          console.log(r);
           this.$store.dispatch("fetchListingImages", this.$route.params.id);
         })
         .catch((e) => {
-          this.isImageLoadingProgress = false;
-          this.isImageLoadingFailed = true;
+          this.isRequest.uploadImage.error = true;
           console.log(e);
+        })
+        .finally(() => {
+          this.isRequest.uploadImage.loading = false;
         });
     },
     sendComment() {
+      if (this.comment.length == 0) return;
       const payloads = {
         id: this.$route.params.id,
         comment: { text: this.comment },
       };
-      this.$store.dispatch("addComment", payloads).then(() => {
-        this.comment = "";
-        return this.$store.dispatch("fetchComments", this.$route.params.id);
-      });
+      this.isRequest.sendComment.loading = true;
+      this.$store
+        .dispatch("addComment", payloads)
+        .then(() => {
+          this.comment = "";
+          return this.$store.dispatch("fetchComments", this.$route.params.id);
+        })
+        .finally(() => {
+          this.isRequest.sendComment.loading = false;
+        });
     },
     onCommentDelete(id) {
-      console.log('deleted comment: ' + id)
+      console.log("deleted comment: " + id);
       this.$store.dispatch("fetchComments", this.$route.params.id);
     },
   },

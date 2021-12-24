@@ -121,7 +121,7 @@ export default {
       })
     },
     async fetchComments({ commit }, id) {
-      commit('SET_LISTING_COMMENTS', [])
+      // commit('SET_LISTING_COMMENTS', [])
       return axionInstance({
         method: 'get',
         url: `listings/${id}/comments`

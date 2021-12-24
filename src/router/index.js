@@ -52,7 +52,7 @@ const routes = [
     }
   },
   {
-    path: '/item/:id',
+    path: '/drop/:id',
     name: 'Item',
     component: Item,
     meta: {

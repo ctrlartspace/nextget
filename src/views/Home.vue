@@ -39,7 +39,7 @@
         <div class="col-auto d-flex justify-content-start align-items-center">
           <component
             v-if="getPagination.has_prev"
-            class="btn bordered"
+            class="btn surface"
             :is="!getPagination.has_prev ? 'button' : 'router-link'"
             :disabled="!getPagination.has_prev"
             :to="{ name: 'Home', query: { page: getPagination.prev_num } }"
@@ -57,7 +57,7 @@
         <div class="col-auto d-flex justify-content-end align-items-center">
           <component
             v-if="getPagination.has_next"
-            class="btn bordered"
+            class="btn surface"
             :is="!getPagination.has_next ? 'button' : 'router-link'"
             :disabled="!getPagination.has_next"
             :to="{ name: 'Home', query: { page: getPagination.next_num } }"

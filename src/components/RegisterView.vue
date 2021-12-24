@@ -7,6 +7,12 @@
             <h5>Регистрация</h5>
           </div>
           <div class="offset-6px"></div>
+          <div v-if="isRequest.register.error" class="help-label error">
+            <span class="material-icons-round">priority_high</span>
+            <div class="v-offset-2px"></div>
+            <p>Введите корректные данные</p>
+          </div>
+          <div class="offset-6px"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
@@ -17,7 +23,6 @@
                 id="phone_number"
                 v-model="formatPhone"
                 placeholder="000 000 00 00"
-                
               />
             </div>
             <div class="offset-6px"></div>
@@ -41,7 +46,7 @@
           <button
             type="submit"
             class="btn accent full-width"
-            :disabled="isRequestNow"
+            :disabled="isRequest.register.loading"
           >
             <p>Создать аккаунт</p>
           </button>
@@ -61,7 +66,12 @@ export default {
         display_name: "",
         password: "",
       },
-      isRequestNow: false,
+      isRequest: {
+        register: {
+          loading: false,
+          error: false,
+        },
+      },
     };
   },
   computed: {
@@ -86,15 +96,18 @@ export default {
   methods: {
     async register() {
       console.log(this.registerData);
-      this.isRequestNow = true;
+      this.isRequest.register.loading = true;
+      this.isRequest.register.error = false;
       this.$store
         .dispatch("register", this.registerData)
         .then(() => {
           this.$router.replace({ name: "Login" });
-          this.isRequestNow = false;
         })
         .catch(() => {
-          this.isRequestNow = false;
+          this.isRequest.register.error = true;
+        })
+        .finally(() => {
+          this.isRequest.register.loading = false;
         });
     },
   },

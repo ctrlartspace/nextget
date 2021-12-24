@@ -30,11 +30,9 @@
             </div>
           </div>
           <div class="offset-6px"></div>
-          <div class="center">
-            <button type="button" class="link error-text" @click="logoutToMain">
-              <p>Выход из аккаунта</p>
-            </button>
-          </div>
+          <button type="button" class="link error-text" @click="logoutToMain">
+            <p>Выход из аккаунта</p>
+          </button>
         </div>
       </div>
     </div>
@@ -64,7 +62,7 @@
           </router-link>
         </div>
       </div>
-      <div class="line"></div>
+      <!-- <div class="line"></div> -->
       <div v-if="getListings.length > 0" class="padding colored rounded-bottom">
         <Listings :listings="getListings" />
       </div>

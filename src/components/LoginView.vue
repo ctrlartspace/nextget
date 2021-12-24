@@ -9,6 +9,12 @@
             </router-link>
           </div>
           <div class="offset-6px"></div>
+          <div v-if="isRequest.login.error" class="help-label error">
+            <span class="material-icons-round">priority_high</span>
+            <div class="v-offset-2px"></div>
+            <p>Неверный логин или пароль</p>
+          </div>
+          <div class="offset-6px"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
@@ -19,7 +25,6 @@
                 id="phone_number"
                 v-model="formatPhone"
                 placeholder="000 000 00 00"
-                
               />
             </div>
 
@@ -44,7 +49,7 @@
             <button
               type="submit"
               class="btn primary full-width"
-              :disabled="isRequestNow"
+              :disabled="isRequest.login.loading"
             >
               <p>Вход</p>
             </button>
@@ -69,7 +74,12 @@ export default {
       phone_number: "",
       password: "",
       session_url: "login",
-      isRequestNow: false,
+      isRequest: {
+        login: {
+          loading: false,
+          error: false,
+        },
+      },
     };
   },
   computed: {
@@ -92,7 +102,8 @@ export default {
   },
   methods: {
     signIn() {
-      this.isRequestNow = true;
+      this.isRequest.login.loading = true;
+      this.isRequest.login.error = false;
       const auth = {
         username: this.phone_number,
         password: this.password,
@@ -101,11 +112,13 @@ export default {
         .dispatch("login", auth)
         .then(() => {
           this.$router.replace({ name: "MyListings" });
-          this.isRequestNow = false;
         })
         .catch((error) => {
           console.log(error);
-          this.isRequestNow = false;
+          this.isRequest.login.error = true;
+        })
+        .finally(() => {
+          this.isRequest.login.loading = false;
         });
       console.log(auth);
     },
