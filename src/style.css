@@ -575,8 +575,8 @@ input:focus {
   font-weight: 700;
 }
 
-.tags .date p {
-  font-size: var(--text-size-medium);
+.date p {
+  font-size: var(--text-size-small);
   font-weight: 400;
 }
 
@@ -624,8 +624,8 @@ input:focus {
 }
 
 .box-69 {
-  width: 69px;
-  height: 69px;
+  width: 72px;
+  height: 72px;
 }
 
 .scroller .image {

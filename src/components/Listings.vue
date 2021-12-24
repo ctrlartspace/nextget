@@ -1,5 +1,9 @@
 <template>
   <div class="listing" v-for="listing in listings" :key="listing.id">
+    <!-- <div class="date secondary-text">
+      <p>{{ formatDate(listing.created_date) }}</p>
+    </div> -->
+    <div class="offset-2px"></div>
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div class="image box-69">
@@ -21,7 +25,7 @@
           }}
         </router-link>
         <!-- <div class="offset-2px"></div> -->
-        <br>
+        <br />
         <div class="d-inline">
           <div class="surface-text">
             <p>
@@ -36,13 +40,15 @@
           <div class="secondary-text">
             <p>
               {{
-                listing.description != "" ? listing.description : "Нет повреждений"
+                listing.description != ""
+                  ? listing.description
+                  : "Нет повреждений"
               }}
             </p>
           </div>
         </div>
         <div class="offset-6px"></div>
-        <div class="row gx-2 tags surface-text d-flex align-items-center ">
+        <div class="row gx-2 tags surface-text d-flex align-items-center">
           <div class="col-auto">
             <div class="item accent-text">
               <p>{{ numberWithCommas(listing.price) }} KZT</p>
@@ -68,11 +74,11 @@
               <p>{{ listing.condition_state.value }}</p>
             </div>
           </div>
-          <div class="col-auto ms-auto ">
+          <!-- <div class="col-auto ms-auto ">
             <div class="date secondary-text">
               <p>{{ formatDate(listing.created_date) }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
