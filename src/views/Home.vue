@@ -1,5 +1,5 @@
 <template>
-  <div class="row my-0 gy-2 gx-2">
+  <div v-if="getListings" class="row my-0 gy-2 gx-2">
     <div class="col-md-4">
       <div class="padding colored rounded section">
         <div class="with-icon">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div v-if="getListings" class="col-md-8">
+    <div class="col-md-8">
       <!-- <div class="padding colored rounded section">
         <h5>Все объявления</h5>
         <div class="offset-6px"></div>

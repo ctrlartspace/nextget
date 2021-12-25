@@ -43,7 +43,8 @@
 }
 
 html, body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
+  ;
   color: var(--on-background-color);
   background: var(--background-color);
   margin: 0;
@@ -72,7 +73,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  
+
 }
 
 nav {
@@ -103,7 +104,7 @@ nav {
 }
 
 .mono {
-  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
+  font-family: Roboto Mono, sans-serif;
 }
 
 .unselectable {
@@ -121,7 +122,7 @@ nav {
 }
 
 .logo {
-  max-width: 100px;
+  max-width: 124px;
   display: block;
   margin: 0 auto;
 }
@@ -129,7 +130,15 @@ nav {
 /* _BASE */
 h4, h5, h6, p {
   margin: 0;
-  padding: 0
+  padding: 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+i {
+  /* font-style: italic; */
 }
 
 p {
@@ -312,7 +321,6 @@ a {
   border-radius: var(--border-radius);
   padding: 8px;
   /* font-size: var(--text-size-large); */
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
@@ -379,7 +387,6 @@ a {
   display: inline-flex;
   box-sizing: border-box;
   border-width: 0px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
@@ -419,6 +426,8 @@ a {
 }
 
 /* _INPUT */
+
+
 .input-data textarea {
   display: block;
   width: 100%;
@@ -449,7 +458,7 @@ a {
   size: 6;
 }
 
-.input-data select {
+.input-data select, input, textarea, option {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -465,7 +474,8 @@ a {
 .input-data input {
   font-size: var(--text-size-medium);
   font-weight: 400;
-  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
+  font-family: Roboto Mono, sans-serif;
+  ;
 }
 
 .input-data label {
@@ -561,7 +571,8 @@ input:focus {
 
 .tags .item {
   display: flex;
-  font-family: Roboto Mono, Helvetica, Arial, sans-serif;
+  font-family: Roboto Mono, sans-serif;
+  ;
   align-items: center;
   /* padding: 2px 4px; */
   /* border: 1px solid var(--border-color); */
@@ -607,6 +618,7 @@ input:focus {
 }
 
 .image img {
+
   max-height: 100%;
   display: block;
   margin: 0 auto;
@@ -731,6 +743,10 @@ input:focus {
 
 .with-shadow-inset {
   box-shadow: inset 0 1px 2px rgba(1, 1, 1, .3);
+}
+
+.with-border {
+  border: 1px solid var(--border-color);
 }
 
 .opacity-5 {

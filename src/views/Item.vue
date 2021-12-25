@@ -50,9 +50,13 @@
       </div>
       <div
         v-if="getListingImages.length == 0"
-        class="padding colored section no-border-bottom"
+        class="padding colored section"
+        :class="{
+          'no-border-bottom': getListing.is_owner,
+          'rounded-bottom': !getListing.is_owner,
+        }"
       >
-        <div class="center">
+        <div class="text-center">
           <div v-if="getListing.is_owner" class="accent-text">
             <p>
               <i
@@ -62,7 +66,9 @@
             </p>
           </div>
           <div v-else class="secondary-text">
-            <p><i>Автор еще не добавил фотографии</i></p>
+            <p>
+              <i>Объявление будет доступно сразу после загрузки фотографий</i>
+            </p>
           </div>
         </div>
       </div>
@@ -102,6 +108,7 @@
         </div>
       </div>
       <div
+        v-if="getListingImages.length > 0 || getListing.is_owner"
         class="padding colored section no-border-bottom"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
@@ -129,6 +136,7 @@
         <p>Батарея: {{ getListing.battery_health }}%</p>
       </div>
       <div
+        v-if="getListingImages.length > 0 || getListing.is_owner"
         class="padding colored no-border-bottom section"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
@@ -198,7 +206,7 @@
                 @click="deleteListing()"
                 :disabled="isRequest.deleteListing.loading"
               >
-                <p><i>Подтвердить удаление</i></p>
+                <p><i>Подтвердить</i></p>
               </button>
             </p>
           </div>
@@ -240,7 +248,7 @@
           <div class="col">
             <div class="input-data">
               <textarea
-                class="no-wrap with-shadow"
+                class="no-wrap"
                 v-model="comment"
                 placeholder="Напишите что-нибудь"
                 rows="1"

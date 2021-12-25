@@ -2,11 +2,11 @@
   <header>
     <div class="nav padding rounded-bottom">
       <div class="row gx-2 d-flex justify-content-center">
-        <!-- <div class="col-auto me-auto d-flex align-items-center">
+        <div class="col-auto d-flex align-items-center">
           <router-link :to="{ name: 'Home' }">
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
-        </div> -->
+        </div>
         <div class="col-auto d-flex align-items-center">
           <router-link class="btn surface" :to="{ name: 'Home' }">
             <span class="material-icons-round">view_stream</span>

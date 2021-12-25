@@ -127,16 +127,15 @@
             </div>
           </div>
           <div class="offset-6px"></div>
-          <div v-if="empty_fields.length > 0" class="help-label error">
-            <span class="material-icons-round">priority_high</span>
-            <div class="v-offset-2px"></div>
+          <div v-if="empty_fields.length > 0" class="error-text text-center">
             <p>Заполните все поля</p>
+            <div class="offset-2px"></div>
           </div>
-          <div v-if="empty_fields.length > 0" class="offset-2px"></div>
           <div v-show="currentStep == 1" class="input-data">
             <select
               @change="onProductChange($event)"
               v-model.trim="selectData.product"
+              :disabled="getProducts.length == 0"
             >
               <option value="0" selected disabled>
                 {{ getProducts.length > 0 ? "Выберите модель" : "Загрузка" }}
