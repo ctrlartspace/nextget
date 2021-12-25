@@ -7,11 +7,11 @@
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
         </div>
-        <div class="col-auto d-flex align-items-center">
+        <!-- <div class="col-auto d-flex align-items-center">
           <router-link class="btn surface" :to="{ name: 'Home' }">
             <span class="material-icons-round">view_stream</span>
           </router-link>
-        </div>
+        </div> -->
         <div class="col-auto d-flex align-items-center">
           <button class="btn surface bordered" @click="updateTheme()">
             <span class="material-icons-round">dark_mode</span>
