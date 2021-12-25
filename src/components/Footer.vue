@@ -4,7 +4,7 @@
       <div class="row gx-4 gy-2">
         <div class="col-12 d-flex justify-content-center">
           <div class="row gx-2 gy-0 d-flex justify-content-center">
-            <div class="col-auto">
+            <!-- <div class="col-auto">
               <router-link class="secondary-text" :to="{ name: 'Home' }">
                 <p>Вакансии</p>
               </router-link>
@@ -18,7 +18,7 @@
               <router-link class="secondary-text" :to="{ name: 'Home' }">
                 <p>Реклама</p>
               </router-link>
-            </div>
+            </div> -->
             <div class="col-auto">
               <router-link class="secondary-text" :to="{ name: 'Home' }">
                 <p>Условия использования</p>

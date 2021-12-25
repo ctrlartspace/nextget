@@ -63,6 +63,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+
 }
 
 .scrollable-content {
@@ -71,6 +72,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  
 }
 
 nav {
@@ -119,7 +121,7 @@ nav {
 }
 
 .logo {
-  max-width: 92px;
+  max-width: 100px;
   display: block;
   margin: 0 auto;
 }

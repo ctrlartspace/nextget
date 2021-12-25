@@ -40,5 +40,6 @@ export default {
   max-width: 700px;
   margin: 0 auto;
   overflow: hidden;
+  padding: 0 14px;
 }
 </style>

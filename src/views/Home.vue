@@ -15,22 +15,19 @@
         <Listings :listings="getListings" />
       </div> -->
       <div v-for="model in getProductModels" :key="model.id">
+        <!-- <div
+          class="
+            help-label
+            transparent
+            secondary-text
+            d-flex
+            justify-content-center
+          "
+        >
+          <p>{{ model.product.name }}</p>
+        </div>
+        <div class="offset-4px"></div> -->
         <div class="padding colored rounded section">
-          <div
-            class="
-              help-label
-              transparent
-              secondary-text
-              d-flex
-              justify-content-center
-            "
-          >
-            <!-- <span class="material-icons-round">visibility</span> -->
-            <!-- <div class="v-offset-2px"></div> -->
-            <p>{{ model.product.name }}</p>
-          </div>
-
-          <div class="offset-6px"></div>
           <Listings :listings="getListingsByProductModel(model.product.id)" />
         </div>
         <div class="offset-4px"></div>
