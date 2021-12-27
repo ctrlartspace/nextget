@@ -2,12 +2,12 @@ import axionInstance from '@/axios-instance'
 
 export default {
   actions: {
-    async fetchListings({ commit }, page) {
+    async fetchListings({ commit }, query_params) {
       commit('SET_LISTINGS', null)
       commit('SET_PAGINATION', null)
       return axionInstance({
         method: 'get',
-        url: `listings?page=${page}`
+        url: `listings?page=${query_params.page}&model=${query_params.model}&storage=${query_params.storage}&color=${query_params.color}`
       }).then(response => {
         commit('SET_LISTINGS', response.data.listings)
         commit('SET_PAGINATION', response.data.pagination)
