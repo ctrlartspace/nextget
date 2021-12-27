@@ -18,7 +18,7 @@ const routes = [
     }
   },
   {
-    path: '/me',
+    path: '/profile',
     name: 'MyListings',
     component: MyListings,
     meta: {
@@ -60,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/create',
+    path: '/new',
     name: 'CreateListing',
     component: CreateListing,
     meta: {

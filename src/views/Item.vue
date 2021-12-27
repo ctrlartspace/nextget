@@ -90,7 +90,7 @@
           </div>
           <button
             type="button"
-            class="btn primary with-shadow"
+            class="btn primary with-shadow full-width"
             @click="uploadFiles()"
             :disabled="isRequest.uploadImage.loading"
           >
@@ -129,15 +129,8 @@
         <div class="offset-2px"></div>
         <p>Состояние: {{ getListing.condition_state.value }}</p>
         <p>Батарея: {{ getListing.battery_health }}%</p>
-      </div>
-      <div
-        v-if="getListingImages.length > 0 || getListing.is_owner"
-        class="padding colored no-border-bottom section"
-        :class="{ 'disabled-text': getListingImages.length == 0 }"
-      >
-        <h5>Дополнительная информация</h5>
         <div class="offset-2px"></div>
-        <p>{{ getListing.equipment.value }}</p>
+        <p>В комплекте: {{ getListing.equipment.value }}</p>
         <div class="offset-6px"></div>
         <div class="secondary-text end">
           <p>

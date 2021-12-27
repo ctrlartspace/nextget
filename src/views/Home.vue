@@ -1,5 +1,5 @@
 <template>
-  <div v-if="getListings" class="row my-0 gy-2 gx-2">
+  <div class="row my-0 gy-2 gx-2">
     <div class="col-md-4">
       <div class="padding colored rounded section">
         <div class="input-data">
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div v-if="getListings" class="col-md-8">
       <!-- <div class="padding colored rounded section">
         <h5>Все объявления</h5>
         <div class="offset-6px"></div>
@@ -87,7 +87,10 @@
         </div>
         <div class="offset-4px"></div>
       </div>
-      <div class="row d-flex justify-content-center">
+      <div
+        v-if="getListings.length > 0"
+        class="row d-flex justify-content-center"
+      >
         <div class="col-auto d-flex justify-content-start align-items-center">
           <component
             v-if="getPagination.has_prev"
@@ -117,6 +120,12 @@
             <span class="material-icons-round">arrow_forward_ios</span>
           </component>
         </div>
+      </div>
+      <div v-else class="padding colored rounded section">
+        <div class="secondary-text text-center center">
+          <h5>Ничего не найдено</h5>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -187,7 +196,7 @@ export default {
         model: this.selectData.product.id,
         storage: this.selectData.storage.id,
         color: this.selectData.color.id,
-      }
+      };
       this.$router.push({ name: "Home", query: query });
     },
     updateProductData() {

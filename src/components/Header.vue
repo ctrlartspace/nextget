@@ -17,28 +17,27 @@
             <span class="material-icons-round">dark_mode</span>
           </button>
         </div>
-        <div class="col-auto d-flex align-items-center">
-          <router-link
-            v-if="IS_AUTHENTIFICATED"
-            class="btn surface"
-            :to="{ name: 'CreateListing' }"
-          >
+        <div
+          v-if="IS_AUTHENTIFICATED"
+          class="col-auto d-flex align-items-center"
+        >
+          <router-link class="btn surface" :to="{ name: 'CreateListing' }">
             <span class="material-icons-round">edit</span>
           </router-link>
         </div>
-        <div class="col-auto d-flex align-items-center">
-          <router-link
-            v-if="IS_AUTHENTIFICATED"
-            class="btn surface"
-            :to="{ name: 'MyListings' }"
-          >
+        <div
+          v-if="IS_AUTHENTIFICATED"
+          class="col-auto d-flex align-items-center"
+        >
+          <router-link class="btn surface" :to="{ name: 'MyListings' }">
             <span class="material-icons-round">account_box</span>
           </router-link>
-          <router-link
-            v-if="!IS_AUTHENTIFICATED"
-            class="btn primary"
-            :to="{ name: 'Login' }"
-          >
+        </div>
+        <div
+          v-if="!IS_AUTHENTIFICATED"
+          class="col-auto d-flex align-items-center"
+        >
+          <router-link class="btn primary" :to="{ name: 'Login' }">
             <span class="material-icons-round">login</span>
           </router-link>
         </div>
