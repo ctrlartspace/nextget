@@ -4,9 +4,7 @@
       <div class="padding colored rounded section">
         <form @submit.prevent="signIn">
           <div class="center">
-            <router-link :to="{ name: 'Home' }">
-              <img class="logo" :src="GET_LOGO" alt="logo" />
-            </router-link>
+            <h5>Авторизация</h5>
           </div>
           <div class="offset-6px"></div>
           <div v-if="isRequest.login.error" class="help-label error">

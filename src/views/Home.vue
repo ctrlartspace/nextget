@@ -2,9 +2,37 @@
   <div v-if="getListings" class="row my-0 gy-2 gx-2">
     <div class="col-md-4">
       <div class="padding colored rounded section">
-        <div class="with-icon">
-          <span class="material-icons-round">filter_alt</span>
-          <h5>Фильтры</h5>
+        <div class="input-data">
+          <button
+            v-if="!isSearchActivated"
+            type="submit"
+            class="btn secondary-text no-text-shadow full-width"
+            @click="isSearchActivated = true"
+          >
+            <p>Поиск</p>
+          </button>
+
+          <div v-else>
+            <select>
+              <option value="0" selected disabled>Выберите модель</option>
+            </select>
+            <div class="offset-2px" />
+            <select>
+              <option value="0" selected disabled>Память</option>
+            </select>
+            <div class="offset-2px" />
+            <select>
+              <option value="0" selected disabled>Цвет</option>
+            </select>
+            <div class="offset-2px" />
+            <button
+              type="submit"
+              class="btn primary full-width"
+              @click="isSearchActivated = false"
+            >
+              <p>Готово</p>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +102,11 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      isSearchActivated: false,
+    };
+  },
   computed: mapGetters([
     "getListings",
     "getProductModels",

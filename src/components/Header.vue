@@ -19,7 +19,7 @@
         </div>
         <div class="col-auto d-flex align-items-center">
           <router-link
-            v-show="IS_AUTHENTIFICATED"
+            v-if="IS_AUTHENTIFICATED"
             class="btn surface"
             :to="{ name: 'CreateListing' }"
           >
@@ -28,14 +28,14 @@
         </div>
         <div class="col-auto d-flex align-items-center">
           <router-link
-            v-show="IS_AUTHENTIFICATED"
+            v-if="IS_AUTHENTIFICATED"
             class="btn surface"
             :to="{ name: 'MyListings' }"
           >
             <span class="material-icons-round">account_box</span>
           </router-link>
           <router-link
-            v-show="!IS_AUTHENTIFICATED"
+            v-if="!IS_AUTHENTIFICATED"
             class="btn primary"
             :to="{ name: 'Login' }"
           >

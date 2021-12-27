@@ -48,7 +48,7 @@ export default {
 /* _MEDIA */
 @media (max-width: 768px) {
   #app {
-    margin-top: 30vh;
+    margin-top: 20vh;
   }
 }
 </style>
