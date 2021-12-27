@@ -16,22 +16,17 @@
                 <strong>{{ getListing.owner.display_name }}</strong>
               </p>
             </router-link>
-            <div class="d-inline">
-              <div class="surface-text">
-                <p>
+            <div class="d-inline secondary-text">
+              <p>
+                <span class="surface-text">
                   <strong>
                     {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
                   </strong>
-                </p>
-              </div>
-              <div class="secondary-text">
-                <p>
-                  {{
-                    " на сайте с " +
-                    getCreatedDate(getListing.owner.created_date)
-                  }}
-                </p>
-              </div>
+                </span>
+                {{
+                  "на сайте с " + getCreatedDate(getListing.owner.created_date)
+                }}
+              </p>
             </div>
           </div>
         </div>

@@ -235,7 +235,7 @@
           <div v-show="currentStep == 4" class="input-data">
             <div v-if="getAveragePrice" class="accent-text">
               <p>
-                Средняя цена за данную модель ~
+                Средняя цена ~
                 <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
               </p>
               <div class="offset-6px"></div>

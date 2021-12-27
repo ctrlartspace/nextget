@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
@@ -43,5 +43,12 @@ export default {
   margin: 0 auto;
   overflow: hidden;
   padding: 0 14px;
+}
+
+/* _MEDIA */
+@media (max-width: 768px) {
+  #app {
+    margin-top: 30vh;
+  }
 }
 </style>
