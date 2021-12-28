@@ -7,7 +7,7 @@
             v-if="!isSearchActivated"
             type="submit"
             class="btn secondary-text no-text-shadow full-width with-border"
-            @click="showSearch()"
+            @click="displaySearch()"
           >
             <p>Поиск</p>
           </button>
@@ -57,75 +57,71 @@
               class="btn primary full-width"
               @click="onSearch()"
             >
-              <p>Готово</p>
+              <p>Найти</p>
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="getListings" class="col-md-8">
-      <!-- <div class="padding colored rounded section">
-        <h5>Все объявления</h5>
-        <div class="offset-6px"></div>
-        <Listings :listings="getListings" />
-      </div> -->
-      <div v-for="model in getProductModels" :key="model.id">
-        <!-- <div
-          class="
-            help-label
-            transparent
-            secondary-text
-            d-flex
-            justify-content-center
-          "
-        >
-          <p>{{ model.product.name }}</p>
-        </div>
-        <div class="offset-4px"></div> -->
+    <div class="col-md-8">
+      <div v-if="!getListings">
         <div class="padding colored rounded section">
-          <Listings :listings="getListingsByProductModel(model.product.id)" />
+          <ListingsSkeleton />
         </div>
         <div class="offset-4px"></div>
-      </div>
-      <div
-        v-if="getListings.length > 0"
-        class="row d-flex justify-content-center"
-      >
-        <div class="col-auto d-flex justify-content-start align-items-center">
-          <component
-            v-if="getPagination.has_prev"
-            class="btn surface"
-            :is="!getPagination.has_prev ? 'button' : 'router-link'"
-            :disabled="!getPagination.has_prev"
-            :to="{ name: 'Home', query: getFilterParams(false) }"
-          >
-            <span class="material-icons-round">arrow_back_ios</span>
-          </component>
+        <div class="padding colored rounded section">
+          <ListingsSkeleton />
         </div>
-        <div class="col-auto d-flex justify-content-center align-items-center">
-          <div class="secondary-text">
-            <p>
-              <strong>{{ getPagination.page }}</strong>
-            </p>
+      </div>
+
+      <div v-else>
+        <div v-for="model in getProductModels" :key="model.id">
+          <div class="padding colored rounded section">
+            <Listings :listings="getListingsByProductModel(model.product.id)" />
+          </div>
+          <div class="offset-4px"></div>
+        </div>
+        <div
+          v-if="getListings.length > 0"
+          class="row d-flex justify-content-center"
+        >
+          <div class="col-auto d-flex justify-content-start align-items-center">
+            <component
+              v-if="getPagination.has_prev"
+              class="btn surface"
+              :is="!getPagination.has_prev ? 'button' : 'router-link'"
+              :disabled="!getPagination.has_prev"
+              :to="{ name: 'Home', query: getFilterParams(false) }"
+            >
+              <span class="material-icons-round">arrow_back_ios</span>
+            </component>
+          </div>
+          <div
+            class="col-auto d-flex justify-content-center align-items-center"
+          >
+            <div class="secondary-text">
+              <p>
+                <strong>{{ getPagination.page }}</strong>
+              </p>
+            </div>
+          </div>
+          <div class="col-auto d-flex justify-content-end align-items-center">
+            <component
+              v-if="getPagination.has_next"
+              class="btn surface"
+              :is="!getPagination.has_next ? 'button' : 'router-link'"
+              :disabled="!getPagination.has_next"
+              :to="{ name: 'Home', query: getFilterParams(true) }"
+            >
+              <span class="material-icons-round">arrow_forward_ios</span>
+            </component>
           </div>
         </div>
-        <div class="col-auto d-flex justify-content-end align-items-center">
-          <component
-            v-if="getPagination.has_next"
-            class="btn surface"
-            :is="!getPagination.has_next ? 'button' : 'router-link'"
-            :disabled="!getPagination.has_next"
-            :to="{ name: 'Home', query: getFilterParams(true) }"
-          >
-            <span class="material-icons-round">arrow_forward_ios</span>
-          </component>
+        <div v-else class="padding colored rounded section">
+          <div class="secondary-text text-center center">
+            <h5>Ничего не найдено</h5>
+          </div>
         </div>
-      </div>
-      <div v-else class="padding colored rounded section">
-        <div class="secondary-text text-center center">
-          <h5>Ничего не найдено</h5>
-        </div>
-        
       </div>
     </div>
   </div>
@@ -133,6 +129,7 @@
 
 <script>
 import Listings from "@/components/Listings";
+import ListingsSkeleton from "@/components/ListingsSkeleton";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -185,7 +182,7 @@ export default {
         filter.color = this.getQueryParams.color;
       return filter;
     },
-    showSearch() {
+    displaySearch() {
       this.isSearchActivated = true;
       this.fetchProducts();
     },
@@ -227,6 +224,7 @@ export default {
   },
   components: {
     Listings,
+    ListingsSkeleton,
   },
 };
 </script>
