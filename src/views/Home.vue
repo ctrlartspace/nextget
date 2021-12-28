@@ -117,7 +117,7 @@
             </component>
           </div>
         </div>
-        <div v-else class="padding colored rounded section">
+        <div v-else class="padding section">
           <div class="secondary-text text-center center">
             <h5>Ничего не найдено</h5>
           </div>

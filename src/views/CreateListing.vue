@@ -3,15 +3,7 @@
     <div class="row my-0 gx-2 gy-2">
       <div class="d-none d-sm-block col-md-6 order-2 order-md-1">
         <div class="padding rounded-top colored section dash">
-          <div class="with-icon">
-            <span class="material-icons-round">edit</span>
-            <h5>Новое объявление</h5>
-          </div>
-          <div
-            class="asd"
-            :class="{ 'disabled-text': selectData.product == 0 }"
-          >
-            <div class="offset-6px"></div>
+          <div :class="{ 'disabled-text': selectData.product == 0 }">
             <h5>
               {{
                 selectData.product == 0 ? "Модель" : selectData.product.value
@@ -88,7 +80,14 @@
         <div class="padding colored rounded section">
           <div class="row gx-0 d-flex align-items-center">
             <div class="col">
-              <h5 v-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
+              <div
+                v-if="currentStep == 1 && selectData.product == 0"
+                class="with-icon"
+              >
+                <span class="material-icons-round">edit</span>
+                <h5>Новое объявление</h5>
+              </div>
+              <h5 v-else-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
               <h5 v-if="currentStep == 4">Цена</h5>
             </div>
             <div class="col-auto d-flex align-items-center">
