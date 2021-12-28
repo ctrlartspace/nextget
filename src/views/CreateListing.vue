@@ -232,7 +232,7 @@
             </select>
           </div>
           <div v-show="currentStep == 4" class="input-data">
-            <div v-if="getAveragePrice" class="accent-text">
+            <div v-if="getAveragePrice" class="accent-text text-center">
               <p>
                 Средняя цена ~
                 <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>

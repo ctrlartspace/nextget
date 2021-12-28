@@ -1,35 +1,8 @@
 <template>
-  <div v-if="getListing" class="row my-0 gy-2 gx-2">
-    <div class="col-md-6">
+  <div class="row my-0 gy-2 gx-2">
+    <div v-if="getListing" class="col-md-6">
       <div class="padding colored rounded-top section">
-        <div class="row gx-2">
-          <div class="col-auto d-flex align-items-center">
-            <div class="image box-48">
-              <img
-                :src="`https://www.tinygraphs.com/squares/${getListing.owner.phone}?theme=duskfalling&numcolors=3&size=96`"
-              />
-            </div>
-          </div>
-          <div class="col surface-text">
-            <router-link :to="{ name: 'Item' }">
-              <p>
-                <strong>{{ getListing.owner.display_name }}</strong>
-              </p>
-            </router-link>
-            <div class="d-inline secondary-text">
-              <p>
-                <span class="surface-text">
-                  <strong>
-                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
-                  </strong>
-                </span>
-                {{
-                  "на сайте с " + getCreatedDate(getListing.owner.created_date)
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
+        <UserView :user="getListing.owner" />
       </div>
       <div
         class="padding colored section"
@@ -201,6 +174,9 @@
         </div>
       </div>
     </div>
+    <div v-else class="col-md-6">
+      <DropSkeleton />
+    </div>
     <div class="col-md-6">
       <div class="padding colored rounded section">
         <div class="with-icon">
@@ -265,6 +241,8 @@ import conditionDecoder from "@/services/condition-decoder";
 import moment from "moment";
 import ImageScroller from "@/components/ImageScroller";
 import Comment from "@/components/Comment";
+import UserView from "@/components/UserView";
+import DropSkeleton from "@/components/DropSkeleton";
 
 export default {
   name: "Item",
@@ -385,6 +363,8 @@ export default {
   components: {
     ImageScroller,
     Comment,
+    UserView,
+    DropSkeleton,
   },
 };
 </script>

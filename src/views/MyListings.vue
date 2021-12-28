@@ -1,40 +1,22 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
-    <div v-if="getUser" class="col-md-6">
-      <div class="padding colored rounded section">
-        <div class="row gx-2">
-          <div class="col-auto d-flex align-items-center">
-            <div class="image box-48">
-              <img
-                :src="`https://www.tinygraphs.com/squares/${getUser.phone}?theme=duskfalling&numcolors=3&size=96`"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <p>
-              <strong>{{ getUser.display_name }}</strong>
-            </p>
-             <div class="d-inline secondary-text">
-              <p>
-                <span class="surface-text">
-                  <strong>
-                    {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
-                  </strong>
-                </span>
-                {{
-                  "на сайте с " + getCreatedDate(getUser.created_date)
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
+    <div class="col-md-6">
+      <div v-if="getUser" class="padding colored rounded section">
+        <UserView :user="getUser" />
+        <div class="offset-6px"></div>
+        <button type="button" class="link error-text" @click="logoutToMain">
+          <p>Выход из аккаунта</p>
+        </button>
+      </div>
+      <div v-else class="padding colored rounded section">
+        <UserViewSkeleton />
         <div class="offset-6px"></div>
         <button type="button" class="link error-text" @click="logoutToMain">
           <p>Выход из аккаунта</p>
         </button>
       </div>
     </div>
-    <div v-if="getListings" class="col-md-6">
+    <div class="col-md-6">
       <div
         class="
           row
@@ -61,11 +43,25 @@
         </div>
       </div>
       <!-- <div class="line"></div> -->
-      <div v-if="getListings.length > 0" class="padding colored rounded-bottom">
-        <Listings :listings="getListings" />
+      <div v-if="getListings">
+        <div
+          v-if="getListings.length > 0"
+          class="padding colored rounded-bottom"
+        >
+          <Listings :listings="getListings" />
+        </div>
+        <div
+          v-else
+          class="padding colored rounded-bottom secondary-text center"
+        >
+          <p>Нет объявлений ☹</p>
+        </div>
       </div>
-      <div v-else class="padding colored rounded-bottom secondary-text center">
-        <p>Нет объявлений ☹</p>
+      <div v-else>
+        <div class="padding colored rounded-bottom section">
+          <ListingsSkeleton />
+          <ListingsSkeleton />
+        </div>
       </div>
     </div>
   </div>
@@ -73,6 +69,9 @@
 
 <script>
 import Listings from "@/components/Listings";
+import ListingsSkeleton from "@/components/ListingsSkeleton";
+import UserView from "@/components/UserView";
+import UserViewSkeleton from "@/components/UserViewSkeleton";
 import { mapGetters, mapActions } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 
@@ -94,6 +93,9 @@ export default {
   },
   components: {
     Listings,
+    ListingsSkeleton,
+    UserView,
+    UserViewSkeleton,
   },
 };
 </script>
