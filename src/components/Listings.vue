@@ -1,6 +1,5 @@
 <template>
   <div class="listing" v-for="listing in listings" :key="listing.id">
-    <div class="offset-2px"></div>
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div

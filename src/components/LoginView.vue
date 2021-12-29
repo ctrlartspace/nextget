@@ -16,13 +16,12 @@
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
-              <p>+7</p>
-              <div class="v-offset-2px"></div>
               <input
                 type="phone"
                 id="phone_number"
                 v-model="formatPhone"
-                placeholder="000 000 00 00"
+                placeholder="701 000 00 01"
+                maxlength="10"
               />
             </div>
 
@@ -42,11 +41,11 @@
               :to="{ name: 'Register' }"
               ><p>Забыли пароль?</p></router-link
             >
-            <div class="offset-8px"></div>
+            <div class="offset-6px"></div>
 
             <button
               type="submit"
-              class="btn primary full-width"
+              class="btn primary full-width with-shadow"
               :disabled="isRequest.login.loading"
             >
               <p>Вход</p>
@@ -95,6 +94,8 @@ export default {
       set: function (newValue) {
         this.phone_number = null;
         this.phone_number = +newValue.replaceAll(/\D/g, "");
+        this.phone_number =
+          newValue == 0 ? "" : this.phone_number.toString();
       },
     },
   },

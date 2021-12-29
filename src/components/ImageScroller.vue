@@ -14,7 +14,7 @@
     >
       <button
         type="button"
-        class="btn transparent secondary-text"
+        class="btn transparent secondary-text no-text-shadow"
         @click="scrollToLeft()"
       >
         <span class="material-icons-round">arrow_back_ios</span>
@@ -86,7 +86,7 @@
     >
       <button
         type="button"
-        class="btn transparent secondary-text"
+        class="btn transparent secondary-text no-text-shadow"
         @click="scrollToRight()"
       >
         <span class="material-icons-round">arrow_forward_ios</span>

@@ -16,13 +16,12 @@
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
-              <p>+7</p>
-              <div class="v-offset-2px"></div>
               <input
                 type="phone"
                 id="phone_number"
                 v-model="formatPhone"
-                placeholder="000 000 00 00"
+                placeholder="701 000 00 01"
+                maxlength="10"
               />
             </div>
             <div class="offset-6px"></div>
@@ -45,7 +44,7 @@
           <div class="offset-6px"></div>
           <button
             type="submit"
-            class="btn accent full-width"
+            class="btn accent full-width with-shadow"
             :disabled="isRequest.register.loading"
           >
             <p>Создать аккаунт</p>
@@ -80,7 +79,7 @@ export default {
         return this.registerData.phone_number
           .toString()
           .replace(
-            /\D*([0-9]{4})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
+            /\D*([0-9]{3})\D*([0-9]{3})\D*([0-9]{2})\D*([0-9]{2})\D*/,
             "$1 $2 $3 $4",
             "$1 $2 $3 $4"
           );
@@ -88,8 +87,9 @@ export default {
       set: function (newValue) {
         this.registerData.phone_number = null;
         this.registerData.phone_number = +newValue.replaceAll(/\D/g, "");
-        this.registerData.phone_number =
-          this.registerData.phone_number.toString();
+        this.registerData.phone_number = newValue == 0
+          ? ""
+          : this.registerData.phone_number.toString();
       },
     },
   },
