@@ -122,9 +122,10 @@ nav {
 }
 
 .logo {
-  max-width: 124px;
+  max-width: 100%px;
   display: block;
   margin: 0 auto;
+  padding-bottom: 6px;
 }
 
 /* _BASE */
