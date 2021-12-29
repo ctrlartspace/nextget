@@ -22,7 +22,7 @@
 
 :root.dark {
   --background-color: #000000;
-  --surface-color: #121212;
+  --surface-color: #141414;
   --surface-secondary-color: #181818;
   --border-color: #181818;
   --primary-color: #4756d5;
@@ -135,10 +135,6 @@ h4, h5, h6, p {
 
 strong {
   font-weight: 700;
-}
-
-i {
-  /* font-style: italic; */
 }
 
 p {
