@@ -62,6 +62,16 @@
           </div>
         </div>
       </div>
+      <div class="offset-2px" />
+      <div v-if="!isSearchActivated" class="d-block d-sm-none padding colored rounded section">
+        <router-link
+          class="btn surface primary-text bordered no-text-shadow full-width"
+          :to="{ name: 'CreateListing' }"
+        >
+          <span class="material-icons-round">edit</span>
+          <p><strong>Новое объявление</strong></p>
+        </router-link>
+      </div>
     </div>
     <div class="col-md-8">
       <div v-if="!getListings">

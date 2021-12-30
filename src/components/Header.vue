@@ -1,8 +1,8 @@
 <template >
   <header>
     <div class="nav padding rounded-bottom">
-      <div class="row gx-2 d-flex justify-content-center">
-        <div class="col-auto d-flex align-items-center">
+      <div class="row gx-2 d-flex">
+        <div class="col d-flex align-items-center justify-content-center justify-content-md-start">
           <router-link :to="{ name: 'Home' }">
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
@@ -12,24 +12,25 @@
             <span class="material-icons-round">view_stream</span>
           </router-link>
         </div> -->
-        <div class="col-auto d-flex align-items-center">
+        <!-- <div class="col-auto d-flex align-items-center">
           <button class="btn surface bordered" @click="updateTheme()">
             <span class="material-icons-round">dark_mode</span>
           </button>
-        </div>
+        </div> -->
         <div
           v-if="IS_AUTHENTIFICATED"
-          class="col-auto d-flex align-items-center"
+          class="d-none d-sm-flex col-auto d-flex align-items-center"
         >
-          <router-link class="btn surface" :to="{ name: 'CreateListing' }">
+          <router-link class="btn surface primary-text bordered no-text-shadow" :to="{ name: 'CreateListing' }">
             <span class="material-icons-round">edit</span>
+            <p><strong>Новое объявление</strong></p>
           </router-link>
         </div>
         <div
           v-if="IS_AUTHENTIFICATED"
-          class="col-auto d-flex align-items-center"
+          class="d-none d-sm-flex col-auto d-flex align-items-center"
         >
-          <router-link class="btn surface" :to="{ name: 'MyListings' }">
+          <router-link class="btn surface  no-text-shadow" :to="{ name: 'MyListings' }">
             <span class="material-icons-round">account_box</span>
           </router-link>
         </div>
