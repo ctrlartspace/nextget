@@ -14,7 +14,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      scrollTop: false
     }
   },
   {
@@ -22,7 +23,8 @@ const routes = [
     name: 'MyListings',
     component: MyListings,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      scrollTop: true
     }
 
   },
@@ -31,7 +33,8 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      scrollTop: true
     }
 
   },
@@ -40,7 +43,8 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      scrollTop: true
     }
   },
   {
@@ -48,7 +52,8 @@ const routes = [
     redirect: '/',
     name: 'Logout',
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      scrollTop: true
     }
   },
   {
@@ -56,7 +61,8 @@ const routes = [
     name: 'Item',
     component: Item,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      scrollTop: true
     }
   },
   {
@@ -64,7 +70,8 @@ const routes = [
     name: 'CreateListing',
     component: CreateListing,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      scrollTop: false
     }
   },
 ]
@@ -76,7 +83,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // window.scrollTo(0, 0)
-  window.document.getElementById('scrollable-content').scrollTo({top: 0, behavior: "smooth"})
+
+  if (to.matched.some((record) => record.meta.scrollTop))
+    window.document.getElementById('scrollable-content').scrollTo({ top: 20 * window.innerHeight / 100, behavior: "smooth" })
+  else
+    window.document.getElementById('scrollable-content').scrollTo({ top: 0, behavior: "smooth" })
+
   store.dispatch('cancelPendingRequest');
   const isAuthentificated = store.getters['IS_AUTHENTIFICATED']
   if (to.matched.some((record) => record.meta.requiresAuth)) {
