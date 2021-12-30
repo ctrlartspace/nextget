@@ -82,12 +82,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // window.scrollTo(0, 0)
-
-  if (to.matched.some((record) => record.meta.scrollTop))
-    window.document.getElementById('scrollable-content').scrollTo({ top: 20 * window.innerHeight / 100, behavior: "smooth" })
-  else
-    window.document.getElementById('scrollable-content').scrollTo({ top: 0, behavior: "smooth" })
+  const isScrollPage = to.matched.some((record) => record.meta.scrollTop) && window.screen.width < 768 // проверяем нужные страницы и мобилка ли это
+  const scrollOffset = isScrollPage ? 20 * window.innerHeight / 100 : 0 // двигаем на 20vh
+  window.document.getElementById('scrollable-content').scrollTo({ top: scrollOffset, behavior: "smooth" }) 
 
   store.dispatch('cancelPendingRequest');
   const isAuthentificated = store.getters['IS_AUTHENTIFICATED']

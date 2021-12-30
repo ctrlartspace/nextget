@@ -177,7 +177,7 @@
     <div v-else class="col-md-6">
       <DropSkeleton />
     </div>
-    <div class="col-md-6">
+    <div v-if="getListing" class="col-md-6">
       <div class="padding colored rounded section">
         <div class="with-icon">
           <span class="material-icons-round">comment</span>
