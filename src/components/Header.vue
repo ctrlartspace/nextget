@@ -48,14 +48,14 @@
             <span class="material-icons-round">account_box</span>
           </router-link>
         </div>
-        <div
+        <!-- <div
           v-if="!IS_AUTHENTIFICATED"
           class="col-auto d-flex align-items-center"
         >
           <router-link class="btn primary" :to="{ name: 'Login' }">
             <span class="material-icons-round">login</span>
           </router-link>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
