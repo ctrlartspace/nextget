@@ -1,6 +1,6 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="padding colored rounded section">
         <div class="input-data">
           <button
@@ -73,7 +73,7 @@
         </router-link>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div v-if="!getListings">
         <div class="padding colored rounded section">
           <ListingsSkeleton />

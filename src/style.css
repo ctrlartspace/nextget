@@ -44,7 +44,6 @@
 
 html, body {
   font-family: Roboto, sans-serif;
-  ;
   color: var(--on-background-color);
   background: var(--background-color);
   margin: 0;
@@ -122,10 +121,11 @@ nav {
 }
 
 .logo {
-  max-width: 100%px;
+  max-width: 100%;
+  height: 30px;
   display: block;
   margin: 0 auto;
-  padding-bottom: 6px;
+
 }
 
 /* _BASE */
@@ -139,6 +139,7 @@ strong {
 }
 
 p {
+  font-family: Roboto, sans-serif;
   font-size: var(--text-size-medium);
 }
 

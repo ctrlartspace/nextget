@@ -3,26 +3,31 @@
     <div class="footer padding rounded-top section">
       <div class="row gx-4 gy-2">
         <div class="col-12 d-flex justify-content-center">
-          <div class="row gx-2 gy-0 d-flex justify-content-center">
-            <div class="col-auto">
+          <div class="row gx-2 gy-2 d-flex justify-content-center">
+            <div v-if="IS_AUTHENTIFICATED" class="col-auto">
+              <router-link class="" :to="{ name: 'MyListings' }">
+                <p>Личный кабинет</p>
+              </router-link>
+            </div>
+            <div v-if="IS_AUTHENTIFICATED" class="col-auto">
+              <router-link class="" :to="{ name: 'CreateListing' }">
+                <p>Создать объявление</p>
+              </router-link>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <button type="button" class="link" @click="updateTheme">
+                <p>Включить {{ IS_DARK_THEME ? "светлую" : "темную" }} тему</p>
+              </button>
+            </div>
+            <div class="col-auto d-flex justify-content-center">
               <router-link class="secondary-text" :to="{ name: 'Home' }">
                 <p>Условия использования</p>
               </router-link>
             </div>
+            <div class="col-12 secondary-text text-center">
+              <p>© 2021-2022 «Лайтлист», Объявления по продаже техники Apple</p>
+            </div>
           </div>
-        </div>
-        <div
-          class="
-            col-12
-            secondary-text
-            d-flex
-            justify-content-center
-            text-center
-          "
-        >
-          <p>
-            © 2021-2022 «Лайтлист», Объявления по продаже техники Apple
-          </p>
         </div>
       </div>
     </div>
@@ -30,11 +35,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Footer",
-  computed: mapGetters(["GET_LOGO"]),
+  computed: mapGetters([
+    "IS_AUTHENTIFICATED",
+    "IS_LOADING",
+    "GET_LOGO",
+    "IS_DARK_THEME",
+  ]),
+  methods: {
+    ...mapActions(["logout", "updateTheme"]),
+  },
 };
 </script>
 

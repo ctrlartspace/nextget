@@ -29,14 +29,14 @@
             :to="{ name: 'CreateListing' }"
           >
             <span class="material-icons-round">edit</span>
-            <p><strong>Новое объявление</strong></p>
+            <p><strong>Создать</strong></p>
           </router-link>
         </div>
-        <div class="d-none d-sm-flex col-auto d-flex align-items-center">
+        <!-- <div class="d-none d-sm-flex col-auto d-flex align-items-center">
           <button class="btn surface bordered" @click="updateTheme()">
             <span class="material-icons-round">{{ !IS_DARK_THEME ? 'dark_mode' : 'light_mode' }}</span>
           </button>
-        </div>
+        </div> -->
         <div
           v-if="IS_AUTHENTIFICATED"
           class="d-none d-sm-flex col-auto d-flex align-items-center"
@@ -66,7 +66,12 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Header",
-  computed: mapGetters(["IS_AUTHENTIFICATED", "IS_LOADING", "GET_LOGO", "IS_DARK_THEME"]),
+  computed: mapGetters([
+    "IS_AUTHENTIFICATED",
+    "IS_LOADING",
+    "GET_LOGO",
+    "IS_DARK_THEME",
+  ]),
   methods: {
     ...mapActions(["logout", "updateTheme"]),
   },

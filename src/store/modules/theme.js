@@ -18,6 +18,6 @@ export default {
   },
   getters: {
     IS_DARK_THEME: (state) => state.isDarkTheme,
-    GET_LOGO: (state) => state.isDarkTheme ? "https://aman3d.pythonanywhere.com/litelist_logo_dark.svg" : "https://aman3d.pythonanywhere.com/litelist_logo_light.svg"
+    GET_LOGO: (state) => state.isDarkTheme ? "https://aman3d.pythonanywhere.com/litelist_dark.svg" : "https://aman3d.pythonanywhere.com/litelist_light.svg"
   }
 }
