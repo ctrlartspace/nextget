@@ -17,7 +17,7 @@
   --text-size-large: 18px;
   --text-size-medium: 16px;
   --text-size-small: 14px;
-  --border-radius: 4px;
+  --border-radius: 2px;
 }
 
 :root.dark {
@@ -39,7 +39,7 @@
   --text-size-large: 18px;
   --text-size-medium: 16px;
   --text-size-small: 14px;
-  --border-radius: 4px;
+  --border-radius: 2px;
 }
 
 html, body {
@@ -122,10 +122,9 @@ nav {
 
 .logo {
   max-width: 100%;
-  height: 30px;
+  /* height: 30px; */
   display: block;
   margin: 0 auto;
-
 }
 
 /* _BASE */
@@ -251,7 +250,6 @@ a {
   border: 1px solid var(--border-color);
 }
 
-
 .hatch {
   background-image: linear-gradient(135deg,
       var(--surface-color) 25%, var(--surface-secondary-color) 25%,
@@ -314,8 +312,6 @@ a {
   padding-right: 4px;
 }
 
-
-
 /* _BUTTON */
 .btn {
   display: inline-flex;
@@ -337,8 +333,6 @@ a {
   user-select: none;
 }
 
-
-
 .btn span, .btn p {
   display: block;
   height: 100%;
@@ -351,7 +345,6 @@ a {
 .no-text-shadow p, .no-text-shadow span {
   text-shadow: none
 }
-
 
 .btn span {
   margin-right: 4px;
@@ -373,7 +366,6 @@ a {
   justify-content: center;
 }
 
-
 /* _HELP */
 .help-label {
   display: inline-flex;
@@ -382,14 +374,12 @@ a {
   background-color: var(--surface-secondary-color);
   color: var(--on-surface-color);
   border-radius: var(--border-radius);
-
 }
 
 .help-label p, .help-label span {
   display: inline-flex;
   font-size: var(--text-size-small);
   font-weight: 700;
-
 }
 
 /* _LINK */
@@ -436,8 +426,6 @@ a {
 }
 
 /* _INPUT */
-
-
 .input-data textarea {
   display: block;
   width: 100%;
@@ -534,7 +522,6 @@ input:focus {
   overflow: hidden;
 }
 
-
 /* _LISTING */
 .listing {
   overflow: hidden;
@@ -567,16 +554,13 @@ input:focus {
   margin-bottom: 0;
 }
 
-
 /* _TAGS */
 .tags .item {
   display: flex;
   /* font-family: Roboto Mono, sans-serif; */
   align-items: center;
   border-radius: var(--border-radius);
-
 }
-
 
 .tags span, .tags p {
   display: flex;
@@ -597,8 +581,6 @@ input:focus {
 .item span:first-child {
   padding-left: 0px;
 }
-
-
 
 /* IMAGE */
 .scroller {
@@ -625,7 +607,6 @@ input:focus {
 }
 
 .image img {
-
   max-height: 100%;
   display: block;
   margin: 0 auto;
@@ -784,7 +765,6 @@ input:focus {
   background-color: var(--border-color);
   border-radius: var(--border-radius);
   padding: 8px 4px;
-
 }
 
 .skeleton .desc {

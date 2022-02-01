@@ -109,7 +109,7 @@
                 @click="nextStep"
               >
                 <span class="material-icons-round">arrow_forward_ios</span>
-                <p>Далее</p>
+                <!-- <p>Далее</p> -->
               </button>
               <button
                 v-if="currentStep == 4"

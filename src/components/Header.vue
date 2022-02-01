@@ -25,11 +25,11 @@
           class="d-none d-sm-flex col-auto d-flex align-items-center"
         >
           <router-link
-            class="btn surface primary-text bordered no-text-shadow"
+            class="btn surface accent-text bordered no-text-shadow"
             :to="{ name: 'CreateListing' }"
           >
-            <span class="material-icons-round">edit</span>
             <p><strong>Создать</strong></p>
+            <!-- <span class="material-icons-round">edit</span> -->
           </router-link>
         </div>
         <!-- <div class="d-none d-sm-flex col-auto d-flex align-items-center">

@@ -50,7 +50,7 @@
         <div class="tags">
           <div class="item surface-text">
             <p>
-              <span class="accent-text mono">
+              <span class="accent-text">
                 {{ numberWithCommas(listing.price) + " KZT" }}
               </span>
               <span :class="getConditionColor(listing.condition_state.id)">

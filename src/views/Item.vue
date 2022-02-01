@@ -222,7 +222,7 @@
           <div class="col-auto">
             <button
               type="button"
-              class="btn with-shadow"
+              class="btn primary with-border"
               @click="sendComment"
               :disabled="isRequest.sendComment.loading"
             >

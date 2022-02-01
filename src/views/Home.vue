@@ -62,7 +62,7 @@
           </div>
         </div>
       </div>
-      <div class="offset-2px" />
+      <div class="offset-4px" />
       <div v-if="!isSearchActivated" class="d-block d-sm-none padding colored rounded section">
         <router-link
           class="btn surface primary-text bordered no-text-shadow full-width"
@@ -93,12 +93,12 @@
         </div>
         <div
           v-if="getListings.length > 0"
-          class="row d-flex justify-content-center"
+          class="row d-flex justify-content-end"
         >
           <div class="col-auto d-flex justify-content-start align-items-center">
             <component
               v-if="getPagination.has_prev"
-              class="btn surface"
+              class="btn surface no-text-shadow"
               :is="!getPagination.has_prev ? 'button' : 'router-link'"
               :disabled="!getPagination.has_prev"
               :to="{ name: 'Home', query: getFilterParams(false) }"
@@ -111,14 +111,14 @@
           >
             <div class="secondary-text">
               <p>
-                <strong>{{ getPagination.page }}</strong>
+                {{ getPagination.page }}
               </p>
             </div>
           </div>
           <div class="col-auto d-flex justify-content-end align-items-center">
             <component
               v-if="getPagination.has_next"
-              class="btn surface"
+              class="btn primary no-text-shadow"
               :is="!getPagination.has_next ? 'button' : 'router-link'"
               :disabled="!getPagination.has_next"
               :to="{ name: 'Home', query: getFilterParams(true) }"

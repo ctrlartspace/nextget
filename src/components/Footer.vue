@@ -16,7 +16,7 @@
             </div>
             <div class="col-12 d-flex justify-content-center">
               <button type="button" class="link" @click="updateTheme">
-                <p>Включить {{ IS_DARK_THEME ? "светлую" : "темную" }} тему</p>
+                <p>{{ IS_DARK_THEME ? "Светлая" : "Темная" }} тема</p>
               </button>
             </div>
             <div class="col-auto d-flex justify-content-center">
