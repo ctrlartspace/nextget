@@ -1,6 +1,17 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
     <div class="col-md-5">
+      <div class="d-none d-sm-block padding colored rounded section">
+        <div class="with-icon primary-text">
+          <span class="material-icons-round">trending_up</span>
+          <h5>Популярные запросы</h5>
+        </div>
+        <div class="offset-4px" />
+        <p>
+          <strong>1. Iphone 12 Mini </strong>
+        </p>
+      </div>
+      <div class="offset-4px" />
       <div class="padding colored rounded section">
         <div class="input-data">
           <button
@@ -63,13 +74,16 @@
         </div>
       </div>
       <div class="offset-4px" />
-      <div v-if="!isSearchActivated" class="d-block d-sm-none padding colored rounded section">
+      <div
+        v-if="!isSearchActivated"
+        class="d-block d-sm-none padding colored rounded section"
+      >
         <router-link
-          class="btn surface primary-text bordered no-text-shadow full-width"
+          class="btn surface accent-text with-border no-text-shadow full-width"
           :to="{ name: 'CreateListing' }"
         >
           <span class="material-icons-round">edit</span>
-          <p><strong>Новое объявление</strong></p>
+          <p><strong>Создать объявление</strong></p>
         </router-link>
       </div>
     </div>
@@ -93,12 +107,12 @@
         </div>
         <div
           v-if="getListings.length > 0"
-          class="row d-flex justify-content-end"
+          class="row d-flex justify-content-center"
         >
           <div class="col-auto d-flex justify-content-start align-items-center">
             <component
               v-if="getPagination.has_prev"
-              class="btn surface no-text-shadow"
+              class="btn surface with-border no-text-shadow"
               :is="!getPagination.has_prev ? 'button' : 'router-link'"
               :disabled="!getPagination.has_prev"
               :to="{ name: 'Home', query: getFilterParams(false) }"
@@ -109,10 +123,8 @@
           <div
             class="col-auto d-flex justify-content-center align-items-center"
           >
-            <div class="secondary-text">
-              <p>
-                {{ getPagination.page }}
-              </p>
+            <div class="section secondary-text text-large">
+              <p>Страница {{ getPagination.page }}</p>
             </div>
           </div>
           <div class="col-auto d-flex justify-content-end align-items-center">

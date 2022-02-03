@@ -7,7 +7,7 @@
             col
             d-flex
             align-items-center
-            justify-content-center justify-content-md-start
+            justify-content-center justify-content-sm-start
           "
         >
           <router-link :to="{ name: 'Home' }">
@@ -42,7 +42,7 @@
           class="d-none d-sm-flex col-auto d-flex align-items-center"
         >
           <router-link
-            class="btn surface no-text-shadow"
+            class="btn surface with-border no-text-shadow"
             :to="{ name: 'MyListings' }"
           >
             <span class="material-icons-round">account_box</span>
