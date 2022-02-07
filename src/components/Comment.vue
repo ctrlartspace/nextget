@@ -7,6 +7,7 @@
         </p>
 
         <p>{{ comment.text }}</p>
+        <div class="offset-2px"></div>
         <div class="d-inline secondary-text">
           <p>{{ formatDate(comment.created_at) + " " }}</p>
           <div v-if="comment.is_owner">

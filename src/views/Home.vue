@@ -82,8 +82,8 @@
           class="btn surface accent-text with-border no-text-shadow full-width"
           :to="{ name: 'CreateListing' }"
         >
-          <span class="material-icons-round">edit</span>
-          <p><strong>Создать объявление</strong></p>
+          <span class="material-icons-round">add</span>
+          <p>Создать объявление</p>
         </router-link>
       </div>
     </div>
