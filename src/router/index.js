@@ -61,7 +61,7 @@ const routes = [
     name: 'Item',
     component: Item,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
       scrollTop: true
     }
   },
