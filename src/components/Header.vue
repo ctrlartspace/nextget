@@ -3,6 +3,17 @@
     <div class="nav colored padding rounded">
       <div class="row gx-2 d-flex">
         <div
+          v-if="IS_AUTHENTIFICATED"
+          class="d-flex d-sm-none col-auto d-flex align-items-center"
+        >
+          <router-link
+            class="btn surface with-border no-text-shadow"
+            :to="{ name: 'CreateListing' }"
+          >
+            <span class="material-icons-round">edit</span>
+          </router-link>
+        </div>
+        <div
           class="
             col
             d-flex
@@ -50,7 +61,7 @@
         </div> -->
         <div
           v-if="IS_AUTHENTIFICATED"
-          class="d-none d-sm-flex col-auto d-flex align-items-center"
+          class="col-auto d-flex align-items-center"
         >
           <router-link
             class="btn surface with-border no-text-shadow"

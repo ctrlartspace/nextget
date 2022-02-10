@@ -73,7 +73,7 @@
           </div>
         </div>
       </div>
-      <div class="offset-4px" />
+      <!-- <div class="d-block d-sm-none offset-4px" />
       <div
         v-if="!isSearchActivated"
         class="d-block d-sm-none padding colored rounded section"
@@ -83,9 +83,9 @@
           :to="{ name: 'CreateListing' }"
         >
           <span class="material-icons-round">add</span>
-          <p>Создать объявление</p>
+          <p><strong>Создать объявление</strong></p>
         </router-link>
-      </div>
+      </div> -->
     </div>
     <div class="col-md-7">
       <div v-if="!getListings">
