@@ -4,7 +4,6 @@
       <div class="d-none d-sm-block padding colored rounded section">
         <div class="with-icon primary-text">
           <span class="material-icons-round">trending_up</span>
-          <h5>Популярные запросы</h5>
         </div>
         <div class="offset-4px" />
         <p>
@@ -30,7 +29,7 @@
               :disabled="getProducts.length == 0"
             >
               <option value="0" selected>
-                {{ getProducts.length > 0 ? "Выберите модель" : "Загрузка" }}
+                {{ getProducts.length > 0 ? "Выбрать модель" : "Загрузка" }}
               </option>
               <option
                 v-for="product in getProducts"
@@ -41,8 +40,13 @@
               </option>
             </select>
             <div class="offset-2px" />
-            <select v-model.trim="selectData.storage">
-              <option value="0" selected>Память</option>
+            <select
+              v-model.trim="selectData.storage"
+              :disabled="getStorages.length == 0"
+            >
+              <option value="0" selected>
+                {{ getStorages.length > 0 ? "Память" : "Загрузка" }}
+              </option>
               <option
                 v-for="storage in productData.storages"
                 :value="{ id: storage.id, value: storage.value }"
@@ -52,8 +56,13 @@
               </option>
             </select>
             <div class="offset-2px" />
-            <select v-model.trim="selectData.color">
-              <option value="0" selected>Цвет</option>
+            <select
+              v-model.trim="selectData.color"
+              :disabled="getColors.length == 0"
+            >
+              <option value="0" selected>
+                {{ getColors.length > 0 ? "Цвет" : "Загрузка" }}
+              </option>
               <option
                 v-for="color in productData.colors"
                 :value="{ id: color.id, value: color.value }"
@@ -63,6 +72,22 @@
               </option>
             </select>
             <div class="offset-2px" />
+            <select
+              v-model.trim="selectData.condition"
+              :disabled="getConditions.length == 0"
+            >
+              <option value="0" selected>
+                {{ getConditions.length > 0 ? "Состояние" : "Загрузка" }}
+              </option>
+              <option
+                v-for="condition in getConditions"
+                :value="{ id: condition.id, value: condition.value }"
+                :key="condition.id"
+              >
+                {{ condition.value }}
+              </option>
+            </select>
+            <div class="offset-6px" />
             <button
               type="submit"
               class="btn primary full-width"
@@ -105,6 +130,7 @@
           </div>
           <div class="offset-4px"></div>
         </div>
+
         <div
           v-if="getListings.length > 0"
           class="row d-flex justify-content-center"
@@ -139,6 +165,7 @@
             </component>
           </div>
         </div>
+
         <div v-else class="padding section">
           <div class="secondary-text text-center center">
             <h5>Ничего не найдено</h5>
@@ -164,6 +191,7 @@ export default {
         product: 0,
         storage: 0,
         color: 0,
+        condition: 0,
       },
       productData: {
         storages: [],
@@ -174,6 +202,9 @@ export default {
   computed: {
     ...mapGetters([
       "getProducts",
+      "getColors",
+      "getStorages",
+      "getConditions",
       "getListings",
       "getProductModels",
       "getListingsByProductModel",
@@ -186,11 +217,20 @@ export default {
         model: this.$route.query.model ? this.$route.query.model : 0,
         storage: this.$route.query.storage ? this.$route.query.storage : 0,
         color: this.$route.query.color ? this.$route.query.color : 0,
+        condition: this.$route.query.condition
+          ? this.$route.query.condition
+          : 0,
       };
     },
   },
   methods: {
-    ...mapActions(["fetchProducts", "fetchListings"]),
+    ...mapActions([
+      "fetchProducts",
+      "fetchColors",
+      "fetchStorages",
+      "fetchConditions",
+      "fetchListings",
+    ]),
     getFilterParams(isNextPage) {
       const filter = {};
       filter.page = isNextPage
@@ -202,11 +242,16 @@ export default {
         filter.storage = this.getQueryParams.storage;
       if (this.getQueryParams.color > 0)
         filter.color = this.getQueryParams.color;
+      if (this.getQueryParams.condition > 0)
+        filter.condition = this.getQueryParams.condition;
       return filter;
     },
     displaySearch() {
       this.isSearchActivated = true;
       this.fetchProducts();
+      this.fetchColors();
+      this.fetchStorages().then(() => this.updateProductData());
+      this.fetchConditions();
     },
     onSearch() {
       this.isSearchActivated = false;
@@ -215,21 +260,24 @@ export default {
         model: this.selectData.product.id,
         storage: this.selectData.storage.id,
         color: this.selectData.color.id,
+        condition: this.selectData.condition.id,
       };
       this.$router.push({ name: "Home", query: query });
     },
     updateProductData() {
       if (this.selectData.product == 0 || this.selectData.product.id == 0) {
-        return;
+        this.productData.storages = this.getStorages;
+        this.productData.colors = this.getColors;
+      } else {
+        this.productData.storages = this.getProducts.find(
+          (product) => product.id == this.selectData.product.id
+        ).storages;
+        this.productData.colors = this.getProducts.find(
+          (product) => product.id == this.selectData.product.id
+        ).colors;
+        // this.selectData.storage = this.productData.storages[0];
+        // this.selectData.color = this.productData.colors[0];
       }
-      this.productData.storages = this.getProducts.find(
-        (product) => product.id == this.selectData.product.id
-      ).storages;
-      this.productData.colors = this.getProducts.find(
-        (product) => product.id == this.selectData.product.id
-      ).colors;
-      // this.selectData.storage = this.productData.storages[0];
-      // this.selectData.color = this.productData.colors[0];
     },
   },
   async created() {

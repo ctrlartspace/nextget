@@ -137,7 +137,7 @@
               :disabled="getProducts.length == 0"
             >
               <option value="0" selected disabled>
-                {{ getProducts.length > 0 ? "Выберите модель" : "Загрузка" }}
+                {{ getProducts.length > 0 ? "Выбрать модель" : "Загрузка" }}
               </option>
               <option
                 v-for="product in getProducts"

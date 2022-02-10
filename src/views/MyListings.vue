@@ -17,30 +17,8 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div
-        class="
-          row
-          gx-0
-          padding
-          colored
-          rounded-top
-          section
-          d-flex
-          align-items-center
-        "
-      >
-        <div class="col">
-          <h5>Мои объявления</h5>
-        </div>
-        <div class="col-auto">
-          <router-link
-            class="btn primary with-shadow"
-            :to="{ name: 'CreateListing' }"
-          >
-            <span class="material-icons-round">add</span>
-            <p>Добавить</p>
-          </router-link>
-        </div>
+      <div class="padding colored rounded-top section">
+        <h5>Мои объявления</h5>
       </div>
       <!-- <div class="line"></div> -->
       <div v-if="getListings">
@@ -49,12 +27,29 @@
           class="padding colored rounded-bottom"
         >
           <Listings :listings="getListings" />
+          <router-link
+            class="btn primary with-shadow full-width"
+            :to="{ name: 'CreateListing' }"
+          >
+            <span class="material-icons-round">add</span>
+            <p>Добавить</p>
+          </router-link>
         </div>
         <div
           v-else
-          class="padding colored rounded-bottom secondary-text center"
+          class="padding colored rounded-bottom secondary-text"
         >
-          <p>Нет объявлений ☹</p>
+          <div class="text-center">
+            <p>Нет объявлений ☹</p>
+          </div>
+          <div class="offset-6px"></div>
+          <router-link
+            class="btn primary with-shadow full-width"
+            :to="{ name: 'CreateListing' }"
+          >
+            <span class="material-icons-round">add</span>
+            <p>Добавить</p>
+          </router-link>
         </div>
       </div>
       <div v-else>

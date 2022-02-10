@@ -15,6 +15,32 @@ export default {
         return Promise.reject(error)
       })
     },
+    async fetchColors({ commit }) {
+      return axionInstance({
+        method: 'get',
+        url: 'colors'
+      }).then(response => {
+        console.log(response.data.colors);
+        commit('SET_COLORS', response.data.colors)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error)
+      })
+    },
+    async fetchStorages({ commit }) {
+      return axionInstance({
+        method: 'get',
+        url: 'storages'
+      }).then(response => {
+        console.log(response.data.storages);
+        commit('SET_STORAGES', response.data.storages)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error)
+      })
+    },
     async fetchConditions({ commit }) {
       return axionInstance({
         method: 'get',
@@ -65,6 +91,12 @@ export default {
     SET_PRODUCTS: (state, products) => {
       state.products = products
     },
+    SET_COLORS: (state, colors) => {
+      state.colors = colors
+    },
+    SET_STORAGES: (state, storages) => {
+      state.storages = storages
+    },
     SET_CONDITIONS: (state, conditions) => {
       state.conditions = conditions
     },
@@ -78,12 +110,16 @@ export default {
   },
   state: {
     products: [],
+    colors: [],
+    storages: [],
     conditions: [],
     equipments: [],
     average_price: null,
   },
   getters: {
     getProducts: (state) => state.products.reverse(),
+    getColors: (state) => state.colors,
+    getStorages: (state) => state.storages,
     getConditions: (state) => state.conditions,
     getEquipments: (state) => state.equipments,
     getAveragePrice: (state) => state.average_price

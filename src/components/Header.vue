@@ -60,7 +60,6 @@
           </button>
         </div> -->
         <div
-          v-if="IS_AUTHENTIFICATED"
           class="col-auto d-flex align-items-center"
         >
           <router-link

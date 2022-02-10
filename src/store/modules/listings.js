@@ -7,7 +7,7 @@ export default {
       commit('SET_PAGINATION', null)
       return axionInstance({
         method: 'get',
-        url: `listings?page=${query_params.page}&model=${query_params.model}&storage=${query_params.storage}&color=${query_params.color}`
+        url: `listings?page=${query_params.page}&model=${query_params.model}&storage=${query_params.storage}&color=${query_params.color}&condition=${query_params.condition}`
       }).then(response => {
         commit('SET_LISTINGS', response.data.listings)
         commit('SET_PAGINATION', response.data.pagination)
