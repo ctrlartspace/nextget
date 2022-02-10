@@ -11,7 +11,7 @@
           <strong>1. Iphone 12 Mini </strong>
         </p>
       </div>
-      <div class="offset-4px" />
+      <div class="d-none d-sm-block offset-4px" />
       <div class="padding colored rounded section">
         <div class="input-data">
           <button

@@ -1,6 +1,6 @@
 <template >
   <header>
-    <div class="nav padding rounded-bottom">
+    <div class="nav colored padding rounded">
       <div class="row gx-2 d-flex">
         <div
           class="
@@ -19,7 +19,18 @@
             <span class="material-icons-round">view_stream</span>
           </router-link>
         </div> -->
-
+        <div
+          v-if="IS_AUTHENTIFICATED"
+          class="d-none d-sm-flex col-auto d-flex align-items-center"
+        >
+          <router-link
+            class="btn surface bordered no-text-shadow"
+            :to="{ name: 'Home' }"
+          >
+            <p><strong>Главная</strong></p>
+            <!-- <span class="material-icons-round">edit</span> -->
+          </router-link>
+        </div>
         <div
           v-if="IS_AUTHENTIFICATED"
           class="d-none d-sm-flex col-auto d-flex align-items-center"
