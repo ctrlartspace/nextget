@@ -182,16 +182,14 @@
         <div class="with-icon">
           <span class="material-icons-round">comment</span>
           <h5>
-            Сообщения{{
+            Комментарии{{
               getListingComments.length == 0
                 ? ""
-                : ": " + getListingComments.length
+                : " - " + getListingComments.length
             }}
           </h5>
         </div>
         <div class="offset-6px"></div>
-        <!-- <div class="line"></div> -->
-        <!-- <div class="offset-6px"></div> -->
         <div v-if="getListingComments.length == 0" class="secondary-text">
           <p>
             <i>Возникли вопросы? Можете задать их тут</i>
@@ -238,7 +236,6 @@
 <script>
 import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
-import moment from "moment";
 import ImageScroller from "@/components/ImageScroller";
 import Comment from "@/components/Comment";
 import UserView from "@/components/UserView";
@@ -301,12 +298,6 @@ export default {
           this.isClicked.deleteListing = false;
         });
     },
-    formatDate(value) {
-      if (value) {
-        return moment(String(value)).locale("ru").format("D MMM h:mm");
-      }
-    },
-
     handleFiles(files) {
       this.files = files;
     },

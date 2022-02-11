@@ -18,7 +18,7 @@
               {{ (Math.random() * (3 - 5) + 5).toFixed(1) + " • " }}
             </strong>
           </span>
-          {{ "на сайте с " + formatDate(user.created_date) }}
+          {{ "на сайте с " + formatDateDay(user.created_date) }}
         </p>
       </div>
     </div>

@@ -33,12 +33,17 @@ export default {
     },
     formatDate(value) {
       if (value) {
-        return moment(String(value)).locale("ru").format("D MMM h:mm");
+        return moment(String(value)).locale("ru").format("D MMM HH:mm");
+      }
+    },
+    formatDateDay(value) {
+      if (value) {
+        return moment(String(value)).locale("ru").format("D MMM");
       }
     },
     fromNow(value) {
       if (value) {
-        return moment(String(value)).locale("ru-RU").fromNow();
+        return moment(String(value)).locale("ru").fromNow();
       }
     }
   }

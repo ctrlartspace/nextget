@@ -21,7 +21,6 @@
                 id="phone_number"
                 v-model="formatPhone"
                 placeholder="701 000 00 01"
-                maxlength="10"
               />
             </div>
 
