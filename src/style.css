@@ -558,33 +558,6 @@ input:focus {
   margin-bottom: 0;
 }
 
-/* _TAGS */
-.tags .item {
-  display: flex;
-  /* font-family: Roboto Mono, sans-serif; */
-  align-items: center;
-  border-radius: var(--border-radius);
-}
-
-.tags span, .tags p {
-  display: flex;
-  font-size: var(--text-size-medium);
-  font-weight: 700;
-
-}
-
-.tags .item .date {
-  font-size: var(--text-size-medium);
-  font-weight: 400;
-}
-
-.item span {
-  padding-left: 4px;
-}
-
-.item span:first-child {
-  padding-left: 0px;
-}
 
 /* IMAGE */
 .scroller {
@@ -630,8 +603,8 @@ input:focus {
 }
 
 .box-69 {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
 }
 
 .scroller .image {

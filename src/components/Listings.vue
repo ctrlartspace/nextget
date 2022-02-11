@@ -46,24 +46,28 @@
             }}
           </p>
         </div>
-        <div class="offset-8px"></div>
-        <div class="tags">
-          <div class="item surface-text">
-            <p>
-              <span class="accent-text">
-                {{ numberWithCommas(listing.price) + " KZT" }}
-              </span>
-              <span :class="getConditionColor(listing.condition_state.id)">
-                {{ listing.condition_state.value }}
-              </span>
-              <span>
-                {{ listing.battery_health + "%" }}
-              </span>
-              <span class="date secondary-text">
-                {{ formatDate(listing.created_date) }}
-              </span>
-            </p>
-          </div>
+        <div class="offset-2px"></div>
+        <div class="d-inline">
+          Состояние:
+          <span :class="getConditionColor(listing.condition_state.id)">
+            {{ listing.condition_state.value + " " }}
+          </span>
+          <span>
+            {{ listing.battery_health + "% " }}
+          </span>
+        </div>
+        <div class="offset-2px"></div>
+        <div class="d-inline">
+          <p>
+            <span class="accent-text">
+              <strong>
+                {{ numberWithCommas(listing.price) + " KZT " }}
+              </strong>
+            </span>
+            <span class="date secondary-text">
+              {{ fromNow(listing.created_date) }}
+            </span>
+          </p>
         </div>
       </div>
     </div>

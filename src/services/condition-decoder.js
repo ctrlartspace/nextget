@@ -36,5 +36,10 @@ export default {
         return moment(String(value)).locale("ru").format("D MMM h:mm");
       }
     },
+    fromNow(value) {
+      if (value) {
+        return moment(String(value)).locale("ru-RU").fromNow();
+      }
+    }
   }
 }

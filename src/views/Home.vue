@@ -1,16 +1,6 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
     <div class="col-md-5">
-      <div class="d-none d-sm-block padding colored rounded section">
-        <div class="with-icon primary-text">
-          <span class="material-icons-round">trending_up</span>
-        </div>
-        <div class="offset-4px" />
-        <p>
-          <strong>1. Iphone 12 Mini </strong>
-        </p>
-      </div>
-      <div class="d-none d-sm-block offset-4px" />
       <div class="padding colored rounded section">
         <div class="input-data">
           <button

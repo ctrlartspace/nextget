@@ -4,12 +4,17 @@
       <div class="row gx-4 gy-2">
         <div class="col-12 d-flex justify-content-center">
           <div class="row gx-2 gy-2 d-flex justify-content-center">
-            <div v-if="IS_AUTHENTIFICATED" class="col-auto">
+            <div class="col-auto">
+              <router-link class="" :to="{ name: 'Home' }">
+                <p>Главная</p>
+              </router-link>
+            </div>
+            <div class="col-auto">
               <router-link class="" :to="{ name: 'MyListings' }">
                 <p>Личный кабинет</p>
               </router-link>
             </div>
-            <div v-if="IS_AUTHENTIFICATED" class="col-auto">
+            <div class="col-auto">
               <router-link class="" :to="{ name: 'CreateListing' }">
                 <p>Создать объявление</p>
               </router-link>
