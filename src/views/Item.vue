@@ -126,7 +126,7 @@
             </div>
           </div>
           <div v-if="!getListing.is_owner" class="col-auto">
-            <button type="button" class="btn secondary-text">
+            <button type="button" class="btn secondary-text no-text-shadow">
               <span class="material-icons-round">favorite</span>
             </button>
           </div>

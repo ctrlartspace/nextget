@@ -49,7 +49,7 @@
         <div class="offset-2px"></div>
         <div class="d-inline">
           Состояние:
-          <span :class="getConditionColor(listing.condition_state.id)">
+          <span class="surface-text">
             {{ listing.condition_state.value + " " }}
           </span>
           <span>
