@@ -23,26 +23,13 @@
       <!-- <div class="line"></div> -->
       <div v-if="getListings">
         <div
-          v-if="getListings.length > 0"
-          class="padding colored rounded-bottom"
+          class="padding-no-top colored rounded-bottom"
         >
-          <Listings :listings="getListings" />
-          <router-link
-            class="btn primary with-shadow full-width"
-            :to="{ name: 'CreateListing' }"
-          >
-            <span class="material-icons-round">add</span>
-            <p>Добавить</p>
-          </router-link>
-        </div>
-        <div
-          v-else
-          class="padding colored rounded-bottom secondary-text"
-        >
-          <div class="text-center">
-            <p>Нет объявлений ☹</p>
+          <div v-if="getListings.length <= 0" class="text-center secondary-text">
+            <p>Нет объявлений</p>
+            <div class="offset-6px"></div>
           </div>
-          <div class="offset-6px"></div>
+          <Listings :listings="getListings" v-else/>
           <router-link
             class="btn primary with-shadow full-width"
             :to="{ name: 'CreateListing' }"
@@ -53,7 +40,7 @@
         </div>
       </div>
       <div v-else>
-        <div class="padding colored rounded-bottom section">
+        <div class="padding-no-top colored rounded-bottom section">
           <ListingsSkeleton />
           <ListingsSkeleton />
         </div>
