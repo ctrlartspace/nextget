@@ -26,7 +26,7 @@
   --surface-secondary-color: #16181d;
   --border-color: #191a1f;
   --primary-color: #3D5AFE;
-  --secondary-color: #616161;
+  --secondary-color: #434756;
   --accent-color: #00C853;
   --error-color: #E53935;
   --on-background-color: #E0E0E0;
@@ -378,6 +378,11 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+.full-rounded {
+  border-radius: 100px;
+}
+
 
 /* _HELP */
 .help-label {

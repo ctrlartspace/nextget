@@ -6,6 +6,7 @@ import Register from '@/views/Register.vue'
 import Item from '@/views/Item.vue'
 import CreateListing from '@/views/CreateListing.vue'
 import store from '@/store'
+import smoothscroll from 'smoothscroll-polyfill';
 
 
 const routes = [
@@ -82,6 +83,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  smoothscroll.polyfill();
   const isScrollPage = to.matched.some((record) => record.meta.scrollTop) && window.screen.width < 768 // проверяем нужные страницы и мобилка ли это
   const scrollOffset = isScrollPage ? 20 * window.innerHeight / 100 : 0 // двигаем на 20vh
   window.document.getElementById('scrollable-content').scrollTo({ top: scrollOffset, behavior: "smooth" }) 

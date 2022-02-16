@@ -220,7 +220,7 @@
           <div class="col-auto">
             <button
               type="button"
-              class="btn primary with-border"
+              class="btn primary with-border full-rounded"
               @click="sendComment"
               :disabled="isRequest.sendComment.loading"
             >

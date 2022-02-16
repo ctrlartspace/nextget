@@ -7,7 +7,7 @@
           class="d-flex d-sm-none col-auto d-flex align-items-center"
         >
           <router-link
-            class="btn surface with-border no-text-shadow"
+            class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'CreateListing' }"
           >
             <span class="material-icons-round">edit</span>
@@ -63,7 +63,7 @@
           class="col-auto d-flex align-items-center"
         >
           <router-link
-            class="btn surface with-border no-text-shadow"
+            class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'MyListings' }"
           >
             <span class="material-icons-round">account_box</span>

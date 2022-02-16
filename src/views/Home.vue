@@ -182,7 +182,7 @@
           <div class="col-auto d-flex justify-content-start align-items-center">
             <component
               v-if="getPagination.has_prev"
-              class="btn surface with-border no-text-shadow"
+              class="btn surface with-border no-text-shadow full-rounded"
               :is="!getPagination.has_prev ? 'button' : 'router-link'"
               :disabled="!getPagination.has_prev"
               :to="{ name: 'Home', query: getFilterParams(false) }"
@@ -200,7 +200,7 @@
           <div class="col-auto d-flex justify-content-end align-items-center">
             <component
               v-if="getPagination.has_next"
-              class="btn primary no-text-shadow"
+              class="btn primary no-text-shadow full-rounded"
               :is="!getPagination.has_next ? 'button' : 'router-link'"
               :disabled="!getPagination.has_next"
               :to="{ name: 'Home', query: getFilterParams(true) }"

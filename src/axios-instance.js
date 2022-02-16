@@ -65,7 +65,7 @@ const refreshAuthLogic = () => axiosInstance({
 createAuthRefreshInterceptor(
   axiosInstance,
   refreshAuthLogic,
-  // { pauseInstanceWhileRefreshing : true } //например если сразу выполняются 3 запроса и они возрвщают ошибку 401, эта опция обновляет токен и перезапускает только 1-й запрос
+  { pauseInstanceWhileRefreshing : true } //например если сразу выполняются 3 запроса и они возрвщают ошибку 401, эта опция обновляет токен и перезапускает только 1-й запрос
   // но если убрать, почему-то перестает работать refersh после истечения refresh
 );
 
