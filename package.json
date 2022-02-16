@@ -16,6 +16,7 @@
     "moment": "^2.29.1",
     "sass-loader": "^12.1.0",
     "skeleton-css": "^2.0.4",
+    "smoothscroll-polyfill": "^0.4.4",
     "vue": "^3.0.0",
     "vue-pinch-zoom": "^1.0.1",
     "vue-router": "^4.0.10",
