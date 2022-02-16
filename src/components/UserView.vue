@@ -3,7 +3,7 @@
     <div class="col-auto d-flex align-items-center">
       <div class="image box-48">
         <img
-          :src="`https://www.tinygraphs.com/squares/${user.phone}?theme=duskfalling&numcolors=3&size=96`"
+          :src="`https://www.tinygraphs.com/squares/${user.id}?theme=bythepool&numcolors=3&size=96`"
         />
       </div>
     </div>
