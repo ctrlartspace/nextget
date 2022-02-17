@@ -15,37 +15,41 @@
           <div v-else>
             <div class="row gx-2 gy-2 d-flex align-items-center">
               <div class="col">
-                <select
-                  @change="updateProductData()"
-                  v-model.trim="selectData.product"
-                  :disabled="getProducts.length == 0"
-                >
-                  <option value="0" selected>
-                    {{ getProducts.length > 0 ? "Выбрать модель" : "Загрузка" }}
-                  </option>
-                  <option
-                    v-for="product in getProducts"
-                    :value="{ id: product.id, value: product.name }"
-                    :key="product.id"
+                <div class="with-action">
+                  <select
+                    @change="updateProductData()"
+                    v-model.trim="selectData.product"
+                    :disabled="getProducts.length == 0"
                   >
-                    {{ product.name }}
-                  </option>
-                </select>
-              </div>
-              <div v-if="selectData.product != 0" class="col-auto">
-                <button
-                  type="button"
-                  class="btn surface no-text-shadow"
-                  @click="selectData.product = 0"
-                >
-                  <span class="material-icons-round">clear</span>
-                </button>
+                    <option value="0" selected>
+                      {{
+                        getProducts.length > 0 ? "Выбрать модель" : "Загрузка"
+                      }}
+                    </option>
+                    <option
+                      v-for="product in getProducts"
+                      :value="{ id: product.id, value: product.name }"
+                      :key="product.id"
+                    >
+                      {{ product.name }}
+                    </option>
+                  </select>
+                  <button
+                    v-if="selectData.product != 0"
+                    type="button"
+                    class="btn transparent no-text-shadow"
+                    @click="selectData.product = 0"
+                  >
+                    <span class="material-icons-round">clear</span>
+                  </button>
+                </div>
               </div>
             </div>
             <div class="offset-2px" />
             <div class="row gx-2 gy-2 d-flex align-items-center">
               <div class="col">
                 <select
+                  @change="updateProductData()"
                   v-model.trim="selectData.storage"
                   :disabled="getStorages.length == 0"
                 >
@@ -76,6 +80,7 @@
             <div class="row gx-2 gy-2 d-flex align-items-center">
               <div class="col">
                 <select
+                  @change="updateProductData()"
                   v-model.trim="selectData.color"
                   :disabled="getColors.length == 0"
                 >
@@ -106,6 +111,7 @@
             <div class="row gx-2 gy-2 d-flex align-items-center">
               <div class="col">
                 <select
+                  @change="updateProductData()"
                   v-model.trim="selectData.condition"
                   :disabled="getConditions.length == 0"
                 >
@@ -137,7 +143,7 @@
               class="btn primary full-width"
               @click="onSearch()"
             >
-              <p>Найти</p>
+              <p>Показать ({{ getListingsCount }})</p>
             </button>
           </div>
         </div>
@@ -250,6 +256,7 @@ export default {
       "getStorages",
       "getConditions",
       "getListings",
+      "getListingsCount",
       "getProductModels",
       "getListingsByProductModel",
       "getAveragePrice",
@@ -274,6 +281,7 @@ export default {
       "fetchStorages",
       "fetchConditions",
       "fetchListings",
+      "fetchListingsCount",
     ]),
     getFilterParams(isNextPage) {
       const filter = {};
@@ -309,6 +317,7 @@ export default {
       this.$router.push({ name: "Home", query: query });
     },
     updateProductData() {
+      this.fetchListingsCount(this.getQueryParams);
       if (this.selectData.product == 0 || this.selectData.product.id == 0) {
         this.productData.storages = this.getStorages;
         this.productData.colors = this.getColors;

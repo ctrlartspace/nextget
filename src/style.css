@@ -474,7 +474,10 @@ a {
   size: 6;
 }
 
-.input-data select, input, textarea, option {
+.input-data select,
+.input-data input,
+.input-data textarea,
+.input-data option {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -538,6 +541,18 @@ input:focus {
 .no-wrap {
   white-space: nowrap;
   overflow: hidden;
+}
+
+.with-action {
+  position: relative;
+}
+
+.with-action .btn {
+  position: absolute;
+  
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* _LISTING */
@@ -604,7 +619,7 @@ input:focus {
   object-fit: cover;
   text-align: center;
   cursor: pointer;
-  
+
 }
 
 .box-24 {

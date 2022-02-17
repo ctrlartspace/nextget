@@ -19,6 +19,21 @@ export default {
         return Promise.reject(error)
       })
     },
+    async fetchListingsCount({ commit }, query_params) {
+      commit('SET_LISTINGS_COUNT', null)
+      return axionInstance({
+        method: 'get',
+        url: `listings/count?model=${query_params.model}&storage=${query_params.storage}&color=${query_params.color}&condition=${query_params.condition}`
+      }).then(response => {
+        commit('SET_LISTINGS_COUNT', response.data.listings_count)
+        console.log(response.data.listings_count)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        commit('SET_LISTINGS_COUNT', null)
+        return Promise.reject(error)
+      })
+    },
     async fetchMyListings({ commit }) {
       commit('SET_LISTINGS', null)
       return axionInstance({
@@ -141,8 +156,10 @@ export default {
   },
   mutations: {
     SET_LISTINGS: (state, listings) => {
-      console.log(listings);
       state.listings = listings
+    },
+    SET_LISTINGS_COUNT: (state, listings_count) => {
+      state.listings_count = listings_count
     },
     SET_LISTING: (state, listing) => {
       state.listing = listing
@@ -159,6 +176,7 @@ export default {
   },
   state: {
     listings: null,
+    listings_count: 0,
     listing: null,
     listing_images: [],
     listing_comments: [],
@@ -166,6 +184,7 @@ export default {
   },
   getters: {
     getListings: (state) => state.listings,
+    getListingsCount: (state) => state.listings_count,
     getListingsByProductModel: (state) => (product_id) => state.listings.filter((elem) => elem.product.id === product_id),
     getListing: (state) => state.listing,
     getProductModels: (state) => state.listings.filter((elem, index) => state.listings.findIndex(obj => obj.product.id == elem.product.id) === index),
