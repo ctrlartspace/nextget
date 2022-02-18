@@ -194,19 +194,15 @@
               </option>
             </select>
             <div class="offset-2px" />
-            <select
-              v-model.trim="selectData.battery_health"
+            <input
+              type="text"
+              v-model="getBatteryHealth"
+              placeholder="Батарея - %"
+              step="10"
+              pattern="[0-9]*"
+              inputmode="numeric"
               :disabled="!isProductSelected"
-            >
-              <option value="0" selected disabled>Батарея</option>
-              <option
-                v-for="percent in Array.from(Array(100).keys()).reverse()"
-                :value="percent + 1"
-                :key="percent + 1"
-              >
-                {{ percent + 1 }}%
-              </option>
-            </select>
+            />
             <div class="offset-2px" />
             <textarea
               name="description"
@@ -244,7 +240,7 @@
               type="text"
               v-model="getCurrency"
               placeholder="Цена"
-              step="500"
+              step="5"
               pattern="[0-9]*"
               inputmode="numeric"
               :disabled="!isProductSelected"
@@ -303,9 +299,22 @@ export default {
     isProductSelected() {
       return this.selectData.product != 0;
     },
+    getBatteryHealth: {
+      get: function () {
+        return this.selectData.battery_health == ""
+          ? ""
+          : this.selectData.battery_health;
+      },
+      set: function (newValue) {
+        this.selectData.battery_health = null;
+        this.selectData.battery_health = +newValue.replaceAll(/\D/g, "");
+      },
+    },
     getCurrency: {
       get: function () {
-        return NumberFormat.format(this.selectData.price);
+        return this.selectData.price == ""
+          ? ""
+          : NumberFormat.format(this.selectData.price);
       },
       set: function (newValue) {
         this.selectData.price = null;
