@@ -15,6 +15,19 @@ export default {
         return Promise.reject(error)
       })
     },
+    async fetchProperties({ commit }) {
+      return axionInstance({
+        method: 'get',
+        url: 'properties'
+      }).then(response => {
+        console.log(response.data.properties);
+        commit('SET_PROPERTIES', response.data.properties)
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error);
+        return Promise.reject(error)
+      })
+    },
     async fetchColors({ commit }) {
       return axionInstance({
         method: 'get',
@@ -91,6 +104,9 @@ export default {
     SET_PRODUCTS: (state, products) => {
       state.products = products
     },
+    SET_PROPERTIES: (state, properties) => {
+      state.properties = properties
+    },
     SET_COLORS: (state, colors) => {
       state.colors = colors
     },
@@ -110,6 +126,7 @@ export default {
   },
   state: {
     products: [],
+    properties: [],
     colors: [],
     storages: [],
     conditions: [],
@@ -118,6 +135,7 @@ export default {
   },
   getters: {
     getProducts: (state) => state.products.reverse(),
+    getProperties: (state) => state.properties,
     getColors: (state) => state.colors,
     getStorages: (state) => state.storages,
     getConditions: (state) => state.conditions,

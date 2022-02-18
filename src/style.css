@@ -17,6 +17,7 @@
   --text-size-large: 18px;
   --text-size-medium: 16px;
   --text-size-small: 14px;
+  --text-size-very-small: 12px;
   --border-radius: 4px;
 }
 
@@ -39,6 +40,7 @@
   --text-size-large: 18px;
   --text-size-medium: 16px;
   --text-size-small: 14px;
+  --text-size-very-small: 12px;
   --border-radius: 4px;
 }
 
@@ -161,19 +163,6 @@ a {
   }
 }
 
-/* _SIZE */
-.text-small p {
-  font-size: var(--text-size-small);
-}
-
-.text-large p {
-  font-size: var(--text-size-large);
-}
-
-.text-large span {
-  font-size: var(--text-size-very-large);
-}
-
 /* _OFFSET */
 .offset-2px {
   padding: 2px 0;
@@ -214,6 +203,10 @@ a {
 /* DISPLAY */
 .d-inline * {
   display: inline;
+}
+
+.d-block * {
+  display: block;
 }
 
 .center {
@@ -549,7 +542,7 @@ input:focus {
 
 .with-action .btn {
   position: absolute;
-  
+
   right: 0;
   margin-left: auto;
   margin-right: auto;
@@ -762,6 +755,23 @@ input:focus {
 
 .condition7 {
   color: #E53935;
+}
+
+/* _SIZE */
+.text-very-small p {
+  font-size: var(--text-size-very-small);
+}
+
+.text-small p {
+  font-size: var(--text-size-small);
+}
+
+.text-large p {
+  font-size: var(--text-size-large);
+}
+
+.text-large span {
+  font-size: var(--text-size-very-large);
 }
 
 /* _SKELETON */

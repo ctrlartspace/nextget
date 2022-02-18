@@ -43,9 +43,14 @@
             accept="image/*"
             @change="handleFiles"
           />
-          <label class="btn transparent text-large" for="files">
-            <span class="material-icons-round">add_a_photo</span>
-          </label>
+          <div class="d-block">
+            <label class="btn transparent text-large" for="files">
+              <span class="material-icons-round">add_a_photo</span>
+            </label>
+            <div class="text-very-small">
+              <p>Добавить</p>
+            </div>
+          </div>
         </div>
 
         <div

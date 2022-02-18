@@ -17,30 +17,6 @@
         </div>
       </div>
       <div
-        v-if="getListingImages.length == 0"
-        class="padding colored section"
-        :class="{
-          'no-border-bottom': getListing.is_owner,
-          'rounded-bottom': !getListing.is_owner,
-        }"
-      >
-        <div class="text-center">
-          <div v-if="getListing.is_owner" class="accent-text">
-            <p>
-              <i
-                >Загрузите фотографии, чтобы объявление стало доступно для
-                других пользователей</i
-              >
-            </p>
-          </div>
-          <div v-else class="secondary-text">
-            <p>
-              <i>Ожидаем фотографии от автора объявления</i>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
         v-if="getListingImages.length > 0 || getListing.is_owner"
         class="padding colored section no-border-bottom"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
@@ -126,7 +102,10 @@
             </div>
           </div>
           <div v-if="!getListing.is_owner" class="col-auto">
-            <button type="button" class="btn secondary-text no-text-shadow full-rounded">
+            <button
+              type="button"
+              class="btn secondary-text no-text-shadow full-rounded"
+            >
               <span class="material-icons-round">favorite</span>
             </button>
           </div>
@@ -141,6 +120,27 @@
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
+          </div>
+        </div>
+      </div>
+            <div
+        v-if="getListingImages.length == 0"
+        class="padding colored section"
+        :class="{
+          'no-border-bottom': getListing.is_owner,
+          'rounded-bottom': !getListing.is_owner,
+        }"
+      >
+        <div class="text-center">
+          <div v-if="getListing.is_owner" class="accent-text">
+            <p>
+              <i>Необходимо добавить фотографии</i>
+            </p>
+          </div>
+          <div v-else class="secondary-text">
+            <p>
+              <i>Ожидаем фотографии от автора объявления</i>
+            </p>
           </div>
         </div>
       </div>
