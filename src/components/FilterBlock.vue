@@ -31,7 +31,7 @@
           v-if="selectData.product != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.product = 0"
+          @click="selectData.product = 0, update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -60,7 +60,7 @@
           v-if="selectData.storage != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.storage = 0"
+          @click="selectData.storage = 0, update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -89,7 +89,7 @@
           v-if="selectData.color != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.color = 0"
+          @click="selectData.color = 0, update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -118,7 +118,7 @@
           v-if="selectData.condition != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.condition = 0"
+          @click="selectData.condition = 0, update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -131,10 +131,9 @@
         class="btn primary no-text-shadow full-width with-border"
         @click="search()"
       >
-        <p>Показать</p>
+        <p>Показать ({{ getListingsCount }})</p>
       </button>
     </div>
-    
   </div>
 </template>
 
@@ -159,26 +158,31 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getProducts", "getProperties"]),
-  },
-  methods: {
-    ...mapActions(["fetchProducts", "fetchProperties"]),
-    activate() {
-      this.isActive = true;
-      this.fetchProducts();
-      this.fetchProperties();
-    },
-    search() {
-      this.isActive = false;
-      const query = {
+    ...mapGetters(["getProducts", "getProperties", "getListingsCount"]),
+    getQuery() {
+      return {
         model: this.selectData.product.id,
         storage: this.selectData.storage.id,
         color: this.selectData.color.id,
         condition: this.selectData.condition.id,
       };
-      this.$router.push({ name: "Home", query: query });
+    },
+  },
+  methods: {
+    ...mapActions(["fetchProducts", "fetchProperties", "fetchListingsCount"]),
+    activate() {
+      this.isActive = true;
+      this.fetchProducts();
+      this.fetchProperties();
+      this.fetchListingsCount(this.getQuery);
+    },
+    search() {
+      this.isActive = false;
+
+      this.$router.push({ name: "Home", query: this.getQuery });
     },
     update() {
+      this.fetchListingsCount(this.getQuery);
       // if (this.selectData.product == 0 || this.selectData.product.id == 0) {
       //   this.productData.storages = this.getStorages;
       //   this.productData.colors = this.getColors;

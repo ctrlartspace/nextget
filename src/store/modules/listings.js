@@ -20,7 +20,7 @@ export default {
       })
     },
     async fetchListingsCount({ commit }, query_params) {
-      commit('SET_LISTINGS_COUNT', null)
+      // commit('SET_LISTINGS_COUNT', 0)
       return axionInstance({
         method: 'get',
         url: `listings/count?model=${query_params.model}&storage=${query_params.storage}&color=${query_params.color}&condition=${query_params.condition}`
@@ -30,7 +30,7 @@ export default {
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error);
-        commit('SET_LISTINGS_COUNT', null)
+        commit('SET_LISTINGS_COUNT', 0)
         return Promise.reject(error)
       })
     },
