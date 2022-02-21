@@ -80,11 +80,7 @@
         <div class="padding colored rounded section">
           <div class="row gx-0 d-flex align-items-center">
             <div class="col">
-              <div
-                v-if="currentStep == 1 && selectData.product == 0"
-                class="with-icon"
-              >
-                <span class="material-icons-round">edit</span>
+              <div v-if="currentStep == 1 && selectData.product == 0">
                 <h5>Новое объявление</h5>
               </div>
               <h5 v-else-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
@@ -197,7 +193,7 @@
             <input
               type="text"
               v-model="getBatteryHealth"
-              placeholder="Батарея - %"
+              placeholder="Батарея 0-100%"
               step="10"
               pattern="[0-9]*"
               inputmode="numeric"

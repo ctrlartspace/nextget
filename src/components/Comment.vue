@@ -17,7 +17,7 @@
               class="link secondary-text"
               @click="isClicked.deleteComment = true"
             >
-              <p>Удалить</p>
+              <p>• Удалить</p>
             </button>
             <button
               v-if="isClicked.deleteComment"

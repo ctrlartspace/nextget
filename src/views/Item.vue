@@ -132,9 +132,9 @@
         }"
       >
         <div class="text-center">
-          <div v-if="getListing.is_owner" class="accent-text">
+          <div v-if="getListing.is_owner" class="error-text">
             <p>
-              <i>Необходимо добавить фотографии</i>
+              <i>Добавьте фотографии устройства</i>
             </p>
           </div>
           <div v-else class="secondary-text">
@@ -185,7 +185,7 @@
             Комментарии{{
               getListingComments.length == 0
                 ? ""
-                : " - " + getListingComments.length
+                : " (" + getListingComments.length + ")"
             }}
           </h5>
         </div>
