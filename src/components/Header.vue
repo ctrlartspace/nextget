@@ -35,7 +35,7 @@
           class="d-none d-sm-flex col-auto d-flex align-items-center"
         >
           <router-link
-            class="btn surface bordered no-text-shadow"
+            class="btn surface secondary-text bordered no-text-shadow"
             :to="{ name: 'Home' }"
           >
             <p><strong>Главная</strong></p>
