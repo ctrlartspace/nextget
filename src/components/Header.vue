@@ -1,10 +1,10 @@
 <template >
   <header>
-    <div class="nav colored padding rounded">
+    <div class="nav v-padding rounded">
       <div class="row gx-2 d-flex">
         <div
           v-if="IS_AUTHENTIFICATED"
-          class="d-flex d-sm-none col-auto d-flex align-items-center"
+          class="d-flex col-auto d-flex align-items-center"
         >
           <router-link
             class="btn surface with-border no-text-shadow full-rounded"
@@ -18,47 +18,14 @@
             col
             d-flex
             align-items-center
-            justify-content-center justify-content-sm-start
+            justify-content-center
           "
         >
           <router-link :to="{ name: 'Home' }">
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
         </div>
-        <!-- <div class="col-auto d-flex align-items-center">
-          <router-link class="btn surface" :to="{ name: 'Home' }">
-            <span class="material-icons-round">view_stream</span>
-          </router-link>
-        </div> -->
-        <div
-          v-if="IS_AUTHENTIFICATED"
-          class="d-none d-sm-flex col-auto d-flex align-items-center"
-        >
-          <router-link
-            class="btn surface secondary-text bordered no-text-shadow"
-            :to="{ name: 'Home' }"
-          >
-            <p><strong>Главная</strong></p>
-            <!-- <span class="material-icons-round">edit</span> -->
-          </router-link>
-        </div>
-        <div
-          v-if="IS_AUTHENTIFICATED"
-          class="d-none d-sm-flex col-auto d-flex align-items-center"
-        >
-          <router-link
-            class="btn surface accent-text bordered no-text-shadow"
-            :to="{ name: 'CreateListing' }"
-          >
-            <p><strong>Создать</strong></p>
-            <!-- <span class="material-icons-round">edit</span> -->
-          </router-link>
-        </div>
-        <!-- <div class="d-none d-sm-flex col-auto d-flex align-items-center">
-          <button class="btn surface bordered" @click="updateTheme()">
-            <span class="material-icons-round">{{ !IS_DARK_THEME ? 'dark_mode' : 'light_mode' }}</span>
-          </button>
-        </div> -->
+
         <div
           class="col-auto d-flex align-items-center"
         >
@@ -69,14 +36,7 @@
             <span class="material-icons-round">account_box</span>
           </router-link>
         </div>
-        <!-- <div
-          v-if="!IS_AUTHENTIFICATED"
-          class="col-auto d-flex align-items-center"
-        >
-          <router-link class="btn primary" :to="{ name: 'Login' }">
-            <span class="material-icons-round">login</span>
-          </router-link>
-        </div> -->
+    
       </div>
     </div>
   </header>

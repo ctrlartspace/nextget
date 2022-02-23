@@ -1,14 +1,14 @@
 <template>
-  <div class="padding colored rounded section">
+  <div class="section">
     <button
       v-if="!isActive"
       type="submit"
-      class="btn secondary-text no-text-shadow full-width with-border"
+      class="btn surface secondary-text no-text-shadow full-width with-border full-rounded"
       @click="activate()"
     >
       <p>Поиск</p>
     </button>
-    <div v-else class="input-data">
+    <div v-else class="padding colored rounded input-data">
       <!-- Select Product -->
       <div class="with-action">
         <select

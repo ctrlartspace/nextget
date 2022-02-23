@@ -1,9 +1,9 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
-    <div class="col-md-5">
+    <div class="col-12">
       <FilterBlock />
     </div>
-    <div class="col-md-7">
+    <div class="col-12">
       <div v-if="!getListings">
         <div class="padding colored rounded section">
           <ListingsSkeleton />

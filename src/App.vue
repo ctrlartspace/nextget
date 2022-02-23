@@ -39,7 +39,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: normal;
-  max-width: 700px;
+  max-width: 400px;
   margin: 0 auto;
   overflow: hidden;
   padding: 0 14px;

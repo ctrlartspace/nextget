@@ -1,6 +1,6 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
-    <div v-if="getListing" class="col-md-6">
+    <div v-if="getListing" class="col-12">
       <div class="padding colored rounded-top section">
         <UserView :user="getListing.owner" />
       </div>
@@ -174,10 +174,10 @@
         </div>
       </div>
     </div>
-    <div v-else class="col-md-6">
+    <div v-else class="col-12">
       <DropSkeleton />
     </div>
-    <div v-if="getListing" class="col-md-6">
+    <div v-if="getListing" class="col-12">
       <div class="padding colored rounded section">
         <div class="with-icon">
           <span class="material-icons-round">comment</span>

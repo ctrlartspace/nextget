@@ -1,6 +1,6 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
-    <div class="col-md-6">
+    <div class="col-12">
       <div v-if="getUser" class="padding colored rounded section">
         <UserView :user="getUser" />
         <div class="offset-6px"></div>
@@ -16,7 +16,7 @@
         </button>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-12">
       <div class="padding colored rounded-top section">
         <h5>Мои объявления</h5>
       </div>
