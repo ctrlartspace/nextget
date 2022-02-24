@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-            <div
+      <div
         v-if="getListingImages.length == 0"
         class="padding colored section"
         :class="{
@@ -192,7 +192,10 @@
         <div class="offset-6px"></div>
         <div v-if="getListingComments.length == 0" class="secondary-text">
           <p>
-            <i>Возникли вопросы? Можете задать их тут</i>
+            <strong>Здесь вы можете:</strong><br />
+            • предложить свою цену<br />
+            • попросить добавить новые фото<br />
+            • задать уточняющие вопросы
           </p>
         </div>
         <div>
@@ -212,10 +215,18 @@
               <textarea
                 class="no-wrap"
                 v-model="comment"
-                placeholder="Напишите что-нибудь"
+                placeholder="Сообщение"
                 rows="1"
               />
             </div>
+          </div>
+          <div class="col-auto">
+            <button
+              type="button"
+              class="btn accent with-border"
+            >
+              <span class="material-icons-round">local_offer</span>
+            </button>
           </div>
           <div class="col-auto">
             <button
@@ -239,7 +250,7 @@ import conditionDecoder from "@/services/condition-decoder";
 import ImageScroller from "@/components/ImageScroller";
 import Comment from "@/components/Comment";
 import UserView from "@/components/UserView";
-import DropSkeleton from "@/components/DropSkeleton";
+import DropSkeleton from "@/components/skeleton/DropSkeleton";
 
 export default {
   name: "Item",

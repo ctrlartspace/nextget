@@ -69,7 +69,7 @@
 
 <script>
 import Listings from "@/components/Listings";
-import ListingsSkeleton from "@/components/ListingsSkeleton";
+import ListingsSkeleton from "@/components/skeleton/ListingsSkeleton";
 import FilterBlock from "@/components/FilterBlock";
 
 import { mapGetters, mapActions } from "vuex";

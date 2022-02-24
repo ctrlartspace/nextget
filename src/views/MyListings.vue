@@ -22,27 +22,27 @@
       </div>
       <!-- <div class="line"></div> -->
       <div v-if="getListings">
-        <div
-          class="padding-no-top colored rounded-bottom"
-        >
-          <div v-if="getListings.length <= 0" class="text-center secondary-text">
+        <div class="padding colored rounded-bottom">
+          <div
+            v-if="getListings.length <= 0"
+            class="text-center secondary-text"
+          >
             <p>Нет объявлений</p>
             <div class="offset-6px"></div>
           </div>
-          <Listings :listings="getListings" v-else/>
+          <ListingsMini :listings="getListings" v-else />
           <router-link
-            class="btn primary with-shadow full-width"
+            class="btn bold no-text-shadow with-shadow full-width"
             :to="{ name: 'CreateListing' }"
           >
-            <span class="material-icons-round">add</span>
-            <p>Добавить</p>
+            <p>Создать объявление</p>
           </router-link>
         </div>
       </div>
       <div v-else>
-        <div class="padding-no-top colored rounded-bottom section">
-          <ListingsSkeleton />
-          <ListingsSkeleton />
+        <div class="padding colored rounded-bottom">
+          <ListingsMiniSkeleton />
+          <ListingsMiniSkeleton />
         </div>
       </div>
     </div>
@@ -50,10 +50,10 @@
 </template>
 
 <script>
-import Listings from "@/components/Listings";
-import ListingsSkeleton from "@/components/ListingsSkeleton";
+import ListingsMini from "@/components/ListingsMini";
+import ListingsMiniSkeleton from "@/components/skeleton/ListingsMiniSkeleton";
 import UserView from "@/components/UserView";
-import UserViewSkeleton from "@/components/UserViewSkeleton";
+import UserViewSkeleton from "@/components/skeleton/UserViewSkeleton";
 import { mapGetters, mapActions } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 
@@ -74,8 +74,8 @@ export default {
     this.fetchUser().then(() => this.fetchMyListings());
   },
   components: {
-    Listings,
-    ListingsSkeleton,
+    ListingsMini,
+    ListingsMiniSkeleton,
     UserView,
     UserViewSkeleton,
   },

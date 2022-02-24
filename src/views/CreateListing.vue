@@ -9,7 +9,7 @@
                 <h5>Новое объявление</h5>
               </div>
               <h5 v-else-if="currentStep < 4">Шаг {{ currentStep }} из 3</h5>
-              <h5 v-if="currentStep == 4">Цена</h5>
+              <h5 v-if="currentStep == 4">Публикация</h5>
             </div>
             <div class="col-auto d-flex align-items-center">
               <button
@@ -41,8 +41,7 @@
                   !isProductSelected || isRequest.createListing.loading
                 "
               >
-                <span class="material-icons-round">arrow_forward_ios</span>
-                <p>Опубликовать</p>
+                <p>Готово</p>
               </button>
             </div>
           </div>
@@ -148,10 +147,10 @@
               </option>
             </select>
           </div>
-          <div v-show="currentStep == 4" class="input-data">
-            <div v-if="getAveragePrice" class="accent-text text-center">
+          <div v-show="currentStep == 4" class="input-data input-price">
+            <div v-if="getAveragePrice" class="secondary-text">
               <p>
-                Средняя цена ~
+                Средняя цена
                 <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
               </p>
               <div class="offset-6px"></div>
