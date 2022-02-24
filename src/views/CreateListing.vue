@@ -155,16 +155,17 @@
               </p>
               <div class="offset-6px"></div>
             </div>
-
-            <input
-              type="text"
-              v-model="getCurrency"
-              placeholder="Цена"
-              step="5"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              :disabled="!isProductSelected"
-            />
+            <div class="text-very-large">
+              <input
+                type="text"
+                v-model="getCurrency"
+                placeholder="Цена"
+                step="5"
+                pattern="[0-9]*"
+                inputmode="numeric"
+                :disabled="!isProductSelected"
+              />
+            </div>
           </div>
         </div>
       </div>

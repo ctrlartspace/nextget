@@ -3,7 +3,7 @@
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div
-          class="image box-36"
+          class="image box-40"
         ></div>
       </div>
       <div class="col ellipsis">

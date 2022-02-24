@@ -178,68 +178,7 @@
       <DropSkeleton />
     </div>
     <div v-if="getListing" class="col-12">
-      <div class="padding colored rounded section">
-        <div class="with-icon">
-          <span class="material-icons-round">comment</span>
-          <h5>
-            Комментарии{{
-              getListingComments.length == 0
-                ? ""
-                : " (" + getListingComments.length + ")"
-            }}
-          </h5>
-        </div>
-        <div class="offset-6px"></div>
-        <div v-if="getListingComments.length == 0" class="secondary-text">
-          <p>
-            <strong>Здесь вы можете:</strong><br />
-            • предложить свою цену<br />
-            • попросить добавить новые фото<br />
-            • задать уточняющие вопросы
-          </p>
-        </div>
-        <div>
-          <Comment
-            v-for="comment in getListingComments"
-            :comment="comment"
-            :listing-owner-id="getListing.owner_id"
-            @on-comment-delete="onCommentDelete"
-            :key="comment.id"
-          />
-        </div>
-
-        <div class="offset-6px"></div>
-        <div class="row gx-2 gy-0 d-flex align-items-center">
-          <div class="col">
-            <div class="input-data">
-              <textarea
-                class="no-wrap"
-                v-model="comment"
-                placeholder="Сообщение"
-                rows="1"
-              />
-            </div>
-          </div>
-          <div class="col-auto">
-            <button
-              type="button"
-              class="btn accent with-border"
-            >
-              <span class="material-icons-round">local_offer</span>
-            </button>
-          </div>
-          <div class="col-auto">
-            <button
-              type="button"
-              class="btn primary with-border full-rounded"
-              @click="sendComment"
-              :disabled="isRequest.sendComment.loading"
-            >
-              <span class="material-icons-round">send</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <CommentBlock />
     </div>
   </div>
 </template>
@@ -248,7 +187,7 @@
 import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 import ImageScroller from "@/components/ImageScroller";
-import Comment from "@/components/Comment";
+import CommentBlock from "@/components/CommentBlock";
 import UserView from "@/components/UserView";
 import DropSkeleton from "@/components/skeleton/DropSkeleton";
 
@@ -258,7 +197,6 @@ export default {
   data() {
     return {
       files: null,
-      comment: "",
       isClicked: {
         deleteListing: false,
       },
@@ -271,18 +209,10 @@ export default {
           loading: false,
           error: false,
         },
-        sendComment: {
-          loading: false,
-          error: false,
-        },
       },
     };
   },
-  computed: mapGetters([
-    "getListing",
-    "getListingImages",
-    "getListingComments",
-  ]),
+  computed: mapGetters(["getListing", "getListingImages"]),
   created() {
     this.$store
       .dispatch("fetchListing", this.$route.params.id)
@@ -340,31 +270,10 @@ export default {
           this.isRequest.uploadImage.loading = false;
         });
     },
-    sendComment() {
-      if (this.comment.length == 0) return;
-      const payloads = {
-        id: this.$route.params.id,
-        comment: { text: this.comment },
-      };
-      this.isRequest.sendComment.loading = true;
-      this.$store
-        .dispatch("addComment", payloads)
-        .then(() => {
-          this.comment = "";
-          return this.$store.dispatch("fetchComments", this.$route.params.id);
-        })
-        .finally(() => {
-          this.isRequest.sendComment.loading = false;
-        });
-    },
-    onCommentDelete(id) {
-      console.log("deleted comment: " + id);
-      this.$store.dispatch("fetchComments", this.$route.params.id);
-    },
   },
   components: {
     ImageScroller,
-    Comment,
+    CommentBlock,
     UserView,
     DropSkeleton,
   },
