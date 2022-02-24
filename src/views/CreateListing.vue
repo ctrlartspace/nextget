@@ -26,11 +26,11 @@
                 v-if="currentStep < 4"
                 :disabled="!isProductSelected"
                 type="button"
-                class="btn primary with-shadow no-text-shadow full-rounded"
+                class="btn primary with-shadow no-text-shadow"
                 @click="nextStep"
               >
-                <span class="material-icons-round">arrow_forward_ios</span>
-                <!-- <p>Далее</p> -->
+                <!-- <span class="material-icons-round">arrow_forward_ios</span> -->
+                <p>Далее</p>
               </button>
               <button
                 v-if="currentStep == 4"
