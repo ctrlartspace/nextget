@@ -5,7 +5,7 @@
         <p :class="{ 'accent-text': comment.owner.id == listingOwnerId }">
           <strong>{{ comment.owner.display_name + ": " }}</strong>
         </p>
-
+        <div class="offset-2px"></div>
         <p>{{ comment.text }}</p>
         <div class="offset-2px"></div>
         <div class="d-inline secondary-text">

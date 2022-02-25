@@ -771,7 +771,7 @@ input:focus {
   color: #E53935;
 }
 
-.bold p {
+.bold * {
   font-weight: 700;
 }
 
@@ -788,6 +788,7 @@ input:focus {
   font-size: var(--text-size-large);
 }
 
+.text-very-large *,
 .text-very-large p,
 .text-very-large input {
   font-size: var(--text-size-very-large);

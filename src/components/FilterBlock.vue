@@ -25,9 +25,7 @@
           v-model.trim="selectData.product"
           :disabled="!getProducts.length"
         >
-          <option value="0" selected>
-            {{ getProducts ? "Модель" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Модель</option>
           <option
             v-for="product in getProducts"
             :value="{ id: product.id, value: product.name }"
@@ -54,9 +52,7 @@
           v-model.trim="selectData.storage"
           :disabled="!getProperties.storages"
         >
-          <option value="0" selected>
-            {{ getProperties.storages ? "Память" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Память</option>
           <option
             v-for="storage in getProperties.storages"
             :value="{ id: storage.id, value: storage.value }"
@@ -83,9 +79,7 @@
           v-model.trim="selectData.color"
           :disabled="!getProperties.colors"
         >
-          <option value="0" selected>
-            {{ getProperties.colors ? "Цвет" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Цвет</option>
           <option
             v-for="color in getProperties.colors"
             :value="{ id: color.id, value: color.value }"
@@ -112,9 +106,7 @@
           v-model.trim="selectData.condition"
           :disabled="!getProperties.conditions"
         >
-          <option value="0" selected>
-            {{ getProperties.conditions ? "Состояние" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Состояние</option>
           <option
             v-for="condition in getProperties.conditions"
             :value="{ id: condition.id, value: condition.value }"

@@ -3,17 +3,20 @@
     <div class="with-icon">
       <span class="material-icons-round">comment</span>
       <h5>
-        Комментарии{{
-          getListingComments.length == 0
-            ? ""
-            : " (" + getListingComments.length + ")"
-        }}
+        Комментарии
+        <span class="secondary-text">
+          {{
+            getListingComments.length == 0
+              ? ""
+              : getListingComments.length
+          }}
+        </span>
       </h5>
     </div>
     <div class="offset-6px"></div>
     <div v-if="getListingComments.length == 0" class="secondary-text">
       <p>
-        <strong>Здесь вы можете:</strong><br />
+        Здесь вы можете:<br />
         • предложить свою цену<br />
         • попросить добавить новые фото<br />
         • задать уточняющие вопросы
@@ -63,7 +66,7 @@
         <button
           v-else
           type="button"
-          class="btn with-border"
+          class="btn surface with-border"
           @click="offer.isActive = !offer.isActive"
         >
           <span class="material-icons-round">textsms</span>
