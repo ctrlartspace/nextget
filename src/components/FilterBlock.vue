@@ -3,7 +3,16 @@
     <button
       v-if="!isActive"
       type="submit"
-      class="btn surface secondary-text no-text-shadow full-width with-border full-rounded"
+      class="
+        btn
+        surface
+        secondary-text
+        no-text-shadow
+        full-width
+        with-border
+        full-rounded
+        bold
+      "
       @click="activate()"
     >
       <p>Поиск</p>
@@ -31,7 +40,7 @@
           v-if="selectData.product != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.product = 0, update()"
+          @click="(selectData.product = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -60,7 +69,7 @@
           v-if="selectData.storage != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.storage = 0, update()"
+          @click="(selectData.storage = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -89,7 +98,7 @@
           v-if="selectData.color != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.color = 0, update()"
+          @click="(selectData.color = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -118,7 +127,7 @@
           v-if="selectData.condition != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.condition = 0, update()"
+          @click="(selectData.condition = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>

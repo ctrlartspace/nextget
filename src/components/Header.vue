@@ -2,10 +2,7 @@
   <header>
     <div class="nav v-padding rounded">
       <div class="row gx-2 d-flex">
-        <div
-          v-if="IS_AUTHENTIFICATED"
-          class="d-flex col-auto d-flex align-items-center"
-        >
+        <div class="d-flex col-auto d-flex align-items-center">
           <router-link
             class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'CreateListing' }"
@@ -13,22 +10,13 @@
             <span class="material-icons-round">edit</span>
           </router-link>
         </div>
-        <div
-          class="
-            col
-            d-flex
-            align-items-center
-            justify-content-center
-          "
-        >
+        <div class="col d-flex align-items-center justify-content-center">
           <router-link :to="{ name: 'Home' }">
             <img class="logo" :src="GET_LOGO" alt="logo" />
           </router-link>
         </div>
 
-        <div
-          class="col-auto d-flex align-items-center"
-        >
+        <div class="col-auto d-flex align-items-center">
           <router-link
             class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'MyListings' }"
@@ -36,7 +24,6 @@
             <span class="material-icons-round">account_box</span>
           </router-link>
         </div>
-    
       </div>
     </div>
   </header>
