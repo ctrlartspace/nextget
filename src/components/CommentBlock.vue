@@ -5,11 +5,7 @@
       <h5>
         Комментарии
         <span class="secondary-text">
-          {{
-            getListingComments.length == 0
-              ? ""
-              : getListingComments.length
-          }}
+          {{ getListingComments.length == 0 ? "" : getListingComments.length }}
         </span>
       </h5>
     </div>
@@ -26,7 +22,7 @@
       <Comment
         v-for="comment in getListingComments"
         :comment="comment"
-        :listing-owner-id="getListing.owner_id"
+        :listing="getListing"
         @on-comment-delete="onCommentDelete"
         :key="comment.id"
       />
@@ -47,16 +43,17 @@
           <input
             type="text"
             v-model="getOffer"
-            placeholder="Предложить цену"
+            placeholder="Предложите цену"
             step="5"
             pattern="[0-9]*"
             inputmode="numeric"
           />
         </div>
       </div>
+
       <div class="col-auto">
         <button
-          v-if="!offer.isActive"
+          v-if="!offer.isActive && !getListing.is_owner"
           type="button"
           class="btn accent with-border"
           @click="offer.isActive = !offer.isActive"
@@ -64,7 +61,7 @@
           <span class="material-icons-round">local_offer</span>
         </button>
         <button
-          v-else
+          v-if="offer.isActive && !getListing.is_owner"
           type="button"
           class="btn surface with-border"
           @click="offer.isActive = !offer.isActive"
@@ -124,16 +121,25 @@ export default {
   },
   methods: {
     sendComment() {
-      if (this.comment.length == 0) return;
+      if (!(this.comment.length > 0 || this.offer.value > 0)) return;
       const payloads = {
         id: this.$route.params.id,
-        comment: { text: this.comment },
+        comment: {
+          text: this.comment,
+          offer: this.offer.value,
+          comment_type_id:
+            this.offer.value > 0
+              ? 2
+              : 1 /* если есть предложенная цена, ставим типа 2 (offer)*/,
+        },
       };
       this.isRequest.sendComment.loading = true;
       this.$store
         .dispatch("addComment", payloads)
         .then(() => {
           this.comment = "";
+          this.offer.isActive = false;
+          this.offer.value = 0;
           return this.$store.dispatch("fetchComments", this.$route.params.id);
         })
         .finally(() => {

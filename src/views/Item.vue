@@ -84,9 +84,9 @@
 
         <p>В комплекте: {{ getListing.equipment.value }}</p>
         <div class="offset-6px"></div>
-        <div class="secondary-text end">
+        <div class="secondary-text text-very-small end">
           <p>
-            <i>Опубликовано {{ formatDate(getListing.created_date) }}</i>
+            {{ formatDate(getListing.created_date) }}
           </p>
         </div>
       </div>
@@ -119,7 +119,7 @@
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent with-shadow">
+            <button type="button" class="btn primary with-shadow">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
