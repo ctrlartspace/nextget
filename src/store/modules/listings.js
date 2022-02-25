@@ -77,6 +77,18 @@ export default {
         return Promise.reject(error)
       })
     },
+    async updateListing(_, listingData) {
+      return axionInstance({
+        method: 'put',
+        url: `listings/${listingData.id}`,
+        data: listingData
+      }).then(response => {
+        return Promise.resolve(response)
+      }).catch(error => {
+        console.log(error)
+        return Promise.reject(error)
+      })
+    },
     async deleteListing(_, id) {
       return axionInstance({
         method: 'delete',
@@ -127,7 +139,7 @@ export default {
     },
     async deleteComment(_, id) {
       return axionInstance({
-        method: 'post',
+        method: 'delete',
         url: `listings/comments/${id}`,
       }).then(response => {
         return Promise.resolve(response)

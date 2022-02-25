@@ -3,7 +3,16 @@
     <button
       v-if="!isActive"
       type="submit"
-      class="btn surface secondary-text no-text-shadow full-width with-border full-rounded"
+      class="
+        btn
+        surface
+        secondary-text
+        no-text-shadow
+        full-width
+        with-border
+        full-rounded
+        bold
+      "
       @click="activate()"
     >
       <p>Поиск</p>
@@ -16,9 +25,7 @@
           v-model.trim="selectData.product"
           :disabled="!getProducts.length"
         >
-          <option value="0" selected>
-            {{ getProducts ? "Модель" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Модель</option>
           <option
             v-for="product in getProducts"
             :value="{ id: product.id, value: product.name }"
@@ -31,7 +38,7 @@
           v-if="selectData.product != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.product = 0, update()"
+          @click="(selectData.product = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -45,9 +52,7 @@
           v-model.trim="selectData.storage"
           :disabled="!getProperties.storages"
         >
-          <option value="0" selected>
-            {{ getProperties.storages ? "Память" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Память</option>
           <option
             v-for="storage in getProperties.storages"
             :value="{ id: storage.id, value: storage.value }"
@@ -60,7 +65,7 @@
           v-if="selectData.storage != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.storage = 0, update()"
+          @click="(selectData.storage = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -74,9 +79,7 @@
           v-model.trim="selectData.color"
           :disabled="!getProperties.colors"
         >
-          <option value="0" selected>
-            {{ getProperties.colors ? "Цвет" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Цвет</option>
           <option
             v-for="color in getProperties.colors"
             :value="{ id: color.id, value: color.value }"
@@ -89,7 +92,7 @@
           v-if="selectData.color != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.color = 0, update()"
+          @click="(selectData.color = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>
@@ -103,9 +106,7 @@
           v-model.trim="selectData.condition"
           :disabled="!getProperties.conditions"
         >
-          <option value="0" selected>
-            {{ getProperties.conditions ? "Состояние" : "Загрузка" }}
-          </option>
+          <option value="0" selected>Состояние</option>
           <option
             v-for="condition in getProperties.conditions"
             :value="{ id: condition.id, value: condition.value }"
@@ -118,7 +119,7 @@
           v-if="selectData.condition != 0"
           type="button"
           class="btn transparent no-text-shadow"
-          @click="selectData.condition = 0, update()"
+          @click="(selectData.condition = 0), update()"
         >
           <span class="material-icons-round">clear</span>
         </button>

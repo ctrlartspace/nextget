@@ -1,6 +1,6 @@
 <template>
   <div class="row my-0 gx-2 gy-2 justify-content-md-center">
-    <div class="col-md-4">
+    <div class="col">
       <div class="padding colored rounded section">
         <form @submit.prevent="register">
           <div class="center">

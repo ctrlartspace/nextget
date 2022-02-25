@@ -159,7 +159,7 @@
               <input
                 type="text"
                 v-model="getCurrency"
-                placeholder="Цена"
+                placeholder="Ваша цена"
                 step="5"
                 pattern="[0-9]*"
                 inputmode="numeric"

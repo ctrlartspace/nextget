@@ -2,11 +2,47 @@
   <div class="comment">
     <div class="row gx-0">
       <div class="col">
-        <p :class="{ 'accent-text': comment.owner.id == listingOwnerId }">
+        <p :class="{ 'accent-text': comment.owner.id == listing.owner.id }">
           <strong>{{ comment.owner.display_name + ": " }}</strong>
         </p>
-
+        <div class="offset-2px"></div>
         <p>{{ comment.text }}</p>
+
+        <div v-if="comment.comment_type.id == 2">
+          <div class="offset-2px"></div>
+          <div class="padding light-accent rounded">
+            <p>
+              <span class="accent-text">
+                Предложил
+                <strong>{{ comment.offer }} KZT </strong>
+              </span>
+            </p>
+            <div
+              v-if="!comment.is_owner && comment.owner.id != listing.owner.id"
+              class="offset-2px"
+            ></div>
+            <button
+              v-if="!comment.is_owner && comment.owner.id != listing.owner.id"
+              type="button"
+              class="link primary-text"
+              @click="acceptOffer({ id: listing.id, price: comment.offer })"
+            >
+              <p><strong>Принять</strong></p>
+            </button>
+          </div>
+        </div>
+        <div v-if="comment.comment_type.id == 3">
+          <div class="offset-2px"></div>
+          <div class="padding light-primary rounded">
+            <p>
+              <span class="primary-text">
+                Новая цена
+
+                <strong>{{ comment.offer }} KZT </strong>
+              </span>
+            </p>
+          </div>
+        </div>
         <div class="offset-2px"></div>
         <div class="d-inline secondary-text">
           <p>{{ fromNow(comment.created_at) + " " }}</p>
@@ -58,8 +94,8 @@ export default {
     comment: {
       type: Object,
     },
-    listingOwnerId: {
-      type: Number,
+    listing: {
+      type: Object,
     },
   },
   methods: {
@@ -77,6 +113,11 @@ export default {
         .finally(() => {
           this.isRequest.deleteComment.loading = false;
         });
+    },
+    acceptOffer(data) {
+      this.$store.dispatch("updateListing", data).then(() => {
+        this.$router.go();
+      });
     },
   },
 };

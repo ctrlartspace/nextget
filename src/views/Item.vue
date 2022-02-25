@@ -52,38 +52,41 @@
         </div>
       </div>
       <div
+        class="padding colored section no-border-bottom"
+        :class="{ 'disabled-text': getListingImages.length == 0 }"
+      >
+        <div class="row gx-3 gy-0">
+          <div class="col d-flex justify-content-center">
+            <div class="text-very-large bold">
+              <p>{{ getListing.condition_state.value }}</p>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <div class="text-very-large bold">
+              <p>{{ getListing.battery_health }}%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         v-if="getListingImages.length > 0 || getListing.is_owner"
         class="padding colored section no-border-bottom"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
-        <div class="row gx-2 d-flex align-items-center">
-          <div class="col">
-            <h5>Описание</h5>
-          </div>
-          <div class="col-auto">
-            <div v-if="getListing.is_owner">
-              <button type="button" class="link secondary-text">
-                <!-- <span class="material-icons-round">delete</span> -->
-                <p>Редактировать</p>
-              </button>
-            </div>
-          </div>
-        </div>
+        <h5>Описание</h5>
+
         <div class="offset-2px"></div>
         <p>
           {{
             getListing.description ? getListing.description : "Нет повреждений"
           }}
         </p>
-        <div class="offset-2px"></div>
-        <p>Состояние: {{ getListing.condition_state.value }}</p>
-        <p>Батарея: {{ getListing.battery_health }}%</p>
-        <div class="offset-2px"></div>
+
         <p>В комплекте: {{ getListing.equipment.value }}</p>
         <div class="offset-6px"></div>
-        <div class="secondary-text end">
+        <div class="secondary-text text-very-small end">
           <p>
-            <i>Опубликовано {{ formatDate(getListing.created_date) }}</i>
+            {{ formatDate(getListing.created_date) }}
           </p>
         </div>
       </div>
@@ -111,12 +114,12 @@
           </div>
           <div v-if="!getListing.is_owner" class="col-auto">
             <button type="button" class="btn accent with-shadow">
-              <span class="material-icons-round">shopping_cart</span>
-              <p>Купить</p>
+              <span class="material-icons-round">east</span>
+              <p>Принять</p>
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn accent with-shadow">
+            <button type="button" class="btn primary with-shadow">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
