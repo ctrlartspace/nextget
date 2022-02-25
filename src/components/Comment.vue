@@ -13,8 +13,8 @@
           <div class="padding light-accent rounded">
             <p>
               <span class="accent-text">
-                Предложил
-                <strong>{{ comment.offer }} KZT </strong>
+                {{ comment.is_owner ? "Вы предложили" : "Предложил" }}
+                <strong>{{ numberWithCommas(comment.offer) + " KZT " }}</strong>
               </span>
             </p>
             <div
@@ -38,7 +38,7 @@
               <span class="primary-text">
                 Новая цена
 
-                <strong>{{ comment.offer }} KZT </strong>
+                <strong>{{ numberWithCommas(comment.offer) + " KZT " }}</strong>
               </span>
             </p>
           </div>
