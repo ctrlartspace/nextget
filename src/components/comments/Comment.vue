@@ -2,7 +2,7 @@
   <div class="comment">
     <p :class="{ 'accent-text': comment.listing.is_owner == true }">
       <strong>
-        {{ comment.is_my ? "Вы" : comment.owner.display_name + ": " }}
+        {{ comment.is_my ? "Вы" : comment.owner.display_name }}
       </strong>
     </p>
     <div class="offset-2px"></div>
