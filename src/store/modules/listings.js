@@ -84,7 +84,7 @@ export default {
         data: payloads
       }).then(response => {
         console.log(response.data)
-        commit('SET_LISTING', response.data.listing)
+        commit('SET_LISTING', response.data.comment.listing)
         commit('ADD_COMMENT', response.data.comment)
         return Promise.resolve(response)
       }).catch(error => {
