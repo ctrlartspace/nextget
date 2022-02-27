@@ -633,19 +633,19 @@ input:focus {
 
 }
 
-.box-40 {
+.box-mini {
   height: 40px;
   width: 40px;
 }
 
-.box-48 {
+.box-medium {
   height: 48px;
   width: 48px;
 }
 
-.box-69 {
-  width: 82px;
-  height: 82px;
+.box-large {
+  width: 86px;
+  height: 86px;
 }
 
 .scroller .image {

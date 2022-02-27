@@ -1,7 +1,7 @@
 <template>
   <div class="row gx-2">
     <div class="col-auto d-flex align-items-center">
-      <div class="image box-48">
+      <div class="image box-medium">
         <img
           :src="`https://www.tinygraphs.com/squares/${user.id}?theme=bythepool&numcolors=3&size=96`"
         />

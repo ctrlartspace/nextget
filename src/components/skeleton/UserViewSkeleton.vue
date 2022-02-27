@@ -2,7 +2,7 @@
   <div class="skeleton">
     <div class="row gx-2">
       <div class="col-auto d-flex align-items-center">
-        <div class="image box-48"></div>
+        <div class="image box-medium"></div>
       </div>
       <div class="col">
         <div class="title" />

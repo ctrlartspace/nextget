@@ -14,7 +14,7 @@
       <div class="offset-2px"></div>
     </div>
     <div class="padding colored section no-border-bottom">
-      <div class="image box-69"></div>
+      <div class="image box-large"></div>
     </div>
     <div class="padding colored section no-border-bottom">
       <div class="title"></div>

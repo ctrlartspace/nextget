@@ -26,7 +26,7 @@
           v-if="listing.is_my"
           class="
             image
-            box-69
+            box-large
             dash
             d-flex
             align-items-center
@@ -55,7 +55,7 @@
 
         <div
           v-for="(image, index) in images"
-          class="image box-69"
+          class="image box-large"
           :key="image.id"
         >
           <img

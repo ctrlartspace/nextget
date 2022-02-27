@@ -3,7 +3,7 @@
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div
-          class="image box-40 d-flex align-items-center justify-content-center"
+          class="image box-mini d-flex align-items-center justify-content-center"
           :class="{ 'with-border': listing.images.length == 0 }"
         >
           <img
