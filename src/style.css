@@ -165,38 +165,38 @@ a {
 }
 
 /* _OFFSET */
-.offset-2px {
+.offset-2 {
   padding: 2px 0;
 }
 
-.offset-4px {
+.offset-4 {
   padding: 4px 0;
 }
 
-.offset-6px {
+.offset-6 {
   padding: 6px 0;
 }
 
-.offset-8px {
+.offset-8 {
   padding: 8px 0;
 }
 
-.v-offset-2px {
+.v-offset-2 {
   display: inline;
   padding: 0 2px;
 }
 
-.v-offset-4px {
+.v-offset-4 {
   display: inline;
   padding: 0 4px;
 }
 
-.v-offset-6px {
+.v-offset-6 {
   display: inline;
   padding: 0 6px;
 }
 
-.v-offset-8px {
+.v-offset-8 {
   display: inline;
   padding: 0 8px;
 }
@@ -767,22 +767,6 @@ input:focus {
 
 .opacity-5 {
   opacity: 0.5;
-}
-
-.condition10 {
-  color: #4756d5;
-}
-
-.condition9 {
-  color: #14C4CD;
-}
-
-.condition8 {
-  color: #FFAB00;
-}
-
-.condition7 {
-  color: #E53935;
 }
 
 .bold > * {

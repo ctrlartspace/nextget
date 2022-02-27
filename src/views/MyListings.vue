@@ -3,14 +3,14 @@
     <div class="col-12">
       <div v-if="getUser" class="padding colored rounded section">
         <UserView :user="getUser" />
-        <div class="offset-6px"></div>
+        <div class="offset-6"></div>
         <button type="button" class="link error-text" @click="logoutToMain">
           <p>Выход из аккаунта</p>
         </button>
       </div>
       <div v-else class="padding colored rounded section">
         <UserViewSkeleton />
-        <div class="offset-6px"></div>
+        <div class="offset-6"></div>
         <button type="button" class="link error-text" @click="logoutToMain">
           <p>Выход из аккаунта</p>
         </button>
@@ -28,7 +28,7 @@
             class="text-center secondary-text"
           >
             <p>Нет объявлений</p>
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
           </div>
           <ListingsMini :listings="getListings" v-else />
           <router-link

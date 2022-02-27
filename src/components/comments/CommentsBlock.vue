@@ -9,7 +9,7 @@
         </span>
       </h5>
     </div>
-    <div class="offset-6px"></div>
+    <div class="offset-6"></div>
     <div v-if="comments.length == 0" class="secondary-text">
       <p>
         Здесь вы можете:<br />
@@ -28,7 +28,7 @@
       />
     </div>
 
-    <div class="offset-6px"></div>
+    <div class="offset-6"></div>
     <div class="row gx-2 gy-0 d-flex align-items-center">
       <div class="col">
         <div v-if="!offer.isActive" class="input-data">

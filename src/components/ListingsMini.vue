@@ -3,7 +3,13 @@
     <div class="row gx-2 d-flex justify-content-between">
       <div class="col-auto">
         <div
-          class="image box-mini d-flex align-items-center justify-content-center"
+          class="
+            image
+            box-mini
+            d-flex
+            align-items-center
+            justify-content-center
+          "
           :class="{ 'with-border': listing.images.length == 0 }"
         >
           <img
@@ -26,7 +32,7 @@
             listing.color.value
           }}
         </router-link>
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="d-inline">
           <p>
             <span class="accent-text">
@@ -53,22 +59,6 @@ export default {
   props: {
     listings: {
       type: Array,
-    },
-  },
-  methods: {
-    getConditionColor(condition) {
-      switch (condition) {
-        case 1:
-          return "condition10";
-        case 2:
-          return "condition9";
-        case 3:
-          return "condition8";
-        case 4:
-          return "condition7";
-        default:
-          return "condition9";
-      }
     },
   },
 };

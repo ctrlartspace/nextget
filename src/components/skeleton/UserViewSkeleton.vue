@@ -6,7 +6,7 @@
       </div>
       <div class="col">
         <div class="title" />
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="desc" />
       </div>
     </div>

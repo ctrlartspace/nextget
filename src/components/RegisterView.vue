@@ -6,13 +6,13 @@
           <div class="center">
             <h5>Регистрация</h5>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <div v-if="isRequest.register.error" class="help-label error">
             <span class="material-icons-round">priority_high</span>
-            <div class="v-offset-2px"></div>
+            <div class="v-offset-2"></div>
             <p>Введите корректные данные</p>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
@@ -23,7 +23,7 @@
                 placeholder="701 000 00 01"
               />
             </div>
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
             <label for="display_name">Имя</label>
             <input
               type="text"
@@ -31,7 +31,7 @@
               v-model="registerData.display_name"
               placeholder=">"
             />
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
             <label for="password">Придумайте пароль</label>
             <input
               type="password"
@@ -40,7 +40,7 @@
               placeholder=">"
             />
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <button
             type="submit"
             class="btn accent full-width with-shadow"

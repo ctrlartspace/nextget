@@ -5,33 +5,33 @@
     </div>
     <div class="padding colored section">
       <div class="title"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
     </div>
     <div class="padding colored section no-border-bottom">
       <div class="image box-large"></div>
     </div>
     <div class="padding colored section no-border-bottom">
       <div class="title"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="desc"></div>
     </div>
     <div class="padding colored rounded-bottom section">
       <div class="title"></div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
     </div>
   </div>
 </template>

@@ -21,7 +21,7 @@
               >
                 <span class="material-icons-round">arrow_back_ios</span>
               </button>
-              <div class="v-offset-4px"></div>
+              <div class="v-offset-4"></div>
               <button
                 v-if="currentStep < 4"
                 :disabled="!isProductSelected"
@@ -45,10 +45,10 @@
               </button>
             </div>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <div v-if="empty_fields.length > 0" class="error-text text-center">
             <p>Заполните все поля</p>
-            <div class="offset-2px"></div>
+            <div class="offset-2"></div>
           </div>
           <div v-show="currentStep == 1" class="input-data">
             <select
@@ -67,7 +67,7 @@
                 {{ product.name }}
               </option>
             </select>
-            <div class="offset-2px" />
+            <div class="offset-2" />
             <select
               v-model.trim="selectData.storage"
               :disabled="!isProductSelected"
@@ -81,7 +81,7 @@
                 {{ storage.value }} GB
               </option>
             </select>
-            <div class="offset-2px" />
+            <div class="offset-2" />
             <select
               v-model.trim="selectData.color"
               :disabled="!isProductSelected"
@@ -113,7 +113,7 @@
                 {{ conditionState.value }}
               </option>
             </select>
-            <div class="offset-2px" />
+            <div class="offset-2" />
             <input
               type="text"
               v-model="getBatteryHealth"
@@ -123,7 +123,7 @@
               inputmode="numeric"
               :disabled="!isProductSelected"
             />
-            <div class="offset-2px" />
+            <div class="offset-2" />
             <textarea
               name="description"
               v-model="selectData.description"
@@ -153,7 +153,7 @@
                 Средняя цена
                 <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
               </p>
-              <div class="offset-6px"></div>
+              <div class="offset-6"></div>
             </div>
             <div class="text-very-large">
               <input

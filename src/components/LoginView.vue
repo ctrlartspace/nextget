@@ -6,13 +6,13 @@
           <div class="center">
             <h5>Авторизация</h5>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <div v-if="isRequest.login.error" class="help-label error">
             <span class="material-icons-round">priority_high</span>
-            <div class="v-offset-2px"></div>
+            <div class="v-offset-2"></div>
             <p>Неверный логин или пароль</p>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <div class="input-data">
             <label for="phone_number">Номер телефона</label>
             <div class="d-flex align-items-center secondary-text mono">
@@ -24,7 +24,7 @@
               />
             </div>
 
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
 
             <label for="password">Пароль</label>
             <input
@@ -34,13 +34,13 @@
               placeholder=">"
             />
 
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
             <router-link
               class="secondary-text center"
               :to="{ name: 'Register' }"
               ><p>Забыли пароль?</p></router-link
             >
-            <div class="offset-6px"></div>
+            <div class="offset-6"></div>
 
             <button
               type="submit"
@@ -50,7 +50,7 @@
               <p>Вход</p>
             </button>
           </div>
-          <div class="offset-6px"></div>
+          <div class="offset-6"></div>
           <router-link class="secondary-text center" :to="{ name: 'Register' }"
             ><p>Создать аккаунт</p></router-link
           >

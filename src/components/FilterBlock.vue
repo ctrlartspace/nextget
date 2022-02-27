@@ -43,7 +43,7 @@
           <span class="material-icons-round">clear</span>
         </button>
       </div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
 
       <!-- Select Storage -->
       <div class="with-action">
@@ -70,7 +70,7 @@
           <span class="material-icons-round">clear</span>
         </button>
       </div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
 
       <!-- Select Color -->
       <div class="with-action">
@@ -97,7 +97,7 @@
           <span class="material-icons-round">clear</span>
         </button>
       </div>
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
 
       <!-- Select Condition -->
       <div class="with-action">
@@ -126,7 +126,7 @@
       </div>
 
       <!-- Search -->
-      <div class="offset-6px"></div>
+      <div class="offset-6"></div>
       <button
         type="submit"
         class="btn primary no-text-shadow full-width with-border"

@@ -8,7 +8,7 @@
         <div class="padding colored rounded section">
           <ListingsSkeleton />
         </div>
-        <div class="offset-4px"></div>
+        <div class="offset-4"></div>
         <div class="padding colored rounded section">
           <ListingsSkeleton />
         </div>
@@ -19,7 +19,7 @@
           <div class="padding colored rounded section">
             <Listings :listings="getListingsByProductModel(model.product.id)" />
           </div>
-          <div class="offset-4px"></div>
+          <div class="offset-4"></div>
         </div>
 
         <div

@@ -5,11 +5,11 @@
         {{ comment.is_my ? "Вы" : comment.owner.display_name }}
       </strong>
     </p>
-    <div class="offset-2px"></div>
+    <div class="offset-2"></div>
     <p>{{ comment.text }}</p>
 
     <div v-if="comment.comment_type.id == 2">
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="padding light-accent rounded with-border">
         <p>
           <span class="accent-text">
@@ -18,7 +18,7 @@
           </span>
         </p>
         <div v-if="comment.listing.is_my">
-          <div class="offset-4px"></div>
+          <div class="offset-4"></div>
           <button
             type="button"
             class="btn accent with-border no-text-shadow"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div v-if="comment.comment_type.id == 3">
-      <div class="offset-2px"></div>
+      <div class="offset-2"></div>
       <div class="padding light-primary rounded with-border">
         <p>
           <span class="primary-text">
@@ -40,7 +40,7 @@
         </p>
       </div>
     </div>
-    <div class="offset-2px"></div>
+    <div class="offset-2"></div>
     <div class="d-inline secondary-text">
       <p>{{ fromNow(comment.created_at) + " " }}</p>
       <div v-if="comment.is_my">

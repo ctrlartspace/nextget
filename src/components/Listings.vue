@@ -26,7 +26,7 @@
             listing.color.value
           }}
         </router-link>
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="d-inline">
           <p>
             <span class="surface-text">
@@ -46,7 +46,7 @@
             }}
           </p>
         </div>
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="d-inline">
           <p>Состояние: </p>
           <span class="surface-text">
@@ -56,7 +56,7 @@
             {{ listing.battery_health + "% " }}
           </span>
         </div>
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="d-inline">
           <p>
             <span class="accent-text">
@@ -84,23 +84,7 @@ export default {
     listings: {
       type: Array,
     },
-  },
-  methods: {
-    getConditionColor(condition) {
-      switch (condition) {
-        case 1:
-          return "condition10";
-        case 2:
-          return "condition9";
-        case 3:
-          return "condition8";
-        case 4:
-          return "condition7";
-        default:
-          return "condition9";
-      }
-    },
-  },
+  }
 };
 </script>
 

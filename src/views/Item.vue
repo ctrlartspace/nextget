@@ -9,7 +9,7 @@
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
         <h5>{{ getListing.product.name }}</h5>
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <div class="secondary-text">
           <p>Год выпуска: {{ getListing.product.year.value }}</p>
           <p>Память: {{ getListing.storage.value }} GB</p>
@@ -27,7 +27,7 @@
           @on-files-change="handleFiles"
         />
 
-        <div v-if="files" class="offset-6px"></div>
+        <div v-if="files" class="offset-6"></div>
         <div v-if="files" class="center">
           <div v-if="isRequest.uploadImage.error" class="error-text">
             <p>
@@ -75,7 +75,7 @@
       >
         <h5>Описание</h5>
 
-        <div class="offset-2px"></div>
+        <div class="offset-2"></div>
         <p>
           {{
             getListing.description ? getListing.description : "Нет повреждений"
@@ -83,7 +83,7 @@
         </p>
 
         <p>В комплекте: {{ getListing.equipment.value }}</p>
-        <div class="offset-6px"></div>
+        <div class="offset-6"></div>
         <div class="secondary-text text-very-small end">
           <p>
             {{ formatDate(getListing.created_date) }}
