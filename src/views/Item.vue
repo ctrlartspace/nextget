@@ -119,7 +119,7 @@
             </button>
           </div>
           <div v-if="getListing.is_owner" class="col-auto">
-            <button type="button" class="btn primary with-shadow">
+            <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>

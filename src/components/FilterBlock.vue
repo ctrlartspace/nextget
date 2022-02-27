@@ -178,23 +178,11 @@ export default {
       this.fetchListingsCount(this.getQuery);
     },
     search() {
-      this.isActive = false;
-
+      this.isActive = false
       this.$router.push({ name: "Home", query: this.getQuery });
     },
     update() {
       this.fetchListingsCount(this.getQuery);
-      // if (this.selectData.product == 0 || this.selectData.product.id == 0) {
-      //   this.productData.storages = this.getStorages;
-      //   this.productData.colors = this.getColors;
-      // } else {
-      //   this.productData.storages = this.getProducts.find(
-      //     (product) => product.id == this.selectData.product.id
-      //   ).storages;
-      //   this.productData.colors = this.getProducts.find(
-      //     (product) => product.id == this.selectData.product.id
-      //   ).colors;
-      // }
       console.log(this.selectData);
     },
   },

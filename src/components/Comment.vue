@@ -10,7 +10,7 @@
 
         <div v-if="comment.comment_type.id == 2">
           <div class="offset-2px"></div>
-          <div class="padding light-accent rounded">
+          <div class="padding light-accent rounded with-border">
             <p>
               <span class="accent-text">
                 {{ comment.is_owner ? "Вы предложили" : "Предложил" }}
@@ -18,22 +18,30 @@
               </span>
             </p>
             <div
-              v-if="!comment.is_owner && comment.owner.id != listing.owner.id && comment.is_auth"
+              v-if="
+                !comment.is_owner &&
+                comment.owner.id != listing.owner.id &&
+                comment.is_auth
+              "
               class="offset-4px"
             ></div>
             <button
-              v-if="!comment.is_owner && comment.owner.id != listing.owner.id && comment.is_auth"
+              v-if="
+                !comment.is_owner &&
+                comment.owner.id != listing.owner.id &&
+                comment.is_auth
+              "
               type="button"
-              class="link primary-text"
+              class="btn accent with-border no-text-shadow"
               @click="acceptOffer({ id: listing.id, price: comment.offer })"
             >
-              <p><strong>Принять</strong></p>
+              <p>Принять</p>
             </button>
           </div>
         </div>
         <div v-if="comment.comment_type.id == 3">
           <div class="offset-2px"></div>
-          <div class="padding light-primary rounded">
+          <div class="padding light-primary rounded with-border">
             <p>
               <span class="primary-text">
                 Новая цена
@@ -114,9 +122,14 @@ export default {
         });
     },
     acceptOffer(data) {
-      this.$store.dispatch("updateListing", data).then(() => {
-        this.$router.go();
-      });
+      this.$store
+        .dispatch("updateListing", data)
+        .then(() => {
+          return this.$store.dispatch("fetchListing", this.$route.params.id);
+        })
+        .then(() =>
+          this.$store.dispatch("fetchComments", this.$route.params.id)
+        );
     },
   },
 };
