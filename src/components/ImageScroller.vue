@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="images.length > 0 || listing.is_owner"
+    v-if="images.length > 0 || listing.is_my"
     class="row gx-0 gy-2 d-flex align-items-center justify-content-between"
   >
     <div
@@ -23,7 +23,7 @@
     <div class="col-12 col-md-9 order-1 order-md-2">
       <div v-if="!fullSize" class="scroller" ref="scroller">
         <div
-          v-if="listing.is_owner"
+          v-if="listing.is_my"
           class="
             image
             box-69

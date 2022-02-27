@@ -22,7 +22,6 @@
       <comment
         v-for="comment in comments"
         :comment="comment"
-        :listing="listing"
         @on-comment-delete="deleteComment"
         @on-offer-accept="acceptOffer"
         :key="comment.id"
@@ -54,7 +53,7 @@
 
       <div class="col-auto">
         <button
-          v-if="!offer.isActive && !listing.is_owner"
+          v-if="!offer.isActive && !listing.is_my"
           type="button"
           class="btn accent with-border"
           @click="offer.isActive = !offer.isActive"
@@ -62,7 +61,7 @@
           <span class="material-icons-round">local_offer</span>
         </button>
         <button
-          v-if="offer.isActive && !listing.is_owner"
+          v-if="offer.isActive && !listing.is_my"
           type="button"
           class="btn surface with-border"
           @click="offer.isActive = !offer.isActive"

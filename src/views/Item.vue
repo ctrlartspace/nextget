@@ -17,7 +17,7 @@
         </div>
       </div>
       <div
-        v-if="getListingImages.length > 0 || getListing.is_owner"
+        v-if="getListingImages.length > 0 || getListing.is_my"
         class="padding colored section no-border-bottom"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div
-        v-if="getListingImages.length > 0 || getListing.is_owner"
+        v-if="getListingImages.length > 0 || getListing.is_my"
         class="padding colored section no-border-bottom"
         :class="{ 'disabled-text': getListingImages.length == 0 }"
       >
@@ -94,8 +94,8 @@
         v-if="getListingImages.length > 0"
         class="padding colored section"
         :class="{
-          'no-border-bottom': getListing.is_owner,
-          'rounded-bottom': !getListing.is_owner,
+          'no-border-bottom': getListing.is_my,
+          'rounded-bottom': !getListing.is_my,
         }"
       >
         <div class="row gx-2 d-flex align-items-center">
@@ -104,7 +104,7 @@
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
           </div>
-          <div v-if="!getListing.is_owner" class="col-auto">
+          <div v-if="!getListing.is_my" class="col-auto">
             <button
               type="button"
               class="btn secondary-text no-text-shadow full-rounded"
@@ -112,13 +112,13 @@
               <span class="material-icons-round">favorite</span>
             </button>
           </div>
-          <div v-if="!getListing.is_owner" class="col-auto">
+          <div v-if="!getListing.is_my" class="col-auto">
             <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">east</span>
               <p>Принять</p>
             </button>
           </div>
-          <div v-if="getListing.is_owner" class="col-auto">
+          <div v-if="getListing.is_my" class="col-auto">
             <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
@@ -130,12 +130,12 @@
         v-if="getListingImages.length == 0"
         class="padding colored section"
         :class="{
-          'no-border-bottom': getListing.is_owner,
-          'rounded-bottom': !getListing.is_owner,
+          'no-border-bottom': getListing.is_my,
+          'rounded-bottom': !getListing.is_my,
         }"
       >
         <div class="text-center">
-          <div v-if="getListing.is_owner" class="error-text">
+          <div v-if="getListing.is_my" class="error-text">
             <p>
               <i>Добавьте фотографии устройства</i>
             </p>
@@ -148,7 +148,7 @@
         </div>
       </div>
       <div
-        v-if="getListing.is_owner"
+        v-if="getListing.is_my"
         class="padding colored rounded-bottom section"
       >
         <div class="row gx-2 d-flex align-items-center center">

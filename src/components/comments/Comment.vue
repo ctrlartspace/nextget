@@ -1,7 +1,9 @@
 <template>
   <div class="comment">
-    <p :class="{ 'accent-text': comment.owner.id == listing.owner.id }">
-      <strong>{{ comment.owner.display_name + ": " }}</strong>
+    <p :class="{ 'accent-text': comment.listing.is_owner == true }">
+      <strong>
+        {{ comment.is_my ? "Вы" : comment.owner.display_name + ": " }}
+      </strong>
     </p>
     <div class="offset-2px"></div>
     <p>{{ comment.text }}</p>
@@ -11,17 +13,11 @@
       <div class="padding light-accent rounded with-border">
         <p>
           <span class="accent-text">
-            {{ comment.is_owner ? "Вы предложили" : "Предложил" }}
+            {{ comment.is_my ? "Вы предложили" : "Предложил" }}
             <strong>{{ numberWithCommas(comment.offer) + " KZT " }}</strong>
           </span>
         </p>
-        <div
-          v-if="
-            !comment.is_owner &&
-            comment.owner.id != listing.owner.id &&
-            comment.is_auth
-          "
-        >
+        <div v-if="comment.listing.is_my">
           <div class="offset-4px"></div>
           <button
             type="button"
@@ -47,21 +43,21 @@
     <div class="offset-2px"></div>
     <div class="d-inline secondary-text">
       <p>{{ fromNow(comment.created_at) + " " }}</p>
-      <div v-if="comment.is_owner">
+      <div v-if="comment.is_my">
+        <p>•{{ " " }}</p>
         <button
           v-if="!isClicked.deleteComment"
           type="button"
           class="link secondary-text"
           @click="isClicked.deleteComment = true"
         >
-          <p>• Удалить</p>
+          <p>Удалить</p>
         </button>
         <button
           v-if="isClicked.deleteComment"
           type="button"
           class="link error-text"
           @click="deleteComment(comment.id)"
-          :disabled="isRequest.deleteComment.loading"
         >
           <p>Подтвердить</p>
         </button>
@@ -80,20 +76,11 @@ export default {
       isClicked: {
         deleteComment: false,
       },
-      isRequest: {
-        deleteComment: {
-          loading: false,
-          error: false,
-        },
-      },
     };
   },
   mixins: [conditionDecoder],
   props: {
     comment: {
-      type: Object,
-    },
-    listing: {
       type: Object,
     },
   },
