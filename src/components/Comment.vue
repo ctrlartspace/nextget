@@ -18,11 +18,11 @@
               </span>
             </p>
             <div
-              v-if="!comment.is_owner && comment.owner.id != listing.owner.id"
-              class="offset-2px"
+              v-if="!comment.is_owner && comment.owner.id != listing.owner.id && comment.is_auth"
+              class="offset-4px"
             ></div>
             <button
-              v-if="!comment.is_owner && comment.owner.id != listing.owner.id"
+              v-if="!comment.is_owner && comment.owner.id != listing.owner.id && comment.is_auth"
               type="button"
               class="link primary-text"
               @click="acceptOffer({ id: listing.id, price: comment.offer })"
@@ -37,7 +37,6 @@
             <p>
               <span class="primary-text">
                 Новая цена
-
                 <strong>{{ numberWithCommas(comment.offer) + " KZT " }}</strong>
               </span>
             </p>

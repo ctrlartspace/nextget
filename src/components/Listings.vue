@@ -48,7 +48,7 @@
         </div>
         <div class="offset-2px"></div>
         <div class="d-inline">
-          Состояние:
+          <p>Состояние: </p>
           <span class="surface-text">
             {{ listing.condition_state.value + " " }}
           </span>
