@@ -65,11 +65,11 @@ export default {
         return Promise.reject(error)
       })
     },
-    async createListing(_, listingData) {
+    async createListing(_, payloads) {
       return axionInstance({
         method: 'post',
         url: 'listings',
-        data: listingData
+        data: payloads
       }).then(response => {
         return Promise.resolve(response)
       }).catch(error => {
@@ -77,12 +77,15 @@ export default {
         return Promise.reject(error)
       })
     },
-    async updateListing(_, listingData) {
+    async updateListing({ commit }, payloads) {
       return axionInstance({
         method: 'put',
-        url: `listings/${listingData.id}`,
-        data: listingData
+        url: `listings/${payloads.id}`,
+        data: payloads
       }).then(response => {
+        console.log(response.data)
+        commit('SET_LISTING', response.data.listing)
+        commit('ADD_COMMENT', response.data.comment)
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error)
@@ -126,22 +129,24 @@ export default {
         return Promise.reject(error)
       })
     },
-    async addComment(_, payloads) {
+    async addComment({ commit }, payloads) {
       return axionInstance({
         method: 'post',
         url: `listings/${payloads.id}/comments`,
         data: payloads.comment,
       }).then(response => {
+        commit('ADD_COMMENT', response.data.comment)
         return Promise.resolve(response)
       }).catch(error => {
         return Promise.reject(error)
       })
     },
-    async deleteComment(_, id) {
+    async deleteComment({ commit }, id) {
       return axionInstance({
         method: 'delete',
         url: `listings/comments/${id}`,
       }).then(response => {
+        commit('DELETE_COMMENT', id)
         return Promise.resolve(response)
       }).catch(error => {
         return Promise.reject(error)
@@ -154,6 +159,7 @@ export default {
         url: `listings/${id}/comments`
       }).then(response => {
         commit('SET_LISTING_COMMENTS', response.data.listing_comments)
+        console.log(response.data.listing_comments)
         return Promise.resolve(response)
       }).catch(error => {
         console.log(error);
@@ -181,6 +187,13 @@ export default {
     },
     SET_LISTING_COMMENTS: (state, listing_comments) => {
       state.listing_comments = listing_comments
+    },
+    ADD_COMMENT: (state, comment) => {
+      state.listing_comments.push(comment)
+    },
+    DELETE_COMMENT: (state, id) => {
+      const index = state.listing_comments.findIndex(comment => comment.id == id);
+      state.listing_comments.splice(index, 1);
     },
     SET_PAGINATION: (state, pagination) => {
       state.pagination = pagination

@@ -5,12 +5,12 @@
       <h5>
         Комментарии
         <span class="secondary-text">
-          {{ getListingComments.length == 0 ? "" : getListingComments.length }}
+          {{ comments.length == 0 ? "" : comments.length }}
         </span>
       </h5>
     </div>
     <div class="offset-6px"></div>
-    <div v-if="getListingComments.length == 0" class="secondary-text">
+    <div v-if="comments.length == 0" class="secondary-text">
       <p>
         Здесь вы можете:<br />
         • предложить свою цену<br />
@@ -19,11 +19,12 @@
       </p>
     </div>
     <div>
-      <Comment
-        v-for="comment in getListingComments"
+      <comment
+        v-for="comment in comments"
         :comment="comment"
-        :listing="getListing"
-        @on-comment-delete="onCommentDelete"
+        :listing="listing"
+        @on-comment-delete="deleteComment"
+        @on-offer-accept="acceptOffer"
         :key="comment.id"
       />
     </div>
@@ -53,7 +54,7 @@
 
       <div class="col-auto">
         <button
-          v-if="!offer.isActive && !getListing.is_owner"
+          v-if="!offer.isActive && !listing.is_owner"
           type="button"
           class="btn accent with-border"
           @click="offer.isActive = !offer.isActive"
@@ -61,7 +62,7 @@
           <span class="material-icons-round">local_offer</span>
         </button>
         <button
-          v-if="offer.isActive && !getListing.is_owner"
+          v-if="offer.isActive && !listing.is_owner"
           type="button"
           class="btn surface with-border"
           @click="offer.isActive = !offer.isActive"
@@ -73,7 +74,7 @@
         <button
           type="button"
           class="btn primary with-border full-rounded"
-          @click="sendComment"
+          @click="addComment"
           :disabled="isRequest.sendComment.loading"
         >
           <span class="material-icons-round">send</span>
@@ -84,12 +85,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Comment from "@/components/Comment";
+import Comment from "@/components/comments/Comment";
 const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
-  name: "CommentBlock",
+  name: "CommentsBlock",
+  props: {
+    comments: {
+      type: Object,
+    },
+    listing: {
+      type: Object,
+    },
+  },
   data() {
     return {
       comment: "",
@@ -106,7 +114,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getListing", "getListingComments"]),
     getOffer: {
       get: function () {
         return this.offer.value == ""
@@ -120,7 +127,7 @@ export default {
     },
   },
   methods: {
-    sendComment() {
+    addComment() {
       if (!(this.comment.length > 0 || this.offer.value > 0)) return;
       const payloads = {
         id: this.$route.params.id,
@@ -140,15 +147,23 @@ export default {
           this.comment = "";
           this.offer.isActive = false;
           this.offer.value = 0;
-          return this.$store.dispatch("fetchComments", this.$route.params.id);
         })
         .finally(() => {
           this.isRequest.sendComment.loading = false;
         });
     },
-    onCommentDelete(id) {
-      console.log("deleted comment: " + id);
-      this.$store.dispatch("fetchComments", this.$route.params.id);
+    deleteComment(id) {
+      console.log(id);
+      this.$store.dispatch("deleteComment", id)
+    },
+    acceptOffer(offer) {
+      const payloads = {
+        id: this.listing.id,
+        price: offer,
+      };
+      console.log(payloads);
+      this.$store.dispatch("updateListing", payloads)
+
     },
   },
   components: {

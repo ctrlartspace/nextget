@@ -178,10 +178,10 @@
       </div>
     </div>
     <div v-else class="col-12">
-      <DropSkeleton />
+      <drop-skeleton />
     </div>
     <div v-if="getListing" class="col-12">
-      <CommentBlock />
+      <comments-block :comments="getListingComments" :listing="getListing" />
     </div>
   </div>
 </template>
@@ -190,7 +190,7 @@
 import { mapGetters } from "vuex";
 import conditionDecoder from "@/services/condition-decoder";
 import ImageScroller from "@/components/ImageScroller";
-import CommentBlock from "@/components/CommentBlock";
+import CommentsBlock from "@/components/comments/CommentsBlock";
 import UserView from "@/components/UserView";
 import DropSkeleton from "@/components/skeleton/DropSkeleton";
 
@@ -215,7 +215,11 @@ export default {
       },
     };
   },
-  computed: mapGetters(["getListing", "getListingImages"]),
+  computed: mapGetters([
+    "getListing",
+    "getListingImages",
+    "getListingComments",
+  ]),
   created() {
     this.$store
       .dispatch("fetchListing", this.$route.params.id)
@@ -276,7 +280,7 @@ export default {
   },
   components: {
     ImageScroller,
-    CommentBlock,
+    CommentsBlock,
     UserView,
     DropSkeleton,
   },
