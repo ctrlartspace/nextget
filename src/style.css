@@ -105,10 +105,6 @@ nav {
   -webkit-tap-highlight-color: transparent
 }
 
-.mono {
-  font-family: Roboto Mono, sans-serif;
-}
-
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -536,7 +532,6 @@ input:focus {
   background-color: var(--surface-color);
   color: var(--accent-color);
   font-weight: 700;
-  font-family: Roboto Mono, sans-serif;
   border: 1px solid var(--border-color);
   box-sizing: border-box;
   border-radius: var(--border-radius);
@@ -550,7 +545,6 @@ input:focus {
   background-color: var(--surface-color);
   color: var(--accent-color);
   font-weight: 700;
-  font-family: Roboto Mono, sans-serif;
   border: none;
   box-sizing: border-box;
   border-radius: var(--border-radius);
@@ -790,6 +784,10 @@ input:focus {
 
 .bold>* {
   font-weight: 700;
+}
+
+.mono *, .mono input {
+  font-family: Roboto Mono, sans-serif;
 }
 
 /* _SIZE */

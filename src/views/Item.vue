@@ -103,7 +103,7 @@
             v-if="isClicked.editPrice"
             class="col input-data input-price-edit"
           >
-            <div class="text-very-large">
+            <div class="text-very-large mono">
               <input
                 ref="input"
                 v-model="getCurrency"
