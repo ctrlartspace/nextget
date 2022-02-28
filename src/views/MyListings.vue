@@ -32,7 +32,7 @@
           </div>
           <ListingsMini :listings="getListings" v-else />
           <router-link
-            class="btn bold no-text-shadow with-shadow full-width"
+            class="btn accent no-text-shadow with-shadow full-width"
             :to="{ name: 'CreateListing' }"
           >
             <p>Создать объявление</p>

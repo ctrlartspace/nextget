@@ -104,14 +104,14 @@
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
           </div>
-          <div v-if="!getListing.is_my" class="col-auto">
+          <!-- <div v-if="!getListing.is_my" class="col-auto">
             <button
               type="button"
               class="btn secondary-text no-text-shadow full-rounded"
             >
               <span class="material-icons-round">favorite</span>
             </button>
-          </div>
+          </div> -->
           <div v-if="!getListing.is_my" class="col-auto">
             <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">east</span>

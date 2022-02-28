@@ -1,10 +1,18 @@
 <template>
   <div class="comment">
-    <p :class="{ 'accent-text': comment.listing.is_owner == true }">
-      <strong>
-        {{ comment.is_my ? "Вы" : comment.owner.display_name }}
-      </strong>
-    </p>
+    <div class="row gx-2 gy-0">
+      <div class="col-auto">
+        <p :class="{ 'accent-text': comment.listing.is_owner == true }">
+          <strong>
+            {{ comment.is_my ? "Вы" : comment.owner.display_name }}
+          </strong>
+        </p>
+      </div>
+      <div v-if="comment.owner.role.id > 1" class="col d-flex justify-content-end primary-text">
+        <p>{{ comment.owner.role.name }}</p>
+      </div>
+    </div>
+
     <div class="offset-2"></div>
     <p>{{ comment.text }}</p>
 
