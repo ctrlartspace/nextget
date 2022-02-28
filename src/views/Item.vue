@@ -99,19 +99,27 @@
         }"
       >
         <div class="row gx-2 d-flex align-items-center">
-          <div class="col">
+          <div
+            v-if="isClicked.editPrice"
+            class="col input-data input-price-edit"
+          >
+            <div class="text-very-large">
+              <input
+                ref="input"
+                v-model="getCurrency"
+                type="text"
+                placeholder="Новая цена"
+                step="5"
+                pattern="[0-9]*"
+                inputmode="numeric"
+              />
+            </div>
+          </div>
+          <div v-else class="col">
             <div class="accent-text mono">
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
           </div>
-          <!-- <div v-if="!getListing.is_my" class="col-auto">
-            <button
-              type="button"
-              class="btn secondary-text no-text-shadow full-rounded"
-            >
-              <span class="material-icons-round">favorite</span>
-            </button>
-          </div> -->
           <div v-if="!getListing.is_my" class="col-auto">
             <button type="button" class="btn accent with-shadow">
               <span class="material-icons-round">east</span>
@@ -119,7 +127,21 @@
             </button>
           </div>
           <div v-if="getListing.is_my" class="col-auto">
-            <button type="button" class="btn accent with-shadow">
+            <button
+              v-if="isClicked.editPrice"
+              type="button"
+              class="btn primary with-shadow"
+              @click="updatePrice()"
+            >
+              <span class="material-icons-round">done</span>
+              <p>Готово</p>
+            </button>
+            <button
+              v-else
+              type="button"
+              class="btn accent with-shadow"
+              @click="(isClicked.editPrice = true), focusInput()"
+            >
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
@@ -193,6 +215,7 @@ import ImageScroller from "@/components/ImageScroller";
 import CommentsBlock from "@/components/comments/CommentsBlock";
 import UserView from "@/components/UserView";
 import DropSkeleton from "@/components/skeleton/DropSkeleton";
+const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
   name: "Item",
@@ -200,7 +223,9 @@ export default {
   data() {
     return {
       files: null,
+      newPrice: 0,
       isClicked: {
+        editPrice: false,
         deleteListing: false,
       },
       isRequest: {
@@ -215,11 +240,18 @@ export default {
       },
     };
   },
-  computed: mapGetters([
-    "getListing",
-    "getListingImages",
-    "getListingComments",
-  ]),
+  computed: {
+    ...mapGetters(["getListing", "getListingImages", "getListingComments"]),
+    getCurrency: {
+      get: function () {
+        return this.newPrice == "" ? "" : NumberFormat.format(this.newPrice);
+      },
+      set: function (newValue) {
+        this.newPrice = null;
+        this.newPrice = +newValue.replaceAll(/\D/g, "");
+      },
+    },
+  },
   created() {
     this.$store
       .dispatch("fetchListing", this.$route.params.id)
@@ -245,6 +277,19 @@ export default {
           this.isRequest.deleteListing.loading = false;
           this.isClicked.deleteListing = false;
         });
+    },
+    updatePrice() {
+      if (this.newPrice == 0 || this.newPrice == this.getListing.price) {
+        this.isClicked.editPrice = false;
+        return;
+      }
+      const payloads = {
+        id: this.getListing.id,
+        price: this.newPrice,
+      };
+      this.$store.dispatch("updateListing", payloads).then(() => {
+        this.isClicked.editPrice = false;
+      });
     },
     handleFiles(files) {
       this.files = files;
@@ -276,6 +321,10 @@ export default {
         .finally(() => {
           this.isRequest.uploadImage.loading = false;
         });
+    },
+    focusInput() {
+      console.log("sdf");
+      this.$nextTick(() => this.$refs.input.focus());
     },
   },
   components: {

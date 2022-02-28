@@ -536,10 +536,25 @@ input:focus {
   background-color: var(--surface-color);
   color: var(--accent-color);
   font-weight: 700;
+  font-family: Roboto Mono, sans-serif;
   border: 1px solid var(--border-color);
   box-sizing: border-box;
   border-radius: var(--border-radius);
   padding: 8px;
+  size: 6;
+
+}
+
+.input-price-edit input {
+  width: 100%;
+  background-color: var(--surface-color);
+  color: var(--accent-color);
+  font-weight: 700;
+  font-family: Roboto Mono, sans-serif;
+  border: none;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  padding: 0px;
   size: 6;
 }
 
@@ -773,7 +788,7 @@ input:focus {
   opacity: 0.5;
 }
 
-.bold > * {
+.bold>* {
   font-weight: 700;
 }
 
