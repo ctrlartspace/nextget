@@ -132,6 +132,7 @@
               type="button"
               class="btn primary with-shadow"
               @click="updatePrice()"
+              :disabled="isRequest.editPrice.loading"
             >
               <span class="material-icons-round">done</span>
               <p>Готово</p>
@@ -237,6 +238,9 @@ export default {
           loading: false,
           error: false,
         },
+        editPrice: {
+          loading: false,
+        },
       },
     };
   },
@@ -283,13 +287,19 @@ export default {
         this.isClicked.editPrice = false;
         return;
       }
+      this.isRequest.editPrice.loading = true;
       const payloads = {
         id: this.getListing.id,
         price: this.newPrice,
       };
-      this.$store.dispatch("updateListing", payloads).then(() => {
-        this.isClicked.editPrice = false;
-      });
+      this.$store
+        .dispatch("updateListing", payloads)
+        .then(() => {
+          this.isClicked.editPrice = false;
+        })
+        .finally(() => {
+          this.isRequest.editPrice.loading = false;
+        });
     },
     handleFiles(files) {
       this.files = files;
