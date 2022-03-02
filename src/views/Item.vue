@@ -178,23 +178,22 @@
           <div class="col-auto d-flex align-items-center secondary-text">
             <p>
               <i>Уже не актуально? </i>
-              <button
-                v-if="!isClicked.deleteListing"
-                type="button"
-                class="link error-text"
-                @click="isClicked.deleteListing = true"
+              <request-layer
+                ask-confirm
+                action="deleteListing"
+                :payloads="{ id: getListing.id }"
+                #="{ isConfirmed, isLoading, makeRequest }"
+                @on-complete="openMyListings()"
               >
-                <p><i>Удалить</i></p>
-              </button>
-              <button
-                v-if="isClicked.deleteListing"
-                type="button"
-                class="link error-text"
-                @click="deleteListing()"
-                :disabled="isRequest.deleteListing.loading"
-              >
-                <p><i>Подтвердить</i></p>
-              </button>
+                <button
+                  type="button"
+                  class="link error-text"
+                  @click="makeRequest"
+                  :disabled="isLoading"
+                >
+                  <p>{{ isConfirmed ? "Подтвердить" : "Удалить" }}</p>
+                </button>
+              </request-layer>
             </p>
           </div>
         </div>
@@ -216,6 +215,7 @@ import ImageScroller from "@/components/ImageScroller";
 import CommentsBlock from "@/components/comments/CommentsBlock";
 import UserView from "@/components/UserView";
 import DropSkeleton from "@/components/skeleton/DropSkeleton";
+import RequestLayer from "@/components/ui/RequestLayer";
 const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
@@ -227,13 +227,8 @@ export default {
       newPrice: 0,
       isClicked: {
         editPrice: false,
-        deleteListing: false,
       },
       isRequest: {
-        deleteListing: {
-          loading: false,
-          error: false,
-        },
         uploadImage: {
           loading: false,
           error: false,
@@ -258,29 +253,16 @@ export default {
   },
   created() {
     this.$store
-      .dispatch("fetchListing", this.$route.params.id)
-      .then(() => this.$store.dispatch("fetchComments", this.$route.params.id));
+      .dispatch("fetchListing", { id: this.$route.params.id })
+      .then(() =>
+        this.$store.dispatch("fetchComments", { id: this.$route.params.id })
+      );
   },
   methods: {
-    deleteListing() {
-      this.isRequest.deleteListing.loading = true;
-      this.isRequest.deleteListing.error = false;
-      this.$store
-        .dispatch("deleteListing", this.getListing.id)
-        .then((r) => {
-          this.$router.replace({
-            name: "MyListings",
-          });
-          console.log(r);
-        })
-        .catch((e) => {
-          console.log(e);
-          this.isRequest.deleteListing.error = true;
-        })
-        .finally(() => {
-          this.isRequest.deleteListing.loading = false;
-          this.isClicked.deleteListing = false;
-        });
+    openMyListings() {
+      this.$route.replace({
+        name: "MyListings",
+      });
     },
     updatePrice() {
       if (this.newPrice == 0 || this.newPrice == this.getListing.price) {
@@ -322,7 +304,9 @@ export default {
         .dispatch("uploadImages", payloads)
         .then(() => {
           this.files = null;
-          this.$store.dispatch("fetchListingImages", this.$route.params.id);
+          this.$store.dispatch("fetchListingImages", {
+            id: this.$route.params.id,
+          });
         })
         .catch((e) => {
           this.isRequest.uploadImage.error = true;
@@ -333,7 +317,6 @@ export default {
         });
     },
     focusInput() {
-      console.log("sdf");
       this.$nextTick(() => this.$refs.input.focus());
     },
   },
@@ -342,6 +325,7 @@ export default {
     CommentsBlock,
     UserView,
     DropSkeleton,
+    RequestLayer,
   },
 };
 </script>

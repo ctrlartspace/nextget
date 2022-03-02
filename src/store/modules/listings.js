@@ -48,12 +48,12 @@ export default {
         return Promise.reject(error)
       })
     },
-    async fetchListing({ commit }, id) {
+    async fetchListing({ commit }, payloads) {
       commit('SET_LISTING', null)
       commit('SET_LISTING_IMAGES', [])
       return axionInstance({
         method: 'get',
-        url: `listings/${id}`
+        url: `listings/${payloads.id}`
       }).then(response => {
         commit('SET_LISTING', response.data.listing)
         commit('SET_LISTING_IMAGES', response.data.listing.images)
@@ -92,10 +92,10 @@ export default {
         return Promise.reject(error)
       })
     },
-    async deleteListing(_, id) {
+    async deleteListing(_, payloads) {
       return axionInstance({
         method: 'delete',
-        url: `listings/${id}`
+        url: `listings/${payloads.id}`
       }).then(response => {
         return Promise.resolve(response)
       }).catch(error => {
@@ -115,11 +115,11 @@ export default {
         return Promise.reject(error)
       })
     },
-    async fetchListingImages({ commit }, id) {
+    async fetchListingImages({ commit }, payloads) {
       commit('SET_LISTING_IMAGES', [])
       return axionInstance({
         method: 'get',
-        url: `listings/${id}/images`
+        url: `listings/${payloads.id}/images`
       }).then(response => {
         commit('SET_LISTING_IMAGES', response.data.listing_images)
         return Promise.resolve(response)
@@ -141,22 +141,22 @@ export default {
         return Promise.reject(error)
       })
     },
-    async deleteComment({ commit }, id) {
+    async deleteComment({ commit }, payloads) {
       return axionInstance({
         method: 'delete',
-        url: `listings/comments/${id}`,
+        url: `listings/comments/${payloads.id}`,
       }).then(response => {
-        commit('DELETE_COMMENT', id)
+        commit('DELETE_COMMENT', payloads.id)
         return Promise.resolve(response)
       }).catch(error => {
         return Promise.reject(error)
       })
     },
-    async fetchComments({ commit }, id) {
+    async fetchComments({ commit }, payloads) {
       commit('SET_LISTING_COMMENTS', [])
       return axionInstance({
         method: 'get',
-        url: `listings/${id}/comments`
+        url: `listings/${payloads.id}/comments`
       }).then(response => {
         commit('SET_LISTING_COMMENTS', response.data.listing_comments)
         console.log(response.data.listing_comments)
