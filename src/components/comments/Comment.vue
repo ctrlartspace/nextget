@@ -1,10 +1,21 @@
 <template>
   <div class="comment">
-    <p :class="{ 'accent-text': comment.listing.is_owner == true }">
-      <strong>
-        {{ comment.is_my ? "Вы" : comment.owner.display_name }}
-      </strong>
-    </p>
+    <div class="row gx-2 gy-0">
+      <div class="col-auto">
+        <p :class="{ 'accent-text': comment.listing.is_owner == true }">
+          <strong>
+            {{ comment.is_my ? "Вы" : comment.owner.display_name }}
+          </strong>
+        </p>
+      </div>
+      <div
+        v-if="comment.owner.role.id > 1"
+        class="col d-flex justify-content-end primary-text"
+      >
+        <p>{{ comment.owner.role.name }}</p>
+      </div>
+    </div>
+
     <div class="offset-2"></div>
     <p>{{ comment.text }}</p>
 
@@ -19,13 +30,21 @@
         </p>
         <div v-if="comment.listing.is_my">
           <div class="offset-4"></div>
-          <button
-            type="button"
-            class="btn accent with-border no-text-shadow"
-            @click="acceptOffer(comment.offer)"
+          <request-layer
+            ask-confirm
+            action="updateListing"
+            :payloads="{ id: comment.listing.id, price: comment.offer }"
+            #="{ isConfirmed, isLoading, makeRequest }"
           >
-            <p>Принять</p>
-          </button>
+            <button
+              type="button"
+              class="btn accent with-border no-text-shadow"
+              :disabled="isLoading"
+              @click="makeRequest"
+            >
+              <p>{{ isConfirmed ? "Подтвердить" : "Принять" }}</p>
+            </button>
+          </request-layer>
         </div>
       </div>
     </div>
@@ -45,28 +64,29 @@
       <p>{{ fromNow(comment.created_at) + " " }}</p>
       <div v-if="comment.is_my">
         <p>•{{ " " }}</p>
-        <button
-          v-if="!isClicked.deleteComment"
-          type="button"
-          class="link secondary-text"
-          @click="isClicked.deleteComment = true"
+        <request-layer
+          ask-confirm
+          action="deleteComment"
+          :payloads="{ id: comment.id }"
+          #="{ isConfirmed, isLoading, makeRequest }"
         >
-          <p>Удалить</p>
-        </button>
-        <button
-          v-if="isClicked.deleteComment"
-          type="button"
-          class="link error-text"
-          @click="deleteComment(comment.id)"
-        >
-          <p>Подтвердить</p>
-        </button>
+          <button
+            type="button"
+            class="link secondary-text"
+            :class="{ 'error-text': isConfirmed }"
+            @click="makeRequest"
+            :disabled="isLoading"
+          >
+            <p>{{ isConfirmed ? "Подтвердить" : "Удалить" }}</p>
+          </button>
+        </request-layer>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import RequestLayer from "@/components/ui/RequestLayer";
 import conditionDecoder from "@/services/condition-decoder";
 
 export default {
@@ -84,13 +104,8 @@ export default {
       type: Object,
     },
   },
-  methods: {
-    deleteComment(id) {
-      this.$emit("on-comment-delete", id);
-    },
-    acceptOffer(offer) {
-      this.$emit("on-offer-accept", offer);
-    },
+  components: {
+    RequestLayer,
   },
 };
 </script>

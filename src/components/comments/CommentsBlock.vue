@@ -22,8 +22,6 @@
       <comment
         v-for="comment in comments"
         :comment="comment"
-        @on-comment-delete="deleteComment"
-        @on-offer-accept="acceptOffer"
         :key="comment.id"
       />
     </div>
@@ -150,19 +148,6 @@ export default {
         .finally(() => {
           this.isRequest.sendComment.loading = false;
         });
-    },
-    deleteComment(id) {
-      console.log(id);
-      this.$store.dispatch("deleteComment", id)
-    },
-    acceptOffer(offer) {
-      const payloads = {
-        id: this.listing.id,
-        price: offer,
-      };
-      console.log(payloads);
-      this.$store.dispatch("updateListing", payloads)
-
     },
   },
   components: {

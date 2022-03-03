@@ -99,18 +99,26 @@
         }"
       >
         <div class="row gx-2 d-flex align-items-center">
-          <div class="col">
+          <div
+            v-if="isClicked.editPrice"
+            class="col input-data input-price-edit"
+          >
+            <div class="text-very-large mono">
+              <input
+                ref="input"
+                v-model="getCurrency"
+                type="text"
+                placeholder="Новая цена"
+                step="5"
+                pattern="[0-9]*"
+                inputmode="numeric"
+              />
+            </div>
+          </div>
+          <div v-else class="col">
             <div class="accent-text mono">
               <h4>{{ numberWithCommas(getListing.price) }} KZT</h4>
             </div>
-          </div>
-          <div v-if="!getListing.is_my" class="col-auto">
-            <button
-              type="button"
-              class="btn secondary-text no-text-shadow full-rounded"
-            >
-              <span class="material-icons-round">favorite</span>
-            </button>
           </div>
           <div v-if="!getListing.is_my" class="col-auto">
             <button type="button" class="btn accent with-shadow">
@@ -119,7 +127,22 @@
             </button>
           </div>
           <div v-if="getListing.is_my" class="col-auto">
-            <button type="button" class="btn accent with-shadow">
+            <button
+              v-if="isClicked.editPrice"
+              type="button"
+              class="btn primary with-shadow"
+              @click="updatePrice()"
+              :disabled="isRequest.editPrice.loading"
+            >
+              <span class="material-icons-round">done</span>
+              <p>Готово</p>
+            </button>
+            <button
+              v-else
+              type="button"
+              class="btn accent with-shadow"
+              @click="(isClicked.editPrice = true), focusInput()"
+            >
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
             </button>
@@ -155,23 +178,22 @@
           <div class="col-auto d-flex align-items-center secondary-text">
             <p>
               <i>Уже не актуально? </i>
-              <button
-                v-if="!isClicked.deleteListing"
-                type="button"
-                class="link error-text"
-                @click="isClicked.deleteListing = true"
+              <request-layer
+                ask-confirm
+                action="deleteListing"
+                :payloads="{ id: getListing.id }"
+                #="{ isConfirmed, isLoading, makeRequest }"
+                @on-complete="openMyListings()"
               >
-                <p><i>Удалить</i></p>
-              </button>
-              <button
-                v-if="isClicked.deleteListing"
-                type="button"
-                class="link error-text"
-                @click="deleteListing()"
-                :disabled="isRequest.deleteListing.loading"
-              >
-                <p><i>Подтвердить</i></p>
-              </button>
+                <button
+                  type="button"
+                  class="link error-text"
+                  @click="makeRequest"
+                  :disabled="isLoading"
+                >
+                  <p>{{ isConfirmed ? "Подтвердить" : "Удалить" }}</p>
+                </button>
+              </request-layer>
             </p>
           </div>
         </div>
@@ -193,6 +215,8 @@ import ImageScroller from "@/components/ImageScroller";
 import CommentsBlock from "@/components/comments/CommentsBlock";
 import UserView from "@/components/UserView";
 import DropSkeleton from "@/components/skeleton/DropSkeleton";
+import RequestLayer from "@/components/ui/RequestLayer";
+const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
   name: "Item",
@@ -200,50 +224,63 @@ export default {
   data() {
     return {
       files: null,
+      newPrice: 0,
       isClicked: {
-        deleteListing: false,
+        editPrice: false,
       },
       isRequest: {
-        deleteListing: {
-          loading: false,
-          error: false,
-        },
         uploadImage: {
           loading: false,
           error: false,
         },
+        editPrice: {
+          loading: false,
+        },
       },
     };
   },
-  computed: mapGetters([
-    "getListing",
-    "getListingImages",
-    "getListingComments",
-  ]),
+  computed: {
+    ...mapGetters(["getListing", "getListingImages", "getListingComments"]),
+    getCurrency: {
+      get: function () {
+        return this.newPrice == "" ? "" : NumberFormat.format(this.newPrice);
+      },
+      set: function (newValue) {
+        this.newPrice = null;
+        this.newPrice = +newValue.replaceAll(/\D/g, "");
+      },
+    },
+  },
   created() {
     this.$store
-      .dispatch("fetchListing", this.$route.params.id)
-      .then(() => this.$store.dispatch("fetchComments", this.$route.params.id));
+      .dispatch("fetchListing", { id: this.$route.params.id })
+      .then(() =>
+        this.$store.dispatch("fetchComments", { id: this.$route.params.id })
+      );
   },
   methods: {
-    deleteListing() {
-      this.isRequest.deleteListing.loading = true;
-      this.isRequest.deleteListing.error = false;
+    openMyListings() {
+      this.$route.replace({
+        name: "MyListings",
+      });
+    },
+    updatePrice() {
+      if (this.newPrice == 0 || this.newPrice == this.getListing.price) {
+        this.isClicked.editPrice = false;
+        return;
+      }
+      this.isRequest.editPrice.loading = true;
+      const payloads = {
+        id: this.getListing.id,
+        price: this.newPrice,
+      };
       this.$store
-        .dispatch("deleteListing", this.getListing.id)
-        .then((r) => {
-          this.$router.replace({
-            name: "MyListings",
-          });
-          console.log(r);
-        })
-        .catch((e) => {
-          console.log(e);
-          this.isRequest.deleteListing.error = true;
+        .dispatch("updateListing", payloads)
+        .then(() => {
+          this.isClicked.editPrice = false;
         })
         .finally(() => {
-          this.isRequest.deleteListing.loading = false;
-          this.isClicked.deleteListing = false;
+          this.isRequest.editPrice.loading = false;
         });
     },
     handleFiles(files) {
@@ -267,7 +304,9 @@ export default {
         .dispatch("uploadImages", payloads)
         .then(() => {
           this.files = null;
-          this.$store.dispatch("fetchListingImages", this.$route.params.id);
+          this.$store.dispatch("fetchListingImages", {
+            id: this.$route.params.id,
+          });
         })
         .catch((e) => {
           this.isRequest.uploadImage.error = true;
@@ -277,12 +316,16 @@ export default {
           this.isRequest.uploadImage.loading = false;
         });
     },
+    focusInput() {
+      this.$nextTick(() => this.$refs.input.focus());
+    },
   },
   components: {
     ImageScroller,
     CommentsBlock,
     UserView,
     DropSkeleton,
+    RequestLayer,
   },
 };
 </script>
