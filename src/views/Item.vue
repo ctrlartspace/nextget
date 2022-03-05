@@ -146,15 +146,6 @@
                 <p>{{ isConfirmed ? "Готово" : "Новая цена" }}</p>
               </button>
             </request-layer>
-            <!-- <button
-              v-else
-              type="button"
-              class="btn accent with-shadow"
-              @click="(isClicked.editPrice = true), focusInput()"
-            >
-              <span class="material-icons-round">autorenew</span>
-              <p>Новая цена</p>
-            </button> -->
           </div>
         </div>
       </div>
