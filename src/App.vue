@@ -4,11 +4,13 @@
     <router-view />
   </main>
   <Footer />
+  <nav-bottom class="d-sm-none"/>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+import NavBottom from "@/components/ui/NavBottom.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     Header,
     Footer,
+    NavBottom,
   },
   methods: {
     ...mapActions(["initTheme"]),

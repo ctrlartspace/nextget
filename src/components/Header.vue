@@ -2,7 +2,7 @@
   <header>
     <div class="nav v-padding rounded">
       <div class="row gx-2 d-flex">
-        <div class="d-flex col-auto d-flex align-items-center">
+        <div class="d-none d-md-flex col-auto d-flex align-items-center">
           <router-link
             class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'CreateListing' }"
@@ -16,7 +16,7 @@
           </router-link>
         </div>
 
-        <div class="col-auto d-flex align-items-center">
+        <div class="d-none d-md-flex col-auto align-items-center">
           <router-link
             class="btn surface with-border no-text-shadow full-rounded"
             :to="{ name: 'MyListings' }"

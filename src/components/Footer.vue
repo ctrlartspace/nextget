@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="footer padding rounded-top section">
+    <div class="footer padding section">
       <div class="row gx-4 gy-2">
         <div class="col-12 d-flex justify-content-center">
           <div class="row gx-2 gy-2 d-flex justify-content-center">
