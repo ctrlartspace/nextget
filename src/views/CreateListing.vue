@@ -148,13 +148,16 @@
             </select>
           </div>
           <div v-show="currentStep == 4" class="input-data input-price">
-            <div v-if="getAveragePrice" class="secondary-text">
-              <p>
-                Средняя цена
-                <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
-              </p>
+            <div v-if="getAveragePrice">
+              <div class="padding rounded with-border light-accent accent-text">
+                <p>
+                  Средняя цена
+                  <strong>{{ numberWithCommas(getAveragePrice) }} KZT</strong>
+                </p>
+              </div>
               <div class="offset-6"></div>
             </div>
+
             <div class="text-very-large">
               <input
                 type="text"
