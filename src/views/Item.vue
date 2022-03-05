@@ -127,17 +127,26 @@
             </button>
           </div>
           <div v-if="getListing.is_my" class="col-auto">
-            <button
-              v-if="isClicked.editPrice"
-              type="button"
-              class="btn primary with-shadow"
-              @click="updatePrice()"
-              :disabled="isRequest.editPrice.loading"
+            <request-layer
+              ask-confirm
+              action="updateListing"
+              :payloads="updatePayloads"
+              #="{ isConfirmed, isLoading, makeRequest }"
+              @on-before="(isClicked.editPrice = true), focusInput()"
+              @on-complete="isClicked.editPrice = false"
             >
-              <span class="material-icons-round">done</span>
-              <p>Готово</p>
-            </button>
-            <button
+              <button
+                type="button"
+                class="btn"
+                :class="{ primary: isConfirmed, accent: !isConfirmed }"
+                @click="makeRequest"
+                :disabled="isLoading"
+              >
+                <span class="material-icons-round">done</span>
+                <p>{{ isConfirmed ? "Готово" : "Новая цена" }}</p>
+              </button>
+            </request-layer>
+            <!-- <button
               v-else
               type="button"
               class="btn accent with-shadow"
@@ -145,7 +154,7 @@
             >
               <span class="material-icons-round">autorenew</span>
               <p>Новая цена</p>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -183,7 +192,7 @@
                 action="deleteListing"
                 :payloads="{ id: getListing.id }"
                 #="{ isConfirmed, isLoading, makeRequest }"
-                @on-complete="openMyListings()"
+                @on-success="openMyListings()"
               >
                 <button
                   type="button"
@@ -233,9 +242,6 @@ export default {
           loading: false,
           error: false,
         },
-        editPrice: {
-          loading: false,
-        },
       },
     };
   },
@@ -250,6 +256,17 @@ export default {
         this.newPrice = +newValue.replaceAll(/\D/g, "");
       },
     },
+    updatePayloads: function () {
+      const payloads = {
+        id: this.getListing.id,
+        price: this.newPrice,
+      };
+
+      payloads.valid =
+        this.newPrice > 0 && this.newPrice != this.getListing.price;
+
+      return payloads;
+    },
   },
   created() {
     this.$store
@@ -260,29 +277,11 @@ export default {
   },
   methods: {
     openMyListings() {
-      this.$route.replace({
+      this.$router.replace({
         name: "MyListings",
       });
     },
-    updatePrice() {
-      if (this.newPrice == 0 || this.newPrice == this.getListing.price) {
-        this.isClicked.editPrice = false;
-        return;
-      }
-      this.isRequest.editPrice.loading = true;
-      const payloads = {
-        id: this.getListing.id,
-        price: this.newPrice,
-      };
-      this.$store
-        .dispatch("updateListing", payloads)
-        .then(() => {
-          this.isClicked.editPrice = false;
-        })
-        .finally(() => {
-          this.isRequest.editPrice.loading = false;
-        });
-    },
+
     handleFiles(files) {
       this.files = files;
     },

@@ -68,14 +68,21 @@
         </button>
       </div>
       <div class="col-auto">
-        <button
-          type="button"
-          class="btn primary with-border full-rounded"
-          @click="addComment"
-          :disabled="isRequest.sendComment.loading"
+        <request-layer
+          action="addComment"
+          :payloads="payloads"
+          #="{ isConfirmed, isLoading, makeRequest }"
+          @on-complete="resetInput()"
         >
-          <span class="material-icons-round">send</span>
-        </button>
+          <button
+            type="button"
+            class="btn primary with-border full-rounded"
+            @click="makeRequest"
+            :disabled="isLoading"
+          >
+            <span class="material-icons-round">send</span>
+          </button>
+        </request-layer>
       </div>
     </div>
   </div>
@@ -83,6 +90,7 @@
 
 <script>
 import Comment from "@/components/comments/Comment";
+import RequestLayer from "@/components/ui/RequestLayer";
 const NumberFormat = new Intl.NumberFormat("ru-RU");
 
 export default {
@@ -102,12 +110,6 @@ export default {
         isActive: false,
         value: 0,
       },
-      isRequest: {
-        sendComment: {
-          loading: false,
-          error: false,
-        },
-      },
     };
   },
   computed: {
@@ -122,36 +124,33 @@ export default {
         this.offer.value = +newValue.replaceAll(/\D/g, "");
       },
     },
-  },
-  methods: {
-    addComment() {
-      if (!(this.comment.length > 0 || this.offer.value > 0)) return;
+    payloads: function () {
+      const comment_type_id =
+        this.offer.value > 0
+          ? 2
+          : 1; /* если есть предложенная цена, ставим типа 2 (offer)*/
       const payloads = {
         id: this.$route.params.id,
         comment: {
           text: this.comment,
           offer: this.offer.value,
-          comment_type_id:
-            this.offer.value > 0
-              ? 2
-              : 1 /* если есть предложенная цена, ставим типа 2 (offer)*/,
+          comment_type_id: comment_type_id,
         },
       };
-      this.isRequest.sendComment.loading = true;
-      this.$store
-        .dispatch("addComment", payloads)
-        .then(() => {
-          this.comment = "";
-          this.offer.isActive = false;
-          this.offer.value = 0;
-        })
-        .finally(() => {
-          this.isRequest.sendComment.loading = false;
-        });
+      payloads.valid = this.comment.length > 0 || this.offer.value > 0;
+      return payloads;
+    },
+  },
+  methods: {
+    resetInput() {
+      this.comment = "";
+      this.offer.isActive = false;
+      this.offer.value = 0;
     },
   },
   components: {
     Comment,
+    RequestLayer,
   },
 };
 </script>

@@ -54,7 +54,9 @@
         <p>
           <span class="primary-text">
             Новая цена
-            <strong>{{ numberWithCommas(comment.offer) + " KZT " }}</strong>
+            <strong>
+              {{ numberWithCommas(comment.offer) + " KZT " }}
+            </strong>
           </span>
         </p>
       </div>
@@ -62,12 +64,12 @@
     <div class="offset-2"></div>
     <div class="d-inline secondary-text">
       <p>{{ fromNow(comment.created_at) + " " }}</p>
-      <div v-if="comment.is_my">
+      <div v-if="(comment.is_my && comment.comment_type.id < 3) || comment.owner.role.id > 1">
         <p>•{{ " " }}</p>
         <request-layer
           ask-confirm
           action="deleteComment"
-          :payloads="{ id: comment.id }"
+          :payloads="payloads"
           #="{ isConfirmed, isLoading, makeRequest }"
         >
           <button
@@ -102,6 +104,13 @@ export default {
   props: {
     comment: {
       type: Object,
+    },
+  },
+  computed: {
+    payloads: function () {
+      return {
+        id: this.comment.id,
+      };
     },
   },
   components: {
