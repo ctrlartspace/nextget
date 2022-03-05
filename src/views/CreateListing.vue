@@ -46,8 +46,10 @@
             </div>
           </div>
           <div class="offset-6"></div>
-          <div v-if="empty_fields.length > 0" class="error-text text-center">
-            <p>Заполните все поля</p>
+          <div v-if="empty_fields.length > 0">
+            <div class="padding rounded with-border light-error error-text">
+              <p>Заполните все поля</p>
+            </div>
             <div class="offset-2"></div>
           </div>
           <div v-show="currentStep == 1" class="input-data">
