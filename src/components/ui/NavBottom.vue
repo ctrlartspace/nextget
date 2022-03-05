@@ -14,7 +14,7 @@
           class="btn primary with-border no-text-shadow with-shadow full-width"
           :to="{ name: 'CreateListing' }"
         >
-          <!-- <span class="material-icons-round">edit</span> -->
+          <!-- <span class="material-icons-round">add</span> -->
           <p>Создать</p>
         </router-link>
       </div>
