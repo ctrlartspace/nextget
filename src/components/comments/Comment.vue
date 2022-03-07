@@ -10,7 +10,7 @@
       </div>
       <div
         v-if="comment.owner.role.id > 1"
-        class="col d-flex justify-content-end primary-text"
+        class="col d-flex justify-content-end secondary-text"
       >
         <p>{{ comment.owner.role.name }}</p>
       </div>
