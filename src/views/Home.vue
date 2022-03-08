@@ -1,9 +1,9 @@
 <template>
   <div class="row my-0 gy-2 gx-2">
     <div class="col-12">
-      <FilterBlock />
+      <FilterBlock @on-activate="hideItems"/>
     </div>
-    <div class="col-12">
+    <div v-if="!isSearchActive" class="col-12">
       <div v-if="!getListings">
         <div class="padding colored rounded section">
           <ListingsSkeleton />
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div v-else>
+      <div v-else >
         <div v-for="model in getProductModels" :key="model.id">
           <div class="padding colored rounded section">
             <Listings :listings="getListingsByProductModel(model.product.id)" />
@@ -77,7 +77,9 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Home",
   data() {
-    return {};
+    return {
+      isSearchActive: false
+    };
   },
   computed: {
     ...mapGetters([
@@ -117,6 +119,9 @@ export default {
         filter.condition = this.getQueryParams.condition;
       return filter;
     },
+    hideItems(isSearchActive) {
+      this.isSearchActive = isSearchActive
+    }
   },
   async created() {
     this.fetchListings(this.getQueryParams);

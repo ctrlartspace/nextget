@@ -5,12 +5,11 @@
       type="submit"
       class="
         btn
-        surface
-        secondary-text
+        primary
         no-text-shadow
         full-width
         with-border
-        full-rounded
+        
         bold
       "
       @click="activate()"
@@ -176,9 +175,11 @@ export default {
       this.fetchProducts();
       this.fetchProperties();
       this.fetchListingsCount(this.getQuery);
+      this.$emit("onActivate", this.isActive)
     },
     search() {
       this.isActive = false
+      this.$emit("onActivate", this.isActive)
       this.$router.push({ name: "Home", query: this.getQuery });
     },
     update() {

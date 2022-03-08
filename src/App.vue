@@ -1,10 +1,19 @@
 <template>
-  <Header />
-  <main class="main">
-    <router-view />
-  </main>
+  <div class="row gx-2">
+    <div class="col-md-4">
+      <Header />
+    </div>
+    <div class="col-md-4">
+      <main class="main">
+        <router-view />
+      </main>
+    </div>
+    <div class="d-none d-md-block col-md-4">
+    </div>
+  </div>
+
   <Footer />
-  <nav-bottom class="d-sm-none"/>
+  <nav-bottom class="d-sm-none" />
 </template>
 
 <script>
@@ -42,7 +51,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: normal;
-  max-width: 400px;
+  max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
   padding: 0 14px;

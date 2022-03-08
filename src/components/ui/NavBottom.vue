@@ -3,7 +3,7 @@
     <div class="row gx-2 gy-2 d-flex justify-content-around">
       <div class="d-flex col-auto d-flex align-items-center">
         <router-link
-          class="btn surface with-border no-text-shadow full-rounded"
+          class="btn surface no-text-shadow full-rounded"
           :to="{ name: 'Home' }"
         >
           <span class="material-icons-round">home</span>
@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex col-auto d-flex align-items-center">
         <router-link
-          class="btn surface with-border no-text-shadow full-rounded"
+          class="btn surface no-text-shadow full-rounded"
           :to="{ name: 'MyListings' }"
         >
           <span class="material-icons-round">account_box</span>
